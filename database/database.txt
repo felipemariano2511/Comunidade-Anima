@@ -1,0 +1,5 @@
+1- CREATE DATABASE unicuritiba_connect;
+
+2- CREATE TABLE usuario(id int(9) auto_increment, primary key(id), ra int(9) unique key, email varchar(50), nome varchar(70), nivel char(4), imagem_perfil varchar(100) );
+
+3- CREATE TABLE posts (id INT AUTO_INCREMENT PRIMARY KEY, titulo VARCHAR(50), data DATE, horario TIME, endereco VARCHAR(100), descricao VARCHAR(1000), arquivos VARCHAR(400), situacao_post VARCHAR(10), autor INT, FOREIGN KEY (autor) REFERENCES usuario(ra));

@@ -1,0 +1,36 @@
+body {
+    font-family: Arial, sans-serif;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    margin: 0;
+    background-color: #f0f0f0;
+}
+
+.login-container {
+    text-align: center;
+}
+
+.ms-login-button {
+    display: flex;
+    align-items: center;
+    padding: 10px 20px;
+    font-size: 16px;
+    color: #fff;
+    background-color: #2b579a;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.ms-login-button img {
+    width: 20px;
+    height: 20px;
+    margin-right: 10px;
+}
+
+.ms-login-button:hover {
+    background-color: #1a3b6f;
+}
