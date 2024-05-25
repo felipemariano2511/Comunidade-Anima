@@ -3,7 +3,7 @@ session_start();
 
 // Defina as variáveis de configuração
 $client_id = 'a67a5d11-bddf-48cf-bc64-dbd5f96470e5';
-$redirect_uri = 'http://localhost/projeto-unicuritiba/app/APIs/Login_Microsoft/callback.php';
+$redirect_uri = 'http://localhost/Comunidade-Anima/app/APIs/Login_Microsoft/callback.php';
 $scope = 'openid User.Read';
 
 // Gera um valor único para o state

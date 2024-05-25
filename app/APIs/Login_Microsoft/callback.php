@@ -7,7 +7,7 @@ SessionUser::init();
 
 $client_id = 'a67a5d11-bddf-48cf-bc64-dbd5f96470e5';
 $client_secret = 'yEA8Q~-QA3sqgd.FFkaC0r1V6mXGn.uNSvl4ycU5';
-$redirect_uri = 'http://localhost/projeto-unicuritiba/app/APIs/Login_Microsoft/callback.php';
+$redirect_uri = 'http://localhost/Comunidade-Anima/app/APIs/Login_Microsoft/callback.php';
 
 // Verifique se o state recebido é o mesmo que foi enviado
 if (!isset($_GET['state']) || !isset($_SESSION['oauth2state']) || $_GET['state'] !== $_SESSION['oauth2state']) {
