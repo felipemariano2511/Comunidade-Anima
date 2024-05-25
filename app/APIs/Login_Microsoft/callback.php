@@ -1,5 +1,9 @@
 <?php
-session_start();
+
+include "../../Session/User.php";
+use \App\Session\User as SessionUser;
+
+SessionUser::init();
 
 $client_id = 'a67a5d11-bddf-48cf-bc64-dbd5f96470e5';
 $client_secret = 'yEA8Q~-QA3sqgd.FFkaC0r1V6mXGn.uNSvl4ycU5';
@@ -62,14 +66,10 @@ if (isset($_GET['code'])) {
                 $user_email = $user_info['mail'] ?? $user_info['userPrincipalName'];
                 $user_id = $user_info['id'];
 
-                // Exibir as informações do usuário
-                echo "User Name: " . $user_name . "<br>";
-                echo "User Email: " . $user_email . "<br>";
-                echo "User ID: " . $user_id . "<br>";
-
-                echo "<br><br>";
-                echo print_r($user_info);
-                echo "<br>";
+                // armazenar as informações na Sessão do usuário
+                SessionUser::login($user_info['mail']);
+                SessionUser::setDados($user_info['mail'],$user_info['displayName']);
+                header('Location: ../../../public/index.php');
 
             } else {
                 die('Failed to get user info: ' . $user_info_response);
