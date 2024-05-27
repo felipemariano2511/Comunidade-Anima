@@ -70,6 +70,7 @@ $authorization_url = 'https://login.microsoftonline.com/common/oauth2/v2.0/autho
         <a href="<?php echo htmlspecialchars($authorization_url); ?>" class="login-button">
             Login with Microsoft
         </a>
+        <a href="PortalAdm/index.php">É um Adminstrador? Acesse o Portal do Administrador clicando aqui!</a>
     </div>
 </body>
 </html>
