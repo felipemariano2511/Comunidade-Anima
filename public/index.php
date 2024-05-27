@@ -61,11 +61,11 @@
     <div class="container">
         <h1>Bem-vindo, <?php echo htmlspecialchars($info_user['nome']); ?>!</h1>
         <p>Estamos felizes em tê-lo conosco.</p>
-        <p>Seu email: <?php echo htmlspecialchars($info_user['email']); ?></p>
+        <p>Seus dados: <?php echo htmlspecialchars($info_user['email']); ?></p>
         <form action="" method="post">
             <button class="logout-button" name="logout-button">Logout</button>
         </form>
-        
+        <a href="publicar.php">Cadastre um novo evento!</a>
     </div>
 </body>
 </html>

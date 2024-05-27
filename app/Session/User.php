@@ -24,12 +24,15 @@ class User{
     /**
      * @param array
      */
-    public static function setDados($email, $nome ){
+    public static function setDados($id, $ra, $email, $nome, $imagem_perfil){
         self::init();
         
         $_SESSION['info_user'] = [
+        'id' => $id,
+        'ra' => $ra,
         'email' => $email,
-        'nome' => $nome
+        'nome' => $nome,
+        'imagem_perfil' => $imagem_perfil
         ];
     }
     /**

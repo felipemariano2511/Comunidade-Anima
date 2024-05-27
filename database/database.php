@@ -33,11 +33,11 @@ if ($conn->query($sql) === TRUE) {
         "CREATE TABLE eventos (
             id INT(9) AUTO_INCREMENT PRIMARY KEY,
             titulo VARCHAR(50),
-            data DATE,
+            data_evento DATE,
             horario TIME,
             endereco VARCHAR(100),
             descricao TEXT,
-            arquivos VARCHAR(400),
+            arquivo VARCHAR(400),
             situacao_post VARCHAR(10),
             justificativa TEXT,
             autor INT,

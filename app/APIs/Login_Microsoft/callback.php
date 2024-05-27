@@ -59,16 +59,15 @@ if (isset($_GET['code'])) {
 
             if ($user_info_http_code >= 200 && $user_info_http_code < 300) {
                 $user_info = json_decode($user_info_response, true);
-                $_SESSION['user_info'] = $user_info;
 
                 // Armazenar informações do usuário em variáveis
                 $user_name = $user_info['displayName'];
                 $user_email = $user_info['mail'] ?? $user_info['userPrincipalName'];
                 $user_id = $user_info['id'];
+                SessionUser::login($user_info['mail']);
 
                 // armazenar as informações na Sessão do usuário
-                SessionUser::login($user_info['mail']);
-                SessionUser::setDados($user_info['mail'],$user_info['displayName']);
+                include "../../includes/registro_usuario.php";
                 header('Location: ../../../public/index.php');
 
             } else {
