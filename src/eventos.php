@@ -8,7 +8,7 @@
 </head>
 <body>
     <nav class="py-6 bg-red-900 w-screen">
-        <h1 class="text-4xl">Eventos</h1>
+        <h1 class="text-5xl">Eventos</h1>
     </nav>
 </body>
 </html>
