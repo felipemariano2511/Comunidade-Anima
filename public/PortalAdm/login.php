@@ -109,6 +109,7 @@
                 <input type="password" id="password" name="password" required>
             </div>
             <button type="submit" name="entrar">Entrar</button>
+            <a href="../index.php">É um aluno? Faça login clicando aqui!</a>
         </form>
     </div>
 </body>

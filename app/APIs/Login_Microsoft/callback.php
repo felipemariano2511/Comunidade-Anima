@@ -66,9 +66,11 @@ if (isset($_GET['code'])) {
                 $user_id = $user_info['id'];
                 SessionUser::login($user_info['mail']);
 
-                // armazenar as informações na Sessão do usuário
                 include "../../includes/registro_usuario.php";
-                header('Location: ../../../public/index.php');
+                
+                echo    "<script>
+                        setTimeout(function() {window.location.href = '../../../public/index.php'},1000);
+                        </script>";
 
             } else {
                 die('Failed to get user info: ' . $user_info_response);

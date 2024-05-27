@@ -53,6 +53,7 @@ if ($conn->query($sql) === TRUE) {
         "CREATE TABLE servicos_universitarios (
             id INT(6) AUTO_INCREMENT PRIMARY KEY,
             servico VARCHAR(30),
+            titulo VARCHAR(30),
             descricao TEXT,
             telefone VARCHAR(100),
             email VARCHAR(50)
