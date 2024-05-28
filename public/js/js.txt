@@ -1,1 +1,0 @@
-Local destinado aos scripts em Js
