@@ -10,6 +10,8 @@
     <title>Menu</title>
     <link rel="stylesheet" href="../src/style.css">
     <link href='https://unpkg.com/boxicons@2.1.1/css/boxicons.min.css' rel='stylesheet'>
+    <link rel="shortcut icon" href="../imgs/dev/favicon.ico" type="image/x-icon">
+    <link rel="icon" href="../imgs/dev/favicon.ico" type="image/x-icon">
 </head>
 
 <body>
@@ -67,9 +69,9 @@
                     </li>
 
                     <li class="nav-link">
-                        <a href="#">
+                        <a href="eventos.php">
                             <i class='bx bx-calendar-event icon'></i>
-                            <span class="text nav-text">Evento</span>
+                            <span class="text nav-text">Eventos</span>
                         </a>
                     </li>
 
