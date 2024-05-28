@@ -7,38 +7,13 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
     <link href='https://unpkg.com/boxicons@2.1.1/css/boxicons.min.css' rel='stylesheet'>
     <link rel="stylesheet" href="styles/style-pattern.css">
-    <link rel="stylesheet" href="styles/style.css">
-    <link rel="stylesheet" href="styles/eventos.css">
+    <link rel="stylesheet" href="styles/evento.css">
     <title>Eventos</title>
 
 
 </head>
 
 <body>
-    <header class="header-main">
-        <div class="container-header">
-            <img src="../imgs/dev/logo-anima-1024-white.png" alt="" width="100px">
-        </div>
-    </header>
-    <nav class="sidebar close">
-        <header>
-            <div class="image-text">
-                <a href="">
-                    <span class="image">
-                        <img src="../imgs/usuario/user-1.webp" alt="">
-                    </span>
-                </a>
-
-
-                <div class="text logo-text">
-                    <span class="name">Felipe</span>
-                    <span class="profession">Ciência da computação</span>
-                </div>
-            </div>
-
-
-        </header>
-
         <div class="menu-bar">
             <div class="menu">
 
@@ -123,7 +98,7 @@
                     <p class="card-text">Costelinha e coxa sobre coxa, conheça os gêmeos do churrasco, sentem na graxa.</p>
                     <div class="card-buttons">
                         <a href="#" class="btn btn-primary">Ver detalhes</a>
-                        <div class="like-share">
+                        <div>
                             <i class='bx bx-heart heart-icon'></i>
                             <i class='bx bx-share bx-flip-horizontal'></i>
                         </div>
@@ -137,7 +112,7 @@
                     <p class="card-text">Costelinha e coxa sobre coxa, conheça os gêmeos do churrasco, sentem na graxa.</p>
                     <div class="card-buttons">
                         <a href="#" class="btn btn-primary">Ver detalhes</a>
-                        <div class="like-share">
+                        <div>
                             <i class='bx bx-heart heart-icon'></i>
                             <i class='bx bx-share bx-flip-horizontal'></i>
                         </div>
@@ -151,7 +126,7 @@
                     <p class="card-text">Costelinha e coxa sobre coxa, conheça os gêmeos do churrasco, sentem na graxa.</p>
                     <div class="card-buttons">
                         <a href="#" class="btn btn-primary">Ver detalhes</a>
-                        <div class="like-share">
+                        <div>
                             <i class='bx bx-heart heart-icon'></i>
                             <i class='bx bx-share bx-flip-horizontal'></i>
                         </div>
