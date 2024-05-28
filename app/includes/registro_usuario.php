@@ -15,7 +15,7 @@
             //Caso usuário já exista, irá coletar seus dados
             foreach($result as $tableData){
             }
-            SessionUser::setDados($tableData['id'],$tableData['ra'], $tableData['email'], $tableData['nome'], $tableData['imagem_perfil']);
+            SessionUser::setDados($user_info['givenName'], $tableData['id'],$tableData['ra'], $tableData['email'], $tableData['nome'], $tableData['imagem_perfil']);
             $i++;
         }else{
             //Irá criar o usuário e armazenar seus dados

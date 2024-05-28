@@ -24,14 +24,15 @@ class User{
     /**
      * @param array
      */
-    public static function setDados($id, $ra, $email, $nome, $imagem_perfil){
+    public static function setDados($firstName, $id, $ra, $email, $nome_completo, $imagem_perfil){
         self::init();
         
         $_SESSION['info_user'] = [
+        'firstName' => $firstName,
         'id' => $id,
         'ra' => $ra,
         'email' => $email,
-        'nome' => $nome,
+        'nome' => $nome_completo,
         'imagem_perfil' => $imagem_perfil
         ];
     }
@@ -57,7 +58,7 @@ class User{
         self::init();
 
         unset($_SESSION['login']);
-        //echo '<script>window.location.href ="../../public/index.php";</script>';
+        echo '<script>alert("Desconectado!"),window.location.href ="../../public/index.php";</script>';
     }
     
 }

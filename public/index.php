@@ -2,70 +2,48 @@
     include "../app/Session/User.php";
     use \App\Session\User as SessionUser;
 
-    if (!SessionUser::isLogged()){
-        header('Location: login.php');
-    }
-    $info_user = SessionUser::getInfo();
-
-    if($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['logout-button'])){
-        SessionUser::logout();
-    }
+    // Verifique se o usuário está logado e redirecione se necessário
+    if (SessionUser::isLogged()){
+        $info_user = SessionUser::getInfo();
+    } 
 ?>
+
 <!DOCTYPE html>
-<html lang="pt-BR">
+<html lang="pt-br">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Bem-vindo</title>
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            background-color: #f4f4f4;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            height: 100vh;
-            margin: 0;
-        }
-        .container {
-            background-color: #fff;
-            padding: 20px;
-            border-radius: 5px;
-            box-shadow: 0 0 10px rgba(0,0,0,0.1);
-            text-align: center;
-        }
-        h1 {
-            color: #333;
-        }
-        p {
-            color: #666;
-        }
-        .logout-button {
-            display: inline-block;
-            margin-top: 20px;
-            padding: 10px 20px;
-            font-size: 16px;
-            color: #fff;
-            background-color: #007BFF;
-            border: none;
-            border-radius: 5px;
-            cursor: pointer;
-            text-decoration: none;
-        }
-        .logout-button:hover {
-            background-color: #0056b3;
-        }
-    </style>
+    <title>Index</title>
+    <link rel="stylesheet" href="../src/style.css">
+    <link href='https://unpkg.com/boxicons@2.1.1/css/boxicons.min.css' rel='stylesheet'>
 </head>
 <body>
-    <div class="container">
-        <h1>Bem-vindo, <?php echo htmlspecialchars($info_user['nome']); ?>!</h1>
-        <p>Estamos felizes em tê-lo conosco.</p>
-        <p>Seus dados: <?php echo htmlspecialchars($info_user['email']); ?></p>
-        <form action="" method="post">
-            <button class="logout-button" name="logout-button">Logout</button>
-        </form>
-        <a href="publicar.php">Cadastre um novo evento!</a>
-    </div>
+    <?php include "../src/components/menu.php"; ?>
+
+    <script>
+        const body = document.querySelector('body'),
+              sidebar = body.querySelector('nav'),
+              toggle = body.querySelector(".toggle"),
+              searchBtn = body.querySelector(".search-box"),
+              modeSwitch = body.querySelector(".toggle-switch"),
+              modeText = body.querySelector(".mode-text");
+
+        toggle.addEventListener("click", () => {
+            sidebar.classList.toggle("close");
+        });
+
+        searchBtn.addEventListener("click", () => {
+            sidebar.classList.remove("close");
+        });
+
+        modeSwitch.addEventListener("click", () => {
+            body.classList.toggle("dark");
+            if (body.classList.contains("dark")) {
+                modeText.innerText = "Light mode";
+            } else {
+                modeText.innerText = "Dark mode";
+            }
+        });
+    </script>
 </body>
 </html>
