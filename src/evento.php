@@ -14,6 +14,25 @@
 </head>
 
 <body>
+    <nav class="sidebar close">
+        <header>
+            <div class="image-text">
+                <a href="">
+                    <span class="image">
+                        <img src="../imgs/usuario/user-1.webp" alt="">
+                    </span>
+                </a>
+
+
+                <div class="text logo-text">
+                    <span class="name">Felipe</span>
+                    <span class="profession">Ciência da computação</span>
+                </div>
+            </div>
+
+
+        </header>
+
         <div class="menu-bar">
             <div class="menu">
 
@@ -86,52 +105,21 @@
     </nav>
 
     <section class="home">
-        <div class="text">
-            <h1>Eventos</h1>
-            <p>Acompanhe os eventos que estão rolando!</p>
+        <div class="event-img">
+            <img src="../imgs/card/avalanche.jpg" class="img-fluid" alt="...">
         </div>
-        <div class="cards-main">
-            <div class="card">
-                <img src="../imgs/card/marciaoshowdebola.jpg" class="card-img-top" alt="...">
-                <div class="card-body">
-                    <h5 class="card-title">Marcio e Marcelo</h5>
-                    <p class="card-text">Costelinha e coxa sobre coxa, conheça os gêmeos do churrasco, sentem na graxa.</p>
-                    <div class="card-buttons">
-                        <a href="#" class="btn btn-primary">Ver detalhes</a>
-                        <div>
-                            <i class='bx bx-heart heart-icon'></i>
-                            <i class='bx bx-share bx-flip-horizontal'></i>
+        <div class="event-text">
+            <h1>CERVEIJADA: AVALANCHE UFPR</h1>
+            <div class="event-info-container">
+                <div class="event-info">
+                    <div class="event-data">
+                        <div class="event-title">
+                            <i class='bx bx-stopwatch'></i>
+                            <h1>Data e Horário</h1>
                         </div>
                     </div>
-                </div>
-            </div>
-            <div class="card">
-                <img src="../imgs/card/marciaoshowdebola.jpg" class="card-img-top" alt="...">
-                <div class="card-body">
-                    <h5 class="card-title">Marcio e Marcelo</h5>
-                    <p class="card-text">Costelinha e coxa sobre coxa, conheça os gêmeos do churrasco, sentem na graxa.</p>
-                    <div class="card-buttons">
-                        <a href="#" class="btn btn-primary">Ver detalhes</a>
-                        <div>
-                            <i class='bx bx-heart heart-icon'></i>
-                            <i class='bx bx-share bx-flip-horizontal'></i>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="card">
-                <img src="../imgs/card/marciaoshowdebola.jpg" class="card-img-top" alt="...">
-                <div class="card-body">
-                    <h5 class="card-title">Marcio e Marcelo</h5>
-                    <p class="card-text">Costelinha e coxa sobre coxa, conheça os gêmeos do churrasco, sentem na graxa.</p>
-                    <div class="card-buttons">
-                        <a href="#" class="btn btn-primary">Ver detalhes</a>
-                        <div>
-                            <i class='bx bx-heart heart-icon'></i>
-                            <i class='bx bx-share bx-flip-horizontal'></i>
-                        </div>
-                    </div>
-
+                    <div class="event-adress"></div>
+                    <div class="event-age"></div>
                 </div>
             </div>
         </div>
