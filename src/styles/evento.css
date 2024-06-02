@@ -11,6 +11,7 @@
     --body-color: #E4E9F7;
     --sidebar-color: #FFF;
     --primary-color: #9800ee;
+    --hover-btn-primary: #7d00c5;
     --primary-color-light: #F6F5FF;
     --toggle-color: #DDD;
     --text-color: #707070;
@@ -304,7 +305,7 @@ body.dark .switch::before {
     position: absolute;
     top: 0;
     top: 0;
-    left: 118px;
+    left: 78px;
     height: calc(100vh);
     width: calc(100% - 78px);
     background-color: var(--body-color);
@@ -348,6 +349,7 @@ body.dark .home .text {
     object-fit: cover;
     object-position: center;
     aspect-ratio: 16/9;
+    filter: blur(2px);
 }
 
 .event-img::after {
@@ -362,13 +364,37 @@ body.dark .home .text {
     pointer-events: none;
 }
 
+.event-img-small {
+    display: flex;
+    justify-content: center;
+}
+
+.event-img-small img {
+    position: absolute;
+    top: 40px;
+    width: calc(100vw - 50%);
+    height: calc(350px);
+    border-radius: 20px;
+    object-fit: cover;
+}
+
 .event-text {
+    margin-top: 200px;
     padding: 25px;
 }
 
 .event-text h1 {
     font-size: 2rem;
     font-weight: 700;
+}
+
+.event-name {
+    display: flex;
+    justify-content: center;
+}
+
+.event-name h1 {
+    width: calc(100vw - 52%);
 }
 
 .event-info-container {
@@ -385,6 +411,10 @@ body.dark .home .text {
     row-gap: 20px;
 }
 
+.event-info i {
+    font-size: 18px;
+}
+
 .event-title {
     display: flex;
     align-items: center;
@@ -396,7 +426,150 @@ body.dark .home .text {
     margin-left: 5px;
 }
 
+.event-buttons {
+    display: flex;
+    justify-content: center;
+    margin-top: 40px;
+}
 
+.event-container {
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    width: calc(100vw - 50%);
+}
+
+#form-like {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+}
+
+#form-like button {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: var(--primary-color);
+    color: white;
+    border-radius: 8px;
+    padding: 10px;
+    font-weight: 600;
+    text-wrap: nowrap;
+    transition: var(--tran-05);
+}
+
+#form-like button:hover {
+    background-color: var(--hover-btn-primary);
+}
+
+#form-like button i {
+    margin-right: 5px;
+}
+
+.other-btn {
+    display: flex;
+    justify-content: center;
+    margin-top: 40px;
+}
+
+.other-btn a {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: white;
+    border-radius: 20px;
+    padding: 15px;
+    margin-inline: 20px;
+    box-shadow: 0px 0px 8px 0px rgba(0,0,0,0.1);
+    transition: var(--tran-05);
+}
+
+.other-btn a:hover {
+    color: white;
+    background-color: var(--hover-btn-primary);
+}
+
+.other-btn i {
+    font-size: 20px;
+}
+
+.event-description {
+    display: flex;
+    justify-content: center;
+    margin-top: 50px;
+}
+
+.event-container h1 {
+    font-weight: 600;
+    font-size: 22px;
+    margin-bottom: 20px;
+}
+
+.event-container p {
+    margin-bottom: 50px;
+}
+
+@media screen and (max-width: 1200px) {
+    .event-text {
+        display: flex;
+        justify-content: center;
+        flex-direction: column;
+    }
+
+    .event-img img {
+        position: absolute;
+        height: 200px;
+        width: 100%;
+        object-fit: cover;
+        object-position: center;
+        aspect-ratio: 16/9;
+        filter: blur(0px);
+    }
+
+    .event-img-small img {
+        display: none;
+    }
+
+    .event-text {
+        padding: 25px;
+        margin: 0px;
+    }
+
+    .event-name h1 {
+        width: calc(100vw - 52%);
+    }
+
+    .event-info-container {
+        margin-top: 40px;
+        display: flex;
+        justify-content: center;
+        width: 100%;
+    }
+
+    .event-info {
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+        column-gap: 15px;
+        row-gap: 20px;
+    }
+
+    .event-info i {
+        font-size: 18px;
+    }
+
+    .event-title {
+        display: flex;
+        align-items: center;
+        margin-bottom: 10px;
+    }
+
+    .event-title h2 {
+        font-weight: 600;
+        margin-left: 5px;
+    }
+}
 
 
 

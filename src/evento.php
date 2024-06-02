@@ -106,8 +106,13 @@
         <div class="event-img">
             <img src="../imgs/card/avalanche.jpg" class="img-fluid" alt="...">
         </div>
+        <div class="event-img-small">
+            <img src="../imgs/card/avalanche.jpg" class="img-fluid" alt="...">
+        </div>
         <div class="event-text">
-            <h1>CERVEIJADA: AVALANCHE UFPR</h1>
+            <div class="event-name">
+                <h1>CERVEJADA: AVALANCHE UFPR</h1>
+            </div>
             <div class="event-info-container">
                 <div class="event-info">
                     <div class="event-data">
@@ -138,6 +143,24 @@
                         </div>
                     </div>
                 </div>
+            </div>
+        </div>
+        <div class="event-buttons">
+            <div class="event-container">
+                <form action="#" method="post" id="form-like">
+                    <button type="submit"><i class='bx bxs-heart'></i>Tenho interesse</button>
+                </form>
+                <div class="other-btn">
+                    <a href=""><i class='bx bxs-map-pin'></i></a>
+                    <a href=""><i class='bx bx-calendar-exclamation'></i></a>
+                    <a href=""><i class='bx bxs-share-alt'></i></a>
+                </div>
+            </div>
+        </div>
+        <div class="event-description">
+            <div class="event-container">
+                <h1>Descrição do evento</h1>
+                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Exercitationem corporis obcaecati aspernatur doloremque qui fugit possimus. Voluptates ullam rerum, corrupti possimus explicabo nemo quia quis id vitae cumque laborum, sequi asperiores tempora. Dolorum consequatur odio, voluptatibus molestiae quaerat dolores voluptatem ipsum. Veniam ipsa sapiente quod perferendis corporis pariatur ea, error nostrum earum?</p>
             </div>
         </div>
     </section>
