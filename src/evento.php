@@ -9,8 +9,6 @@
     <link rel="stylesheet" href="styles/style-pattern.css">
     <link rel="stylesheet" href="styles/evento.css">
     <title>Eventos</title>
-
-
 </head>
 
 <body>
@@ -114,12 +112,31 @@
                 <div class="event-info">
                     <div class="event-data">
                         <div class="event-title">
-                            <i class='bx bx-stopwatch'></i>
-                            <h1>Data e Horário</h1>
+                            <i class='bx bxs-stopwatch'></i>
+                            <h2>Data e Horário</h2>
+                        </div>
+                        <div class="event-data-content">
+                            <h3>11 de junho de 2024</h3>
                         </div>
                     </div>
-                    <div class="event-adress"></div>
-                    <div class="event-age"></div>
+                    <div class="event-adress">
+                        <div class="event-title">
+                            <i class='bx bxs-map'></i>
+                            <h2>Endereço e Local</h2>
+                        </div>
+                        <div class="event-adress-content">
+                            <h3>Av. Dr. Assis Ribeiro, 5895-5899 - Ermelino Matarazzo, São Paulo - SP - São Paulo / São Paulo</h3>
+                        </div>
+                    </div>
+                    <div class="event-age">
+                        <div class="event-title">
+                            <i class='bx bxs-error-circle'></i>
+                            <h2>Faixa Etária</h2>
+                        </div>
+                        <div class="event-age-content">
+                            <h3>Proibido menores de 18</h3>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
