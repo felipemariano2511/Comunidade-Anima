@@ -7,6 +7,7 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
     <link href='https://unpkg.com/boxicons@2.1.1/css/boxicons.min.css' rel='stylesheet'>
+    <link rel="stylesheet" href="styles/style-pattern.css">
     <link rel="stylesheet" href="styles/style.css">
     <link rel="stylesheet" href="styles/home.css">
     <title>Home</title>
@@ -111,18 +112,22 @@
     </nav>
 
     <section class="homepage">
+        <div class="homepage-content">
+            <h2>Home</h2>
+            <a href="">Fazer Login</a>
+        </div>
         <div class="links-container">
             <div class="links-item">
-                <a href="#"><img src="../imgs/dev/eventos.svg" alt=""></a>
-                <button>Eventos</button>
+                <a href="eventos.php"><img src="../imgs/dev/eventos.svg" alt=""></a>
+                <a class="button">Eventos</a>
             </div link>
             <div class="links-item">
                 <a href="#"><img src="../imgs/dev/atletica.svg" alt=""></a>
-                <button>Atléticas</button>
+                <a href="atleticas.php" class="button">Atléticas</a>
             </div>
             <div class="links-item">
                 <a href="#"><img src="../imgs/dev/comodidades.svg" alt=""></a>
-                <button>Comodidades</button>
+                <a href="comodidades.php" class="button">Comodidades</a>
             </div>
         </div>
     </section>
