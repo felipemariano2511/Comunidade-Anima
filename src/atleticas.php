@@ -119,7 +119,7 @@
             <div class="atletica-container">
                 <div class="search-bar">
                     <i class='bx bx-search'></i>
-                    <input type="search" name="barra-pesquisa" id="" placeholder="Pesquise por atléticas">
+                    <input type="search" name="barra-pesquisa" id="" placeholder="Procure por atléticas">
                 </div>
                 <div class="atletica-title">
                     <h1>Mais Relevantes</h1>
