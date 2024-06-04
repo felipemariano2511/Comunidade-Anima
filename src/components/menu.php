@@ -50,17 +50,10 @@ switch ($pagina){
     <link href='https://unpkg.com/boxicons@2.1.1/css/boxicons.min.css' rel='stylesheet'>
     <link rel="stylesheet" href="../src/styles/styles.css">
     <link rel="stylesheet" href="../src/styles/style.css">
-    <title>Eventos</title>
-
-
+    
 </head>
 
 <body>
-    <header class="header-main">
-        <div class="container-header">
-            <img src="../imgs/dev/logo-anima-1024-white.png" alt="" width="100px">
-        </div>
-    </header>
     <nav class="sidebar close">
         <header>
         <div class="image-text">
