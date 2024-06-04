@@ -1,26 +1,3 @@
-<?php
-session_start();
-
-// Defina as variáveis de configuração
-$client_id = 'a67a5d11-bddf-48cf-bc64-dbd5f96470e5';
-$redirect_uri = 'http://localhost/Comunidade-Anima/app/APIs/Login_Microsoft/callback.php';
-$scope = 'openid User.Read';
-
-// Gera um valor único para o state
-$_SESSION['oauth2state'] = bin2hex(random_bytes(16));
-
-// Construa a URL de login
-$authorization_url = 'https://login.microsoftonline.com/common/oauth2/v2.0/authorize?' . http_build_query([
-    'client_id' => $client_id,
-    'response_type' => 'code',
-    'redirect_uri' => $redirect_uri,
-    'scope' => $scope,
-    'response_mode' => 'query',
-    'state' => $_SESSION['oauth2state'],
-]);
-
-?>
-
 <!DOCTYPE html>
 <html lang="en">
 
