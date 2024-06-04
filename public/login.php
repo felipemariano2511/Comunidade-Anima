@@ -1,3 +1,26 @@
+<?php
+session_start();
+
+// Defina as variáveis de configuração
+$client_id = 'a67a5d11-bddf-48cf-bc64-dbd5f96470e5';
+$redirect_uri = 'http://localhost/Comunidade-Anima/app/APIs/Login_Microsoft/callback.php';
+$scope = 'openid User.Read';
+
+// Gera um valor único para o state
+$_SESSION['oauth2state'] = bin2hex(random_bytes(16));
+
+// Construa a URL de login
+$authorization_url = 'https://login.microsoftonline.com/common/oauth2/v2.0/authorize?' . http_build_query([
+    'client_id' => $client_id,
+    'response_type' => 'code',
+    'redirect_uri' => $redirect_uri,
+    'scope' => $scope,
+    'response_mode' => 'query',
+    'state' => $_SESSION['oauth2state'],
+]);
+
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -8,6 +31,8 @@
     <link rel="shortcut icon" href="../imgs/dev/login.png" type="image/x-icon">
     <link rel="stylesheet" href="../public/styles/login.css">
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;700&display=swap" rel="stylesheet">
+    <link rel="shortcut icon" href="../imgs/dev/favicon.ico" type="image/x-icon">
+    <link rel="icon" href="../imgs/dev/favicon.ico" type="image/x-icon">
     <script src="https://kit.fontawesome.com/f2b509d698.js" crossorigin="anonymous"></script>
     <script src="https://cdn.tailwindcss.com"></script>
 </head>
@@ -36,6 +61,26 @@
                     </div>
                     <button class="bg-[#3C1F6E] rounded-3xl text-white py-2 hover:scale-105 duration-300">Login</button>
                 </form>
+
+                <div class="mt-10 grid grid-cols-3 items-center text-gray-400">
+                    <hr class="border-gray-400">
+                    <p class="text-center text-xs">OU</p>
+                    <hr class="border-gray-400">
+                </div>
+
+                <a href="<?php  echo htmlspecialchars($authorization_url); ?>" class="bg-white border py-2 w-full rounded-xl mt-5 flex justify-center items-center text-sm hover:scale-105 duration-300">
+                    <svg class="mr-3" xmlns="http://www.w3.org/2000/svg" x="0px" y="0px" width="30px" viewBox="0 0 48 48">
+                        <path fill="#ff5722" d="M6 6H22V22H6z" transform="rotate(-180 14 14)"></path>
+                        <path fill="#4caf50" d="M26 6H42V22H26z" transform="rotate(-180 34 14)"></path>
+                        <path fill="#ffc107" d="M26 26H42V42H26z" transform="rotate(-180 34 34)"></path>
+                        <path fill="#03a9f4" d="M6 26H22V42H6z" transform="rotate(-180 14 34)"></path>
+                    </svg>Login com Microsoft</a>
+
+                    <div class="mt-4 text-xs flex justify-between items-center">
+                        <p>Se você não tem uma conta...</p>
+                        <button class="py-2 px-5 bg-white border rounded-xl hover:scale-110 duration-300">Cadastrar</button>
+                    </div>
+
             </div>
 
             <!-- img -->
@@ -44,5 +89,7 @@
             </div>
         </div>
     </section>
+
 </body>
+
 </html>

@@ -2,44 +2,40 @@
 include_once '../app/Session/User.php'; 
 use App\Session\User as SessionUser;
 
-if(isset($_GET['page'])){
-    $pagina = isset($_GET['page']) ? $_GET['page'] : '';
+$pagina = isset($_GET['page']) ? $_GET['page'] : '';
 
-    switch ($pagina){
-        case '':
-            $page = '../src/home.php';
-            break;
+switch ($pagina){
+    case '':
+        $page = '../src/home.php';
+        break;
 
-        case 'Home':
-            $page = '../src/home.php';
-            break;
+    case 'Home':
+        $page = '../src/home.php';
+        break;
+    
+    case 'Eventos':
+        $page = '../src/eventos.php';
+        break;
 
-        case 'Eventos':
-            $page = '../src/eventos.php';
-            break;
+    case 'Atléticas':
+        $page = '../src/atleticas.php';
+        break;
 
-        case 'Atléticas':
-            $page = '../src/atleticas.php';
-            break;
+    case 'Comodidades':
+        $page = '../src/comodidades.php';
+        break; 
+          
+    case '':
+        $page = '../src/.php';
+        break; 
 
-        case 'Comodidades':
-            $page = '../src/comodidades.php';
-            break; 
-            
-        case '':
-            $page = '../src/.php';
-            break; 
+    case 'Likes':
+        $page = '../src/likes.php';
+        break; 
 
-        case 'Likes':
-            $page = '../src/likes.php';
-            break; 
-
-        case 'Suporte':
-            $page = '../src/suporte.php';
-            break;
-    }
-}else{
-    $page = null;
+    case 'Suporte':
+        $page = '../src/suporte.php';
+        break;
 }
 ?>
 
@@ -52,10 +48,19 @@ if(isset($_GET['page'])){
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
     <link href='https://unpkg.com/boxicons@2.1.1/css/boxicons.min.css' rel='stylesheet'>
+    <link rel="stylesheet" href="../src/styles/styles.css">
     <link rel="stylesheet" href="../src/styles/style.css">
     <title>Eventos</title>
+
+
 </head>
+
 <body>
+    <header class="header-main">
+        <div class="container-header">
+            <img src="../imgs/dev/logo-anima-1024-white.png" alt="" width="100px">
+        </div>
+    </header>
     <nav class="sidebar close">
         <header>
         <div class="image-text">
@@ -96,42 +101,42 @@ if(isset($_GET['page'])){
 
 
                     <li class="nav-link">
-                        <a href="index.php?page=Home">
+                        <a href="?page=Home">
                             <i class='bx bx-home-alt icon'></i>
                             <span class="text nav-text">Home</span>
                         </a>
                     </li>
 
                     <li class="nav-link">
-                        <a href="index.php?page=Eventos">
+                        <a href="?page=Eventos">
                             <i class='bx bx-calendar-event icon'></i>
-                            <span class="text nav-text">Eventos</span>
+                            <span class="text nav-text">Evento</span>
                         </a>
                     </li>
 
                     <li class="nav-link">
-                        <a href="index.php?page=Atléticas">
+                        <a href="?page=Atléticas">
                             <i class='bx bx-trophy icon'></i>
                             <span class="text nav-text">Atléticas</span>
                         </a>
                     </li>
 
                     <li class="nav-link">
-                        <a href="index.php?page=Comodidades">
+                        <a href="?page=Comodidades">
                             <i class='bx bx-shape-triangle icon'></i>
                             <span class="text nav-text">Comodidades</span>
                         </a>
                     </li>
 
                     <li class="nav-link">
-                        <a href="index.php?page=Likes">
+                        <a href="?page=Likes">
                             <i class='bx bx-heart icon'></i>
                             <span class="text nav-text">Likes</span>
                         </a>
                     </li>
 
                     <li class="nav-link">
-                        <a href="index.php?page=Suporte">
+                        <a href="?page=Suporte">
                             <i class='bx bx-support icon'></i>
                             <span class="text nav-text">Suporte</span>
                         </a>
@@ -155,10 +160,7 @@ if(isset($_GET['page'])){
         </div>
 
     </nav>
-        <?php 
-            if($page !== null){
-                include $page;
-            }?>
+        <?php include $page;?>
     <script>
         const body = document.querySelector('body'),
             sidebar = body.querySelector('nav'),
