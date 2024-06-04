@@ -1,3 +1,14 @@
+<?php
+    
+    if(isset($_POST['executar'])){
+        include 'database.php';
+        include '../app/includes/config.php';
+        include 'data.php';
+    }
+    
+
+?>
+
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
@@ -9,12 +20,13 @@
 <body>
     <div class="container">
         <h1>Configurar Banco de Dados</h1>
-        <form action="database.php" method="post">
-            <button type="submit">Executar Script</button>
+        <form action="" method="post">
+            <button type="submit" name="executar">Executar Script</button>
         </form>
         <?php
         if (isset($_GET['status']) && $_GET['status'] == 'success') {
-            echo '<p class="success">Query executada com sucesso!</p>';
+            echo '<p class="success">Banco de dados criado com sucesso!</p>';
+            echo '<p class="success">Arquivos inseridos com sucesso!</p>';
         }
         ?>
     </div>
