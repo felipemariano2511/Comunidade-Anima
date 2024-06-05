@@ -1,4 +1,5 @@
 <?php
+    
     include '../app/Session/User.php';
     
     $uri = $_SERVER['REQUEST_URI'];
@@ -24,7 +25,5 @@
 <body>
     <?php include "../src/components/main_header.php"; ?>
     <?php include "../src/components/menu.php"; ?>
-    
-
 </body>
 </html>

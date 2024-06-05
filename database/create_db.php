@@ -26,6 +26,7 @@
         <?php
         if (isset($_GET['status']) && $_GET['status'] == 'success') {
             echo '<p class="success">Banco de dados criado com sucesso!</p>';
+        }if (isset($_GET['status']) && $_GET['status'] == 'success') {
             echo '<p class="success">Arquivos inseridos com sucesso!</p>';
         }
         ?>

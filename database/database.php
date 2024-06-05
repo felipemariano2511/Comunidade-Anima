@@ -51,7 +51,8 @@ if ($conn->query($sql) === TRUE) {
             telefone VARCHAR(15),
             email VARCHAR(50),
             relevancia INT(9),
-            arquivo VARCHAR(400)
+            arquivo VARCHAR(400),
+            situacao VARCHAR(10)
         )",
         
     ];
