@@ -100,8 +100,6 @@ body.dark {
   width: 78px;
 }
 
-
-
 /* ===== Reusable code - Here ===== */
 .sidebar li {
   height: 50px;
@@ -305,10 +303,10 @@ body.dark .switch::before {
   position: absolute;
   top: 0;
   top: 0;
-  left: 118px;
+  left: 78px;
   margin-top: 56px;
   height: calc(100vh - 56px);
-  width: calc(100% - 118px);
+  width: calc(100% - 78px);
   padding-right: 30px;
   background-color: var(--body-color);
   transition: var(--tran-05);
@@ -346,9 +344,9 @@ h6 {
 }
 
 .sidebar.close~.home {
-  left: 118px;
+  left: 78px;
   height: calc(100vh - 56px);
-  width: calc(100% - 118px);
+  width: calc(100% - 78px);
 }
 
 body.dark .home .text {
