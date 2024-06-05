@@ -1,5 +1,5 @@
 <?php
-    
+    include '../app/includes/config.php';
     include '../app/Session/User.php';
     
     $uri = $_SERVER['REQUEST_URI'];

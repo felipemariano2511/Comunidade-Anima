@@ -1,6 +1,7 @@
 <?php
-    use App\Session\User as SessionUser;
-?><!DOCTYPE html>
+?>
+
+<!DOCTYPE html>
 <html lang="pt-br">
 
 <head>

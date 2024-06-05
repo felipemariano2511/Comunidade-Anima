@@ -7,7 +7,7 @@
             descricao_completa,
             telefone,
             email,
-            relevancia,
+            curtidas,
             arquivo,
             situacao
           )
@@ -30,7 +30,7 @@
             descricao_completa,
             telefone,
             email,
-            relevancia,
+            curtidas,
             arquivo,
             situacao
           )
@@ -53,7 +53,7 @@
             descricao_completa,
             telefone,
             email,
-            relevancia,
+            curtidas,
             arquivo,
             situacao
           )
@@ -76,7 +76,7 @@
             descricao_completa,
             telefone,
             email,
-            relevancia,
+            curtidas,
             arquivo,
             situacao
           )
@@ -99,7 +99,7 @@
             descricao_completa,
             telefone,
             email,
-            relevancia,
+            curtidas,
             arquivo,
             situacao
           )
@@ -121,7 +121,7 @@
             descricao_completa,
             telefone,
             email,
-            relevancia,
+            curtidas,
             arquivo,
             situacao
           )
@@ -144,7 +144,7 @@
             descricao_completa,
             telefone,
             email,
-            relevancia,
+            curtidas,
             arquivo,
             situacao
           )
@@ -184,7 +184,8 @@
             descricao_completa,
             arquivo,
             situacao_post,
-            autor
+            autor,
+            curtidas
           )
           VALUES (
             'Hackathon Unicuritiba',
@@ -213,7 +214,8 @@
             </div>',
             '../imgs/posts/hackathon-o-que-e-vantagens-desafios-como-promover-1280x720.jpg',
             'ativo',
-            1
+            1,
+            67
           )",
 
           "INSERT INTO eventos (
@@ -227,7 +229,8 @@
             descricao_completa,
             arquivo,
             situacao_post,
-            autor
+            autor,
+            curtidas
           )
           VALUES (
             'Workshop de Empreendedorismo',
@@ -254,7 +257,8 @@
             </div>',
             'https://i.ytimg.com/vi/27ck3rqfc-A/maxresdefault.jpg',
             'ativo',
-            1
+            1,
+            105
           )",
 
           "INSERT INTO eventos (
@@ -268,7 +272,8 @@
             descricao_completa,
             arquivo,
             situacao_post,
-            autor
+            autor,
+            curtidas
           )
           VALUES (
             'Intercâmbio de Idiomas',
@@ -295,7 +300,8 @@
             </div>',
             'https://sonhealtoviagens.com/wp-content/uploads/2020/09/INTERCA%CC%82MBIO-CANADA%CC%81-768x432.png',
             'ativo',
-            1
+            1,
+            156
           )",
 
           "INSERT INTO eventos (
@@ -309,7 +315,8 @@
             descricao_completa,
             arquivo,
             situacao_post,
-            autor
+            autor,
+            curtidas
           )
           VALUES (
             'Noite do Cinema',
@@ -334,7 +341,8 @@
             </div>',
             'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT6B4MMxzxaHHOHoqrF4WMOXei4ctbpRDqd9QDqtYMNVFYCnOcjLobsb4bMe0tXuKRSsvU&usqp=CAU',
             'ativo',
-            1
+            1,
+            56
           )",
 
           "INSERT INTO eventos (
@@ -348,7 +356,8 @@
             descricao_completa,
             arquivo,
             situacao_post,
-            autor
+            autor,
+            curtidas
           )
           VALUES (
             'Workshop de Sustentabilidade',
@@ -374,7 +383,8 @@
             </div>',
             'https://i.ytimg.com/vi/SvRXIWfKf8k/maxresdefault.jpg',
             'ativo',
-            1
+            1,
+            23
           )",
 
           "INSERT INTO eventos (
@@ -388,7 +398,8 @@
             descricao_completa,
             arquivo,
             situacao_post,
-            autor
+            autor,
+            curtidas
           )
           VALUES (
             'Feira de Estudos no Exterior',
@@ -415,7 +426,8 @@
             </div>',
             'https://www.royce.ac.uk/content/uploads/2017/05/Cambridge3.jpg',
             'ativo',
-            1
+            1,
+            12
           )",
 
           "INSERT INTO eventos (
@@ -429,7 +441,8 @@
             descricao_completa,
             arquivo,
             situacao_post,
-            autor
+            autor,
+            curtidas
           )
           VALUES (
             'Imersão nas Cores e Formas: Uma Celebração da Arte',
@@ -458,7 +471,8 @@
             </div>',
             'https://www.unochapeco.edu.br/static/data/portal/noticias/fotos/640x480/11873.jpg',
             'ativo',
-            1
+            1,
+            5
           )",
     ];
 
@@ -469,6 +483,7 @@
     }
     header("Location: create_db.php?status=success");
 
-
 $con->close();
 ?>
+
+

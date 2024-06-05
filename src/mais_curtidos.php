@@ -1,6 +1,17 @@
 <?php
 
-    $query = "SELECT * FROM eventos WHERE situacao_post = 'ativo'";
+    $query = "SELECT id, titulo, descricao_inicial, arquivo, situacao_post AS situacao, curtidas
+                FROM eventos
+                WHERE situacao_post = 'ativo'
+                
+                UNION ALL
+                
+                SELECT id, titulo, descricao_inicial, arquivo, situacao AS situacao_post, curtidas 
+                FROM servicos_universitarios
+                WHERE situacao = 'ativo'
+
+                ORDER BY curtidas DESC;
+                ";
     $result = mysqli_query($con, $query);
 
     if ($result) {
@@ -27,14 +38,16 @@
 </head>
 <section class="home">
     <div class="text">
-        <h1>Eventos</h1>
-        <p>Acompanhe os eventos que estão rolando!</p>
+        <h1>Mais curtidos</h1>
+        <p>Acompanhe os 10 mais curtidos!</p>
     </div>
 
     <?php
+        $count = 0;
         if (is_array($tableData) && !empty($tableData)) {
             foreach ($tableData as $dados) {
-                    echo '
+                $id[] = $dados['id'];
+                echo '
                     <div class="cards-main">
                         <div class="card">
                             <img src="'.$dados['arquivo'].'" class="card-img-top" alt="...">
@@ -45,12 +58,16 @@
                                     <a href="evento.php?id='.$dados['id'].'" class="btn btn-primary">Ver detalhes</a>
                                     <div class="like-share">
                                         <i class="bx bx-heart heart-icon"></i>
-                                        <i class="bx bx-share bx-flip-horizontal compartilhar" data-id="'.$dados['id'].'"></i>
+                                        <i class="bx bx-share bx-flip-horizontal compartilhar" data-id="'.$id[$count].'"></i>
                                     </div>
                                 </div>
                             </div>
                         </div>
-                </div>';
+                    </div>';
+                $count++;
+                if ($count > 10) {
+                    break;
+                }
             }
         }
     ?>

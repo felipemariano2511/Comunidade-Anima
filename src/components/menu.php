@@ -29,8 +29,8 @@ switch ($pagina){
         $page = '../src/.php';
         break; 
 
-    case 'Likes':
-        $page = '../src/likes.php';
+    case 'MaisCurtidos':
+        $page = '../src/mais_curtidos.php';
         break; 
 
     case 'Suporte':
@@ -121,9 +121,9 @@ switch ($pagina){
                     </li>
 
                     <li class="nav-link">
-                        <a href="?page=Likes">
+                        <a href="?page=MaisCurtidos">
                             <i class='bx bx-heart icon'></i>
-                            <span class="text nav-text">Likes</span>
+                            <span class="text nav-text">Mais curtidos</span>
                         </a>
                     </li>
 

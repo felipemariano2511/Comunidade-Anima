@@ -3,6 +3,13 @@
     include '../app/Session/User.php';
     use App\Session\User as SessionUser;
     
+    $uri = $_SERVER['REQUEST_URI'];
+
+    if ($uri == "/Comunidade-Anima/public/servicos_universitarios.php" || $uri == "/Comunidade-Anima/public/servicos_universitarios.php?") {
+        header("Location: index.php?page=Home");
+        exit;
+    };
+
     if(isset($_GET['id'])){
         $id = $_GET['id'];
         //Consulta se o id do evento existe
@@ -18,10 +25,10 @@
                 echo '<script>window.location.href = "servicos_universitarios.php?id='.$tableData['id'].'#";</script>';
             //Senão, recireciona para a página de Eventos
             }else{
-                header('Location: index.php?page=Atléticas');
+                header('Location: index.php?page=Home');
             }
         }else{
-            header('Location: index.php?page=Atléticas'); 
+            header('Location: index.php?page=Home'); 
         }
     }
     

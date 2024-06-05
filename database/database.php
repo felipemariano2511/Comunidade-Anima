@@ -50,7 +50,7 @@ if ($conn->query($sql) === TRUE) {
             descricao_completa TEXT,
             telefone VARCHAR(15),
             email VARCHAR(50),
-            relevancia INT(9),
+            curtidas INT(9),
             arquivo VARCHAR(400),
             situacao VARCHAR(10)
         )",

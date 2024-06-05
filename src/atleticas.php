@@ -1,7 +1,7 @@
 <?php
     include '../app/includes/config.php';
 
-    $query = "SELECT * FROM servicos_universitarios WHERE servico = 'Atlética' AND situacao = 'ativo'";
+    $query = "SELECT * FROM servicos_universitarios WHERE servico = 'Atlética' AND situacao = 'ativo' ORDER BY relevancia DESC";
     $result = mysqli_query($con, $query);
 
     if ($result) {
@@ -13,6 +13,7 @@
     } else {
         echo "Sem resultados para essa consulta! ";
     }
+
 ?>
 <!DOCTYPE html>
 <html lang="pt-br">
@@ -26,6 +27,7 @@
     <link rel="stylesheet" href="../src/styles/style-pattern.css">
     <link rel="stylesheet" href="../src/styles/style.css">
     <link rel="stylesheet" href="../src/styles/atleticas.css">
+    <link rel="stylesheet" href="../src/styles/eventos.css">
     <title>Atléticas</title>
 </head>
 
@@ -44,40 +46,57 @@
                     <h1>Mais Relevantes</h1>
                 </div>
                 <div class="atletica-card">
-                    <a href="">Bugatos</a>
-                    <a href="">Intoxicados</a>
-                    <a href="">Avalanche</a>
-                    <a href="">Católitros</a>
-                    <a href="">Jirombinhas</a>
-                    <a href="">#SNPFC</a>
+                    <?php
+                    if (is_array($tableData) && !empty($tableData)) {
+                        $rows = $tableData;
+                        $cont = 0;
+                        
+                        foreach ($rows as $data) {
+                            $relevancia[] = $data['titulo'];
+                            $id[] = $data['id'];
+                            $cont++;
+                        }
+
+                        if($cont > 6){
+                            $i = 6;
+                        }elseif($cont > 3 && $cont <=6){
+                            $i = 3;
+                        }else{
+                            $i = $cont;
+                        }
+                        $e = 0;
+                        while($i > $e){
+                            echo '<a href="servicos_universitarios.php?id='.$id[$e].'#">'.$relevancia[$e].'</a>';
+                            $e++;
+                        }
+                    }
+                    ?>
                 </div>
             </div>
         </div>
         <?php
-        if (is_array($tableData) && !empty($tableData)) {
-            foreach ($tableData as $dados) {
-                if ($dados['situacao'] == "ativo") {
-                    echo '
-                    <div class="cards-main">
-                        <div class="card">
-                            <img src="'.$dados['arquivo'].'" class="card-img-top" alt="...">
-                            <div class="card-body">
-                                <h5 class="card-title">'.$dados['titulo'].'</h5>
-                                <p class="card-text">'.$dados['descricao_inicial'].'</p>
-                                <div class="card-buttons">
-                                    <a href="servicos_universitarios.php?id='.$dados['id'].'" class="btn btn-primary">Ver detalhes</a>
-                                    <div class="like-share">
-                                        <i class="bx bx-heart heart-icon"></i>
-                                        <i class="bx bx-share bx-flip-horizontal compartilhar" data-id="'.$dados['id'].'"></i>
+            if (is_array($tableData) && !empty($tableData)) {
+                foreach ($tableData as $dados) {
+
+                    echo '<div class="cards-main">
+                             <div class="card">
+                                <img src="'.$dados['arquivo'].'" class="card-img-top" alt="...">
+                                <div class="card-body">
+                                    <h5 class="card-title">'.$dados['titulo'].'</h5>
+                                    <p class="card-text">'.$dados['descricao_inicial'].'</p>
+                                    <div class="card-buttons">
+                                        <a href="servicos_universitarios.php?id='.$dados['id'].'" class="btn btn-primary">Ver detalhes</a>
+                                        <div class="like-share">
+                                            <i class="bx bx-heart heart-icon"></i>
+                                            <i class="bx bx-share bx-flip-horizontal compartilhar" data-id="'.$dados['id'].'"></i>
+                                        </div>
                                     </div>
                                 </div>
-                            </div>
-                        </div>
-                    </div>';
+                             </div>
+                          </div>';
                 }
             }
-        }
-    ?>
+        ?>
     </section>
 
     <script>
