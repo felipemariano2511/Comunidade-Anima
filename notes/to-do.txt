@@ -1,0 +1,2 @@
+- Arrumar espaçamentos de todas as paginas, deixar todas com o mesmo padding
+- Arrumar alguns bugs e declarações incorretas nas paginas, como o width e height declarados

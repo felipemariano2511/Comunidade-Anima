@@ -8,4 +8,6 @@
 
 5- CREATE TABLE curtidas(curtido BOOLEAN, id_posts int(9) foreign key references eventos(id), id_ususario foreign key references usuario(id));
 
+5.1(Corrigida) - CREATE TABLE curtidas(curtido BOOLEAN, id_posts INT(9), FOREIGN KEY (id_posts) REFERENCES eventos(id), id_usuario INT, FOREIGN KEY (id_usuario) REFERENCES usuario(id));
+
 6- CREATE TABLE servicos_universitarios(id int(6) auto_increment primary key, servico varchar(30), descricao text(500), telefone varchar(100), email varchar(50))
