@@ -1,7 +1,7 @@
 <?php
     include '../app/includes/config.php';
 
-    $query = "SELECT * FROM servicos_universitarios WHERE servico = 'Atléticas' situacao = 'ativo'";
+    $query = "SELECT * FROM servicos_universitarios WHERE servico = 'Atlética' AND situacao = 'ativo'";
     $result = mysqli_query($con, $query);
 
     if ($result) {
