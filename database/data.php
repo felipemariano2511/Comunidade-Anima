@@ -8,7 +8,8 @@
             telefone,
             email,
             relevancia,
-            arquivo
+            arquivo,
+            situacao
           )
           VALUES (
             'Atlética',
@@ -18,7 +19,8 @@
             '(83) 9999-9999',
             'atleticatubarao@ufcg.edu.br',
             100,
-            'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRzyIse0UZcZR9LuQIpuID3GM7mH-CX0q3QPA&s'
+            'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRzyIse0UZcZR9LuQIpuID3GM7mH-CX0q3QPA&s',
+            'ativo'
           )",
 
           "INSERT INTO servicos_universitarios (
@@ -29,18 +31,19 @@
             telefone,
             email,
             relevancia,
-            arquivo
+            arquivo,
+            situacao
           )
-          VALUES
-          (
+          VALUES (
+            'Atlética',
             'Atlética Calouros em Ação',
-            'CAA - UFCG',
             'Boas-vindas à Universidade! A CAA é a sua porta de entrada para a melhor experiência universitária!',
             '<p>A Atlética Calouros em Ação (CAA) da Universidade Federal de Campina Grande (UFCG) é um grupo acolhedor e dedicado a integrar os calouros na vida universitária. Oferecemos diversas atividades para que você faça novos amigos, se divirta e aproveite ao máximo sua jornada na UFCG:</p><ul><li>Recepção calorosa aos calouros e apoio durante o período de adaptação;</li><li>Festas temáticas e eventos sociais;</li><li>Competições esportivas e jogos intercursos;</li><li>Viagens e excursões;</li><li>Descontos em produtos e serviços;</li><li>Orientação e suporte acadêmico.</li></ul><p>A CAA é o lugar ideal para você se conectar com outros calouros, vivenciar momentos inesquecíveis e construir memórias que durarão para sempre!</p><p><img src=\'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR02OlH-yMaoSsfVWFT-kzh2LbCuqYLA2XU5oU7hxKj_GMw8gNSIA-GpVBKq0eSoXSda-A&usqp=CAU/\' alt=\'Logo da CAA\'></p><p>Acesse nossas redes sociais para saber mais:</p><ul><li><a href=\'https://www.facebook.com/CAAUFCG/\' target=\'_blank\'>Facebook</a></li><li><a href=\'https://www.instagram.com/caa_ufcg/\' target=\'_blank\'>Instagram</a></li><li><a href=\'https://twitter.com/CAAUFCG\' target=\'_blank\'>Twitter</a></li></ul>',
             '(83) 3201-7002',
             'caa@ufcg.edu.br',
             80,
-            'https://sga.uniube.br/conteudosMidias/2808.jpg'
+            'https://sga.uniube.br/conteudosMidias/2808.jpg',
+            'ativo'
           )",
 
           "INSERT INTO servicos_universitarios (
@@ -51,17 +54,19 @@
             telefone,
             email,
             relevancia,
-            arquivo
+            arquivo,
+            situacao
           )
           VALUES (
+            'Atlética',
             'Atlética Veteranos em Ação',
-            'AVA - UFCG',
             'A união faz a força! A AVA é o lar dos veteranos da UFCG.',
             '<p>A Atlética Veteranos em Ação (AVA) da Universidade Federal de Campina Grande (UFCG) é um grupo que reúne os veteranos da instituição para promover a integração, a confraternização e o apoio mútuo. Oferecemos diversas atividades para que você continue se divertindo e aproveitando ao máximo a vida universitária:</p><ul><li>Eventos esportivos e sociais;</li><li>Viagens e excursões;</li><li>Descontos em produtos e serviços;</li><li>Orientação e apoio aos calouros;</li><li>Participação em eventos da universidade.</li></ul><p>A AVA é o lugar ideal para você manter contato com seus amigos da graduação, fazer novas amizades e contribuir para a comunidade universitária.</p><p><img src=\'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSv9KPPPouwUBMOOFqajnKaWA8m8Crb2VbljLUTyH3HC17PIw-WutpkMeZSwW856EEOO38&usqp=CAU/\' alt=\'Logo da AVA\'></p><p>Acesse nossas redes sociais para saber mais:</p><ul><li><a href=\'https://www.facebook.com/AVAUFCG/\' target=\'_blank\'>Facebook</a></li><li><a href=\'https://www.instagram.com/ava_ufcg/\' target=\'_blank\'>Instagram</a></li><li><a href=\'https://twitter.com/AVAUFCG\' target=\'_blank\'>Twitter</a></li></ul>',
             '(83) 3201-7003',
             'ava@ufcg.edu.br',
             90,
-            'https://cajamar.sp.gov.br/noticias/wp-content/uploads/sites/2/2023/03/image-8.png'
+            'https://cajamar.sp.gov.br/noticias/wp-content/uploads/sites/2/2023/03/image-8.png',
+            'ativo'
           )",
           
           "INSERT INTO servicos_universitarios (
@@ -72,17 +77,19 @@
             telefone,
             email,
             relevancia,
-            arquivo
+            arquivo,
+            situacao
           )
           VALUES (
-            'Serviços Veterinários Gratuitos',
+            'Comodidades',
             'SVU - UFCG',
             'Saúde animal para seus pets!',
             '<p>A Universidade Federal de Campina Grande (UFCG), através do Serviço Veterinário Universitário (SVU), oferece atendimento veterinário gratuito para seus alunos, ex-alunos, servidores e seus familiares. O SVU conta com uma equipe de profissionais qualificados e experientes, que oferecem serviços de: </p><ul><li>Consultas clínicas;</li><li>Vacinações;</li><li>Desparasitações;</li><li>Cirurgias simples;</li><li>Exames laboratoriais;</li><li>Orientação nutricional.</li></ul><p>O SVU está localizado no campus da UFCG e funciona de segunda a sexta-feira, das 8h às 12h e das 14h às 18h. Para agendar uma consulta, entre em contato conosco pelo telefone (83) 3201-7004 ou pelo e-mail svu@ufcg.edu.br.</p><p><img src=\'https://servicosveterinarios.com.br/wp-content/uploads/2023/01/SV_final_FullColor-scaled.jpg/\' alt=\'Logo do SVU\'></p>',
             '(83) 3201-7004',
             'svu@ufcg.edu.br',
             85,
-            'https://vrnews.com.br/wp-content/uploads/2024/04/clinica01-696x465.png'
+            'https://vrnews.com.br/wp-content/uploads/2024/04/clinica01-696x465.png',
+            'ativo'
           )",
 
           "INSERT INTO servicos_universitarios (
@@ -93,17 +100,19 @@
             telefone,
             email,
             relevancia,
-            arquivo
+            arquivo,
+            situacao
           )
           VALUES (
+            'Comodidades',
             'Apoio Odontológico',
-            'AO - UFCG',
             'Sorriso saudável para todos!',
             '<p>A Universidade Federal de Campina Grande (UFCG), através do Apoio Odontológico (AO), oferece atendimento odontológico gratuito para seus alunos, ex-alunos, servidores e seus familiares. O AO conta com uma equipe de profissionais qualificados e experientes, que oferecem serviços de: </p><ul><li>Consultas clínicas;</li><li>Limpezas dentárias;</li><li>Obturações;</li><li>Extrações;</li><li>Raio-X;</li><li>Orientação de higiene bucal.</li></ul><p>O AO está localizado no campus da UFCG e funciona de segunda a sexta-feira, das 8h às 12h e das 14h às 18h. Para agendar uma consulta, entre em contato conosco pelo telefone (83) 3201-7005 ou pelo e-mail ao@ufcg.edu.br.</p><p><img src=\'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT-BrL3gWoKUUNWiGCUF6adZOGOekhHOhWp_XwE_4ax0au3RoSDUrr57guYGJPEGPs9SkU&usqp=CAU/\' alt=\'Logo do AO\'></p>',
             '(83) 3201-7005',
             'ao@ufcg.edu.br',
             80,
-            'https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEj245LJ5zgwKxKudWTBZ3QFMciQOwB1dXlFLMXDtjgGW1kjmqJQoOaSQks9UIkmU97JWZUurj_JqE1WSEJwJdHa8QdCaUIMoAj1uhf0UwNy0M_mOGgCIWiJ_xpW77h61kIufGHMCg6ZtZU/s1277/diadasa%25C3%25BAde03.jpeg'
+            'https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEj245LJ5zgwKxKudWTBZ3QFMciQOwB1dXlFLMXDtjgGW1kjmqJQoOaSQks9UIkmU97JWZUurj_JqE1WSEJwJdHa8QdCaUIMoAj1uhf0UwNy0M_mOGgCIWiJ_xpW77h61kIufGHMCg6ZtZU/s1277/diadasa%25C3%25BAde03.jpeg',
+            'ativo'
           )",
           "INSERT INTO servicos_universitarios (
             servico,
@@ -113,17 +122,19 @@
             telefone,
             email,
             relevancia,
-            arquivo
+            arquivo,
+            situacao
           )
           VALUES (
+            'Comodidades',
             'Apoio Psicológico',
-            'APS - UFCG',
             'Bem-estar mental para todos!',
             '<p>A Universidade Federal de Campina Grande (UFCG), através do Apoio Psicológico (APS), oferece atendimento psicológico gratuito para seus alunos, ex-alunos, servidores e seus familiares. O APS conta com uma equipe de psicólogos qualificados e experientes, que oferecem: </p><ul><li>Escuta ativa e acolhedora;</li><li>Avaliação psicológica;</li><li>Intervenções psicoterápicas individuais e em grupo;</li><li>Orientação e apoio em crises;</li><li>Palestras e workshops sobre saúde mental.</li></ul><p>O APS está localizado no campus da UFCG e funciona de segunda a sexta-feira, das 8h às 12h e das 14h às 18h. Para agendar um atendimento, entre em contato conosco pelo telefone (83) 3201-7006 ou pelo e-mail aps@ufcg.edu.br.</p><p><img src=\'https://hepic.com.br/wp-content/uploads/2022/10/Covid-19-profissionais-da-saude-contam-com-rede-de-apoio-psicologico.jpg/\' alt=\'Logo do APS\'></p>',
             '(83) 3201-7006',
             'aps@ufcg.edu.br',
             90,
-            'https://media.licdn.com/dms/image/C4D22AQGv_w8NFlqgaA/feedshare-shrink_800/0/1664228406378?e=2147483647&v=beta&t=8hqqM4boxE0DE5XB5kYbtt7B7iysNfCSnwPNPoJAVWY'
+            'https://media.licdn.com/dms/image/C4D22AQGv_w8NFlqgaA/feedshare-shrink_800/0/1664228406378?e=2147483647&v=beta&t=8hqqM4boxE0DE5XB5kYbtt7B7iysNfCSnwPNPoJAVWY',
+            'ativo'
           )",
           
           "INSERT INTO servicos_universitarios (
@@ -134,17 +145,19 @@
             telefone,
             email,
             relevancia,
-            arquivo
+            arquivo,
+            situacao
           )
           VALUES (
+            'Comodidades',
             'Orientação de Carreira',
-            'OC - UFCG',
             'Seu futuro profissional começa aqui!',
             '<p>A Universidade Federal de Campina Grande (UFCG), através da Orientação de Carreira (OC), oferece apoio aos seus alunos na construção de seus projetos profissionais. A OC conta com uma equipe de orientadores experientes, que oferecem: </p><ul><li>Orientação individual sobre escolha de carreira;</li><li>Elaboração de currículo e portfólio;</li><li>Preparação para entrevistas de emprego;</li><li>Workshops sobre mercado de trabalho;</li><li>Feiras de emprego e eventos de networking.</li></ul><p>A OC está localizada no campus da UFCG e funciona de segunda a sexta-feira, das 8h às 12h e das 14h às 18h. Para agendar um atendimento, entre em contato conosco pelo telefone (83) 3201-7007 ou pelo e-mail oc@ufcg.edu.br.</p><p><img src=\'https://www.psicoclean.com.br/wp-content/uploads/2020/09/orienta%C3%A7%C3%A3o-profissional.png/\' alt=\'Logo da OC\'></p>',
             '(83) 3201-7007',
             'oc@ufcg.edu.br',
             85,
-            'https://www.unicuritiba.edu.br/wp-content/uploads/2023/03/22.03-Noticia-Pro-Ciencia.jpg'
+            'https://www.unicuritiba.edu.br/wp-content/uploads/2023/03/22.03-Noticia-Pro-Ciencia.jpg',
+            'ativo'
           )",
 
           "INSERT INTO usuario(
