@@ -1,6 +1,7 @@
 <?php
+    include '../app/includes/crontab.php';
 
-    $query = "SELECT * FROM eventos WHERE situacao_post = 'ativo'";
+    $query = "SELECT * FROM eventos WHERE situacao = 'ativo' ORDER BY data_inicial DESC";
     $result = mysqli_query($con, $query);
 
     if ($result) {

@@ -36,7 +36,7 @@ if ($conn->query($sql) === TRUE) {
             descricao_inicial VARCHAR(50),
             descricao_completa TEXT,
             arquivo VARCHAR(400),
-            situacao_post VARCHAR(10),
+            situacao VARCHAR(10),
             justificativa TEXT,
             autor INT,
             curtidas INT(9),

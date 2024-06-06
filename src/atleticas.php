@@ -1,17 +1,27 @@
 <?php
     include '../app/includes/config.php';
 
-    $query = "SELECT * FROM servicos_universitarios WHERE servico = 'Atlética' AND situacao = 'ativo' ORDER BY relevancia DESC";
+    if($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['search'])){
+        $pesquisa = ucwords($_POST['search']);
+    }
+
+    if(!$pesquisa == ""){
+        $query = "SELECT * FROM servicos_universitarios WHERE titulo LIKE '%$pesquisa%' AND servico = 'Atlética' AND situacao = 'ativo' ORDER BY curtidas DESC";
+    }else{
+        $query = "SELECT * FROM servicos_universitarios WHERE servico = 'Atlética' AND situacao = 'ativo' ORDER BY curtidas DESC";
+    }
+
     $result = mysqli_query($con, $query);
 
-    if ($result) {
+    if (mysqli_num_rows($result) > 0) {
         $tableData = array();
         while ($row = mysqli_fetch_assoc($result)) {
             $tableData[] = $row;
         }
+        $sem_resultados = FALSE;
         
     } else {
-        echo "Sem resultados para essa consulta! ";
+        $sem_resultados = TRUE;
     }
 
 ?>
@@ -39,15 +49,23 @@
         <div class="atletica-content">
             <div class="atletica-container">
                 <div class="search-bar">
-                    <i class='bx bx-search'></i>
-                    <input type="search" name="barra-pesquisa" id="" placeholder="Procure por atléticas">
+                    <form action='' method="POST">
+                        <i class='bx bx-search'></i>
+                        <input type="search" name="search" id="" placeholder="Procure por atléticas">
+                    </form>
                 </div>
                 <div class="atletica-title">
-                    <h1>Mais Relevantes</h1>
+                    <?php
+                    if($sem_resultados == FALSE){
+                        echo '<h1>Mais Relevantes</h1>';
+                    }else{
+                        echo '<h1>Sem resultados para essa consulta!</h1>';
+                    }
+                    ?>
                 </div>
                 <div class="atletica-card">
                     <?php
-                    if (is_array($tableData) && !empty($tableData)) {
+                    if ($sem_resultados == FALSE) {
                         $rows = $tableData;
                         $cont = 0;
                         
@@ -56,7 +74,6 @@
                             $id[] = $data['id'];
                             $cont++;
                         }
-
                         if($cont > 6){
                             $i = 6;
                         }elseif($cont > 3 && $cont <=6){
@@ -75,7 +92,7 @@
             </div>
         </div>
         <?php
-            if (is_array($tableData) && !empty($tableData)) {
+            if ($sem_resultados == FALSE) {
                 foreach ($tableData as $dados) {
 
                     echo '<div class="cards-main">

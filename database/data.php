@@ -183,7 +183,7 @@
             descricao_inicial,
             descricao_completa,
             arquivo,
-            situacao_post,
+            situacao,
             autor,
             curtidas
           )
@@ -228,7 +228,7 @@
             descricao_inicial,
             descricao_completa,
             arquivo,
-            situacao_post,
+            situacao,
             autor,
             curtidas
           )
@@ -271,7 +271,7 @@
             descricao_inicial,
             descricao_completa,
             arquivo,
-            situacao_post,
+            situacao,
             autor,
             curtidas
           )
@@ -314,7 +314,7 @@
             descricao_inicial,
             descricao_completa,
             arquivo,
-            situacao_post,
+            situacao,
             autor,
             curtidas
           )
@@ -355,7 +355,7 @@
             descricao_inicial,
             descricao_completa,
             arquivo,
-            situacao_post,
+            situacao,
             autor,
             curtidas
           )
@@ -397,7 +397,7 @@
             descricao_inicial,
             descricao_completa,
             arquivo,
-            situacao_post,
+            situacao,
             autor,
             curtidas
           )
@@ -440,7 +440,7 @@
             descricao_inicial,
             descricao_completa,
             arquivo,
-            situacao_post,
+            situacao,
             autor,
             curtidas
           )

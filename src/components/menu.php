@@ -1,42 +1,42 @@
 <?php
-include_once '../app/Session/User.php'; 
-use App\Session\User as SessionUser;
+    include_once '../app/Session/User.php'; 
+    use App\Session\User as SessionUser;
 
-$pagina = isset($_GET['page']) ? $_GET['page'] : '';
+    $pagina = isset($_GET['page']) ? $_GET['page'] : '';
 
-switch ($pagina){
-    case '':
-        $page = '../src/home.php';
-        break;
+    switch ($pagina){
+        case '':
+            $page = '../src/home.php';
+            break;
 
-    case 'Home':
-        $page = '../src/home.php';
-        break;
-    
-    case 'Eventos':
-        $page = '../src/eventos.php';
-        break;
+        case 'Home':
+            $page = '../src/home.php';
+            break;
+        
+        case 'Eventos':
+            $page = '../src/eventos.php';
+            break;
 
-    case 'Atléticas':
-        $page = '../src/atleticas.php';
-        break;
+        case 'Atléticas':
+            $page = '../src/atleticas.php';
+            break;
 
-    case 'Comodidades':
-        $page = '../src/comodidades.php';
-        break; 
-          
-    case '':
-        $page = '../src/.php';
-        break; 
+        case 'Comodidades':
+            $page = '../src/comodidades.php';
+            break; 
+            
+        case '':
+            $page = '../src/.php';
+            break; 
 
-    case 'MaisCurtidos':
-        $page = '../src/mais_curtidos.php';
-        break; 
+        case 'MaisCurtidos':
+            $page = '../src/mais_curtidos.php';
+            break; 
 
-    case 'Suporte':
-        $page = '../src/suporte.php';
-        break;
-}
+        case 'Suporte':
+            $page = '../src/suporte.php';
+            break;
+    }
 ?>
 
 

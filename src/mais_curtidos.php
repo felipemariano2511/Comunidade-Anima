@@ -1,12 +1,12 @@
 <?php
 
-    $query = "SELECT id, titulo, descricao_inicial, arquivo, situacao_post AS situacao, curtidas
+    $query = "SELECT id, titulo, descricao_inicial, arquivo, situacao, curtidas
                 FROM eventos
-                WHERE situacao_post = 'ativo'
+                WHERE situacao = 'ativo'
                 
                 UNION ALL
                 
-                SELECT id, titulo, descricao_inicial, arquivo, situacao AS situacao_post, curtidas 
+                SELECT id, titulo, descricao_inicial, arquivo, situacao, curtidas 
                 FROM servicos_universitarios
                 WHERE situacao = 'ativo'
 
@@ -69,7 +69,7 @@
                     break;
                 }
             }
-        }
+        } 
     ?>
 
     <!-- Campo de texto oculto para copiar a URL -->
