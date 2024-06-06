@@ -2,6 +2,8 @@
     include '../app/includes/config.php';
     include '../app/Session/User.php';
     use App\Session\User as SessionUser;
+
+    $like = FALSE;
     
     if(isset($_GET['id'])){
         $id = $_GET['id'];
@@ -23,6 +25,14 @@
         }else{
             header('Location: index.php?page=Eventos'); 
         }
+    }
+
+    if($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['like'])){
+        $like = TRUE;
+        include '../app/includes/curtidas.php';
+    }elseif($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['deslike'])){
+        $like = FALSE;
+        include '../app/includes/curtidas.php';
     }
     
     $encodedAddress = urlencode($tableData['endereco']);
@@ -91,7 +101,6 @@
                                             }
                                         ?>
                     </span>
-                    <span class="profession">Ciência da computação</span>
                 </div>
         </header>
         <div class="menu-bar">
@@ -201,13 +210,19 @@
         </div>
         <div class="event-buttons">
             <div class="event-container">
-                <form action="#" method="post" id="form-like">
-                    <button type="submit"><i class='bx bxs-heart'></i>Tenho interesse</button>
+                <form method="post" id="form-like">
+                    <?php
+                        if($like == FALSE){
+                            echo '<button name="like"><i class="bx bxs-heart"></i>Tenho interesse</button>';
+                        } else{
+                            echo '<button name="deslike"><i class="bx bxs-heart"></i>Remover interesse</button>';
+                        }
+                    ?>
                 </form>
                 <div class="other-btn">
                     <a href="<?php echo $googleMapsLink?>"><i class='bx bxs-map-pin'></i></a>
                     <a href="<?php echo $link_google_agenda;?>"><i class='bx bx-calendar-exclamation'></i></a>
-                    <a href="#" class="share-link"><i class='bx bxs-share-alt' data-id="<?php echo $tableData['id'];?>"></i></a>
+                    <a data-id="<?php echo $tableData['id'];?>" href="#" class="share-link"><i class='bx bxs-share-alt' data-id=""></i></a>
                 </div>
             </div>
         </div>
