@@ -174,8 +174,7 @@
                             <h2>Data e Horário</h2>
                         </div>
                         <div class="event-data-content">
-                            <h3><?php echo $tableData['data_inicial']?></h3>
-                            <h3><?php echo $tableData['horario_inicial']?></h3>
+                            <h3><?php echo $tableData['data_inicial'], " | " , $tableData['horario_inicial'];?></h3>
                         </div>
                     </div>
                     <div class="event-adress">

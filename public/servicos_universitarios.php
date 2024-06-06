@@ -1,3 +1,38 @@
+<?php
+    include '../app/includes/config.php';
+    include '../app/Session/User.php';
+    use App\Session\User as SessionUser;
+    
+    $uri = $_SERVER['REQUEST_URI'];
+
+    if ($uri == "/Comunidade-Anima/public/servicos_universitarios.php" || $uri == "/Comunidade-Anima/public/servicos_universitarios.php?") {
+        header("Location: index.php?page=Home");
+        exit;
+    };
+
+    if(isset($_GET['id'])){
+        $id = $_GET['id'];
+        //Consulta se o id do evento existe
+        if($id !== ''){
+            $query = "SELECT * FROM servicos_universitarios WHERE id = '$id'";
+            $result = mysqli_query($con, $query);
+
+            //Se existir, imprime na tela
+            if(mysqli_num_rows($result) > 0){
+                while ($row = mysqli_fetch_assoc($result)){              
+                    $tableData = $row;
+                }
+                echo '<script>window.location.href = "servicos_universitarios.php?id='.$tableData['id'].'#";</script>';
+            //Senão, recireciona para a página de Eventos
+            }else{
+                header('Location: index.php?page=Home');
+            }
+        }else{
+            header('Location: index.php?page=Home'); 
+        }
+    }
+    
+?>
 <!DOCTYPE html>
 <html lang="pt-br">
 
@@ -6,112 +41,117 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
     <link href='https://unpkg.com/boxicons@2.1.1/css/boxicons.min.css' rel='stylesheet'>
-    <link rel="stylesheet" href="styles/style-pattern.css">
-    <link rel="stylesheet" href="styles/evento.css">
-    <title>Eventos</title>
+    <link rel="stylesheet" href="../src/styles/style-pattern.css">
+    <link rel="stylesheet" href="../src/styles/evento.css">
+    <link rel="icon" href="../imgs/dev/favicon.ico" type="image/x-icon">
+    <title>Comunidade Ânimna - Eventos</title>
 </head>
+<script>
+        function openInGoogleMaps() {
+            const address = "<?php echo $tableData['endereco'] ;?>".value;
+            if (address) {
+                const url = `https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(address)}`;
+                window.open(url, '_blank');
+            } else {
+                alert("Por favor, insira um endereço válido.");
+            }
+        }
+    </script>
 
 <body>
-    <nav class="sidebar close">
+<nav class="sidebar close">
         <header>
-            <div class="image-text">
-                <a href="">
+        <div class="image-text">
+                <a href="<?php if(!SessionUser::isLogged()){echo 'login.php';}?>">
                     <span class="image">
                         <img src="../imgs/usuario/user-1.webp" alt="">
                     </span>
                 </a>
-
-
                 <div class="text logo-text">
-                    <span class="name">Felipe</span>
+                    <span class="name"><?php
+                                            if(SessionUser::isLogged()){
+                                                $user_info = SessionUser::getInfo();
+
+                                                echo $user_info['firstName'];
+                                            }else{
+                                                echo '<a href="login.php" class="text nav-text" style="text-decoration: none;">Login</a>';
+                                            }
+                                        ?>
+                    </span>
                     <span class="profession">Ciência da computação</span>
                 </div>
-            </div>
-
-
         </header>
-
         <div class="menu-bar">
             <div class="menu">
-
                 <ul class="menu-links">
-
                     <li class="nav-link">
                         <a class="toggle" style="cursor:pointer;">
                             <i class='bx bx-menu icon' id="menu-icon"></i>
                             <span class="text nav-text">Menu</span>
                         </a>
                     </li>
-
-
                     <li class="nav-link">
-                        <a href="#">
+                        <a href="index.php?page=Home">
                             <i class='bx bx-home-alt icon'></i>
                             <span class="text nav-text">Home</span>
                         </a>
                     </li>
-
                     <li class="nav-link">
-                        <a href="#">
+                        <a href="index.php?page=Eventos">
                             <i class='bx bx-calendar-event icon'></i>
-                            <span class="text nav-text">Evento</span>
+                            <span class="text nav-text">Eventos</span>
                         </a>
                     </li>
-
                     <li class="nav-link">
-                        <a href="#">
+                        <a href="index.php?page=Atléticas">
                             <i class='bx bx-trophy icon'></i>
                             <span class="text nav-text">Atléticas</span>
                         </a>
                     </li>
-
                     <li class="nav-link">
-                        <a href="#">
+                        <a href="index.php?page=Comodidades">
                             <i class='bx bx-shape-triangle icon'></i>
                             <span class="text nav-text">Comodidades</span>
                         </a>
                     </li>
-
                     <li class="nav-link">
-                        <a href="#">
+                        <a href="index.php?page=Likes">
                             <i class='bx bx-heart icon'></i>
                             <span class="text nav-text">Likes</span>
                         </a>
                     </li>
-
                     <li class="nav-link">
-                        <a href="#">
+                        <a href="index.php?page=Suporte">
                             <i class='bx bx-support icon'></i>
                             <span class="text nav-text">Suporte</span>
                         </a>
                     </li>
-
                 </ul>
             </div>
-
-            <div class="bottom-content">
-                <li class="">
-                    <a href="#">
-                        <i class='bx bx-log-out icon'></i>
-                        <span class="text nav-text">Logout</span>
-                    </a>
-                </li>
-
-            </div>
+            <?php 
+            if(SessionUser::isLogged()){
+                echo '<div class="bottom-content">
+                        <li class="">
+                            <a href="../app/includes/logout.php">
+                                <i class="bx bx-log-out icon"></i>
+                                <span class="text nav-text">Logout</span>
+                            </a>
+                        </li>
+                     </div>';
+            }
+            ?>
         </div>
-
     </nav>
-
     <section class="home">
         <div class="event-img">
-            <img src="../imgs/card/avalanche.jpg" class="img-fluid" alt="...">
+            <img src="<?php echo $tableData['arquivo']?>" class="img-fluid" alt="...">
         </div>
         <div class="event-img-small">
-            <img src="../imgs/card/avalanche.jpg" class="img-fluid" alt="...">
+            <img src="<?php echo $tableData['arquivo']?>" class="img-fluid" alt="...">
         </div>
         <div class="event-text">
             <div class="event-name">
-                <h1>CERVEJADA: AVALANCHE UFPR</h1>
+                <h1><?php echo $tableData['titulo']?></h1>
             </div>
             <div class="event-info-container">
                 <div class="event-info">
@@ -121,7 +161,8 @@
                             <h2>Data e Horário</h2>
                         </div>
                         <div class="event-data-content">
-                            <h3>11 de junho de 2024</h3>
+                            <h3></h3>
+                            <h3></h3>
                         </div>
                     </div>
                     <div class="event-adress">
@@ -130,7 +171,7 @@
                             <h2>Endereço e Local</h2>
                         </div>
                         <div class="event-adress-content">
-                            <h3>Av. Dr. Assis Ribeiro, 5895-5899 - Ermelino Matarazzo, São Paulo - SP - São Paulo / São Paulo</h3>
+                            <h3></h3>
                         </div>
                     </div>
                     <div class="event-age">
@@ -153,17 +194,49 @@
                 <div class="other-btn">
                     <a href=""><i class='bx bxs-map-pin'></i></a>
                     <a href=""><i class='bx bx-calendar-exclamation'></i></a>
-                    <a href=""><i class='bx bxs-share-alt'></i></a>
+                    <a href="#" class="share-link"><i class='bx bxs-share-alt' data-id="<?php echo $tableData['id'];?>"></i></a>
                 </div>
             </div>
         </div>
         <div class="event-description">
             <div class="event-container">
                 <h1>Descrição do evento</h1>
-                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Exercitationem corporis obcaecati aspernatur doloremque qui fugit possimus. Voluptates ullam rerum, corrupti possimus explicabo nemo quia quis id vitae cumque laborum, sequi asperiores tempora. Dolorum consequatur odio, voluptatibus molestiae quaerat dolores voluptatem ipsum. Veniam ipsa sapiente quod perferendis corporis pariatur ea, error nostrum earum?</p>
+                <p><?php echo $tableData['descricao_completa']?></p>
             </div>
         </div>
+        <!-- Campo de texto oculto para copiar a URL -->
+    <textarea id="urlField" style="display:none;"></textarea>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const shareIcons = document.querySelectorAll('.share-link i');
+
+            shareIcons.forEach(icon => {
+                icon.addEventListener('click', function(event) {
+                    event.preventDefault(); // Impedir a ação padrão da tag <a>
+                    const id = this.getAttribute('data-id');
+                    const urlField = document.getElementById('urlField');
+                    const url = `http://localhost/Comunidade-Anima/public/servicos_universitarios.php?id=${id}`;
+                    urlField.value = url;
+                    urlField.style.display = 'block';
+                    urlField.select();
+                    urlField.setSelectionRange(0, 99999); // Para dispositivos móveis
+
+                    try {
+                        const successful = document.execCommand('copy');
+                        const msg = successful ? 'URL copiada com sucesso!' : 'Falha ao copiar a URL';
+                        alert(msg);
+                    } catch (err) {
+                        console.error('Erro ao copiar a URL: ', err);
+                    }
+
+                    urlField.style.display = 'none';
+                });
+            });
+        });
+    </script>
     </section>
+    
 
     <script>
         document.addEventListener('DOMContentLoaded', function() {
@@ -176,7 +249,6 @@
             });
         });
     </script>
-
     <script>
         const body = document.querySelector('body'),
             sidebar = body.querySelector('nav'),
@@ -184,7 +256,6 @@
             searchBtn = body.querySelector(".search-box"),
             modeSwitch = body.querySelector(".toggle-switch"),
             modeText = body.querySelector(".mode-text");
-
 
         toggle.addEventListener("click", () => {
             sidebar.classList.toggle("close");
@@ -206,5 +277,4 @@
         });
     </script>
 </body>
-
 </html>

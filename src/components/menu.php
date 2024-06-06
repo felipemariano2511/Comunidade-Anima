@@ -1,42 +1,42 @@
 <?php
-include_once '../app/Session/User.php'; 
-use App\Session\User as SessionUser;
+    include_once '../app/Session/User.php'; 
+    use App\Session\User as SessionUser;
 
-$pagina = isset($_GET['page']) ? $_GET['page'] : '';
+    $pagina = isset($_GET['page']) ? $_GET['page'] : '';
 
-switch ($pagina){
-    case '':
-        $page = '../src/home.php';
-        break;
+    switch ($pagina){
+        case '':
+            $page = '../src/home.php';
+            break;
 
-    case 'Home':
-        $page = '../src/home.php';
-        break;
-    
-    case 'Eventos':
-        $page = '../src/eventos.php';
-        break;
+        case 'Home':
+            $page = '../src/home.php';
+            break;
+        
+        case 'Eventos':
+            $page = '../src/eventos.php';
+            break;
 
-    case 'Atléticas':
-        $page = '../src/atleticas.php';
-        break;
+        case 'Atléticas':
+            $page = '../src/atleticas.php';
+            break;
 
-    case 'Comodidades':
-        $page = '../src/comodidades.php';
-        break; 
-          
-    case '':
-        $page = '../src/.php';
-        break; 
+        case 'Comodidades':
+            $page = '../src/comodidades.php';
+            break; 
+            
+        case '':
+            $page = '../src/.php';
+            break; 
 
-    case 'Likes':
-        $page = '../src/likes.php';
-        break; 
+        case 'MaisCurtidos':
+            $page = '../src/mais_curtidos.php';
+            break; 
 
-    case 'Suporte':
-        $page = '../src/suporte.php';
-        break;
-}
+        case 'Suporte':
+            $page = '../src/suporte.php';
+            break;
+    }
 ?>
 
 
@@ -122,9 +122,9 @@ switch ($pagina){
                     </li>
 
                     <li class="nav-link">
-                        <a href="?page=Likes">
+                        <a href="?page=MaisCurtidos">
                             <i class='bx bx-heart icon'></i>
-                            <span class="text nav-text">Likes</span>
+                            <span class="text nav-text">Mais curtidos</span>
                         </a>
                     </li>
 

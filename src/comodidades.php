@@ -1,3 +1,22 @@
+<?php
+    $query = "SELECT * FROM servicos_universitarios WHERE situacao = 'ativo' AND servico = 'Comodidades'";
+    $result = mysqli_query($con, $query);
+
+    if ($result) {
+        $tableData = array();
+        while ($row = mysqli_fetch_assoc($result)) {
+            $tableData[] = $row;
+        }
+        
+    } else {
+        echo "Sem resultados para essa consulta! ";
+    }
+
+?>
+
+<!DOCTYPE html>
+<html lang="pt-br">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -7,26 +26,37 @@
     <link rel="stylesheet" href="../src/styles/style-pattern.css">
     <link rel="stylesheet" href="../src/styles/style.css">
     <link rel="stylesheet" href="../src/styles/comodidades.css">
-    <title>Comodidades</title>
+    <title>Comunidade Ânima - Comodidades</title>
 </head>
 
-<section class="home">
-    <div class="home-title">
-        <h2>Comodidades</h2>
-        <p>Você ja sabe das suas comodidades?</p>
-    </div>
-    <div class="links-container">
-        <div class="links-item">
-            <a href="index.php?page=Eventos"><img src="../imgs/dev/eventos.svg" alt=""></a>
-            <a href="index.php?page=Eventos" class="button">Comodidade1</a>
-        </div link>
-        <div class="links-item">
-            <a href="index.php?page=Atléticas"><img src="../imgs/dev/atletica.svg" alt=""></a>
-            <a href="index.php?page=Atléticas" class="button">Comodidade2</a>
+<body>
+    <section class="home">
+        <div class="home-title">
+            <h2>Comodidades</h2>
+            <p>Você ja sabe das suas comodidades?</p>
         </div>
-        <div class="links-item">
-            <a href="index.php?page=Comodidades"><img src="../imgs/dev/comodidades.svg" alt=""></a>
-            <a href="index.php?page=Comodidades" class="button">Comodidade3</a>
-        </div>
-    </div>
-</section>
+        <?php
+            if (is_array($tableData) && !empty($tableData)) {
+                foreach ($tableData as $dados) {
+                    echo '<div class="links-container">
+                            <div class="links-item">
+                                <a href="servicos_universitarios.php?id='. $dados['id'].'"><img src="'.$dados['arquivo'].'" alt=""></a>
+                                <a href="servicos_universitarios.php?id='. $dados['id'].'" class="button">'.$dados['titulo'].'</a>
+                          </div link>';
+                }
+            }
+        ?>
+    </section>
+    <script>
+        const body = document.querySelector('body'),
+            sidebar = body.querySelector('nav'),
+            toggle = body.querySelector(".toggle");
+
+
+        toggle.addEventListener("click", () => {
+            sidebar.classList.toggle("close");
+        })
+    </script>
+</body>
+
+</html>
