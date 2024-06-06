@@ -30,6 +30,11 @@ ul {
   font-size: 20px;
 }
 
+.card-body .card-buttons {
+  align-items: flex-end;
+}
+
+
 .card-buttons {
   display: flex;
   justify-content: space-between;
@@ -70,18 +75,18 @@ ul {
     position: absolute;
     top: 0;
     top: 0;
-    left: 98px;
+    left: 78px;
     margin-top: 56px;
     height: calc(100vh - 56px);
-    width: calc(100% - 118px);
+    width: calc(100% - 78px);
     background-color: var(--body-color);
     transition: var(--tran-05);
   }
 
   .sidebar.close~.home {
-    left: 98px;
+    left: 78px;
     height: calc(100vh - 56px);
-    width: calc(100% - 118px);
+    width: calc(100% - 78px);
   }
 
   .cards-main {
