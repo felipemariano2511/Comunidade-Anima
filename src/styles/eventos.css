@@ -30,10 +30,11 @@ ul {
   font-size: 20px;
 }
 
-.card-body .card-buttons {
-  align-items: flex-end;
+.card-body {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
 }
-
 
 .card-buttons {
   display: flex;
