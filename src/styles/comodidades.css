@@ -35,9 +35,9 @@
     position: absolute;
     top: 0;
     top: 0;
-    left: 118px;
+    left: 78px;
     margin-top: 56px;
-    width: calc(100% - 125px);
+    width: calc(100vw - 78px);
     padding-right: 30px;
     background-color: var(--body-color);
     transition: var(--tran-05);
