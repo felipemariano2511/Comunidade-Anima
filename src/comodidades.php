@@ -117,27 +117,45 @@
         <div class="links-container">
             <div class="links-item">
                 <a href="index.php?page=Eventos"><img src="../imgs/dev/eventos.svg" alt=""></a>
-                <a href="index.php?page=Eventos" class="button">Comodidade1</a>
+                <a href="index.php?page=Eventos" class="button">Eventos</a>
             </div link>
             <div class="links-item">
                 <a href="index.php?page=Atléticas"><img src="../imgs/dev/atletica.svg" alt=""></a>
-                <a href="index.php?page=Atléticas" class="button">Comodidade2</a>
+                <a href="index.php?page=Atléticas" class="button">Atléticas</a>
             </div>
             <div class="links-item">
                 <a href="index.php?page=Comodidades"><img src="../imgs/dev/comodidades.svg" alt=""></a>
-                <a href="index.php?page=Comodidades" class="button">Comodidade3</a>
+                <a href="index.php?page=Comodidades" class="button">Comodidades</a>
             </div>
         </div>
     </section>
     <script>
         const body = document.querySelector('body'),
             sidebar = body.querySelector('nav'),
-            toggle = body.querySelector(".toggle");
+            toggle = body.querySelector(".toggle"),
+            searchBtn = body.querySelector(".search-box"),
+            modeSwitch = body.querySelector(".toggle-switch"),
+            modeText = body.querySelector(".mode-text");
 
 
         toggle.addEventListener("click", () => {
             sidebar.classList.toggle("close");
         })
+
+        searchBtn.addEventListener("click", () => {
+            sidebar.classList.remove("close");
+        })
+
+        modeSwitch.addEventListener("click", () => {
+            body.classList.toggle("dark");
+
+            if (body.classList.contains("dark")) {
+                modeText.innerText = "Light mode";
+            } else {
+                modeText.innerText = "Dark mode";
+
+            }
+        });
     </script>
 </body>
 
