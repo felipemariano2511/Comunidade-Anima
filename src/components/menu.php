@@ -75,6 +75,7 @@ switch ($pagina){
                                             }
                                         ?>
                     </span>
+                    <span class="profession">Ciência da computação</span>
                 </div>
 
         </header>

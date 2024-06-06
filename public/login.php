@@ -1,28 +1,3 @@
-<?php
-    include '../app/includes/config.php';
-    include '../app/Session/User.php';
-    use App\Session\User as SessionUser;
-
-    if($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['login'])){
-        $email = $_POST['email'];
-        $senha = md5($_POST['senha']);
-
-        $query = "SELECT * FROM usuario WHERE email='$email' AND senha='$senha'";
-        $result = mysqli_query($con, $query);
-
-        if(mysqli_num_rows($result) > 0){
-            SessionUser::login($email);
-            
-            include '../app/includes/get_dados_usuario.php';
-            
-            header("Location: index.php");
-
-        } else{
-            echo '<script>alert("Email ou senha inválidos! Por favor, verifique e tente novamente.")</script>';
-        }
-
-    }
-?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -30,9 +5,9 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Comunidade Ânima - Login</title>
+    <link rel="shortcut icon" href="../imgs/dev/login.png" type="image/x-icon">
     <link rel="stylesheet" href="../public/styles/login.css">
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;700&display=swap" rel="stylesheet">
-    <link rel="icon" href="../imgs/dev/favicon.ico" type="image/x-icon">
     <script src="https://kit.fontawesome.com/f2b509d698.js" crossorigin="anonymous"></script>
     <script src="https://cdn.tailwindcss.com"></script>
 </head>
@@ -51,7 +26,7 @@
                 <p class="text-sm mt-4">Se você já é um membro, conecte-se</p>
 
                 <form method="post" action="" class="flex flex-col gap-4">
-                    <input class="p-2 mt-8 rounded-xl border-2 border-gray-300 focus:outline-none focus:border-[#3C1F6E] transition duration-500 ease-in-out transform" type="text" name="email" maxlength="50" placeholder="Email">
+                    <input class="p-2 mt-8 rounded-xl border-2 border-gray-300 focus:outline-none focus:border-[#3C1F6E] transition duration-500 ease-in-out transform" type="text" name="email" placeholder="Email">
                     <div class="relative">
                         <input class="p-2 rounded-xl border-2 border-gray-300 focus:outline-none focus:border-[#3C1F6E] transition duration-500 ease-in-out transform w-full relative" type="password" name="senha" placeholder="Senha">
                         <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="gray" class="bi bi-eye absolute top-1/2 right-3 -translate-y-1/2" viewBox="0 0 16 16">
@@ -59,17 +34,30 @@
                             <path d="M8 5.5a2.5 2.5 0 1 0 0 5 2.5 2.5 0 0 0 0-5M4.5 8a3.5 3.5 0 1 1 7 0 3.5 3.5 0 0 1-7 0" />
                         </svg>
                     </div>
-                    <button class="bg-[#3C1F6E] rounded-3xl text-white py-2 hover:scale-105 duration-300" name="login">Login</button>
+                    <button class="bg-[#3C1F6E] rounded-3xl text-white py-2 hover:scale-105 duration-300">Login</button>
                 </form>
+
                 <div class="mt-10 grid grid-cols-3 items-center text-gray-400">
                     <hr class="border-gray-400">
                     <p class="text-center text-xs">OU</p>
                     <hr class="border-gray-400">
                 </div>
-                <div class="mt-4 text-xs flex justify-between items-center">
-                        <p>Se você não possui uma conta, entre em contato com o setor de TI do seu Campus!</p>                   
-                </div>
+
+                <a href="<?php  echo htmlspecialchars($authorization_url); ?>" class="bg-white border py-2 w-full rounded-xl mt-5 flex justify-center items-center text-sm hover:scale-105 duration-300">
+                    <svg class="mr-3" xmlns="http://www.w3.org/2000/svg" x="0px" y="0px" width="30px" viewBox="0 0 48 48">
+                        <path fill="#ff5722" d="M6 6H22V22H6z" transform="rotate(-180 14 14)"></path>
+                        <path fill="#4caf50" d="M26 6H42V22H26z" transform="rotate(-180 34 14)"></path>
+                        <path fill="#ffc107" d="M26 26H42V42H26z" transform="rotate(-180 34 34)"></path>
+                        <path fill="#03a9f4" d="M6 26H22V42H6z" transform="rotate(-180 14 34)"></path>
+                    </svg>Login com Microsoft</a>
+
+                    <div class="mt-4 text-xs flex justify-between items-center">
+                        <p>Se você não tem uma conta...</p>
+                        <button class="py-2 px-5 bg-white border rounded-xl hover:scale-110 duration-300">Cadastrar</button>
+                    </div>
+
             </div>
+
             <!-- img -->
             <div class="md:block hidden w-1/2 my-20 mx-auto">
                 <img src="../imgs/dev/logo-anima-1024.png" alt="" class="rounded-2xl">

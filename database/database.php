@@ -17,9 +17,10 @@ if ($conn->query($sql) === TRUE) {
     $queries = [
         "CREATE TABLE usuario (
             id INT(9) AUTO_INCREMENT PRIMARY KEY,
-            email VARCHAR(50),
+            usuario VARCHAR(30),
             senha VARCHAR(100),
             nome VARCHAR(70),
+            email VARCHAR(50),
             nivel VARCHAR(3)
         )",
         "CREATE TABLE eventos (
@@ -49,7 +50,7 @@ if ($conn->query($sql) === TRUE) {
             email VARCHAR(50),
             arquivo VARCHAR(400)
         )",
-        "INSERT INTO usuario(email, senha, nome, nivel) VALUES ('adm', '202cb962ac59075b964b07152d234b70', 'Administrador', 'ADM');",
+        "INSERT INTO usuario(usuario, senha, nome, nivel) VALUES ('adm', '202cb962ac59075b964b07152d234b70', 'Administrador', 'ADM');",
         
         "INSERT INTO eventos(titulo, data_inicial, horario_inicial, data_final, horario_final, endereco, descricao_inicial, descricao_completa, arquivo, situacao_post, autor) VALUES ('Hackathon Unicuritiba', '2024-06-27', '18:00', '2024-06-27','23:00', 'R. Chile, 1678 - Rebouças, Curitiba - PR, 80220-181','Evento top para programadores', '<div class=\'container\' style=\'text-align: justify;\'>
         <h1 style=\'text-align: justify;\'>Hackathon Unicuritiba</h1>

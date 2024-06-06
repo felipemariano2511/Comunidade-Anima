@@ -1,6 +1,4 @@
-<?php
-    use App\Session\User as SessionUser;
-?><!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="pt-br">
 
 <head>
@@ -22,7 +20,7 @@
     <section class="homepage">
         <div class="homepage-content">
             <h2>Home</h2>
-            <img src="../imgs/dev/logo-anima-1024.png" alt="" width="100px">
+            <a href="index.php?page=Login">Fazer Login <img src="" alt=""></a>
         </div>
         <h2 class="homepage-title">Conheça nossa comunidade!</h2>
         <div class="links-container">
