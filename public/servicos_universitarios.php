@@ -44,7 +44,7 @@
     <link rel="stylesheet" href="../src/styles/style-pattern.css">
     <link rel="stylesheet" href="../src/styles/evento.css">
     <link rel="icon" href="../imgs/dev/favicon.ico" type="image/x-icon">
-    <title>Comunidade Ânimna - Eventos</title>
+    <title>Comunidade Ânima - Serviços Universitários</title>
 </head>
 <script>
         function openInGoogleMaps() {
