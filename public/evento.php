@@ -4,6 +4,7 @@
     use App\Session\User as SessionUser;
 
     $like = FALSE;
+    $table = 'eventos';
     
     if(isset($_GET['id'])){
         $id = $_GET['id'];
@@ -29,10 +30,10 @@
 
     if($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['like'])){
         $like = TRUE;
-        include '../app/includes/curtidas.php';
+        include '../app/includes/curtir.php';
     }elseif($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['deslike'])){
         $like = FALSE;
-        include '../app/includes/curtidas.php';
+        include '../app/includes/curtir.php';
     }
     
     $encodedAddress = urlencode($tableData['endereco']);
@@ -101,6 +102,7 @@
                                             }
                                         ?>
                     </span>
+                    <span class="profession">Ciência da computação</span>
                 </div>
         </header>
         <div class="menu-bar">
@@ -183,8 +185,7 @@
                             <h2>Data e Horário</h2>
                         </div>
                         <div class="event-data-content">
-                            <h3><?php echo $tableData['data_inicial']?></h3>
-                            <h3><?php echo $tableData['horario_inicial']?></h3>
+                            <h3><?php echo $tableData['data_inicial'], " | " , $tableData['horario_inicial'];?></h3>
                         </div>
                     </div>
                     <div class="event-adress">
@@ -210,7 +211,7 @@
         </div>
         <div class="event-buttons">
             <div class="event-container">
-                <form method="post" id="form-like">
+                <form action="#" method="post" id="form-like">
                     <?php
                         if($like == FALSE){
                             echo '<button name="like"><i class="bx bxs-heart"></i>Tenho interesse</button>';
@@ -222,7 +223,7 @@
                 <div class="other-btn">
                     <a href="<?php echo $googleMapsLink?>"><i class='bx bxs-map-pin'></i></a>
                     <a href="<?php echo $link_google_agenda;?>"><i class='bx bx-calendar-exclamation'></i></a>
-                    <a data-id="<?php echo $tableData['id'];?>" href="#" class="share-link"><i class='bx bxs-share-alt' data-id=""></i></a>
+                    <a href="#" class="share-link"><i class='bx bxs-share-alt' data-id="<?php echo $tableData['id'];?>"></i></a>
                 </div>
             </div>
         </div>

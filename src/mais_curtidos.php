@@ -41,15 +41,14 @@
         <h1>Mais curtidos</h1>
         <p>Acompanhe os 10 mais curtidos!</p>
     </div>
+    <div class="cards-main">
 
     <?php
         $count = 0;
         if (is_array($tableData) && !empty($tableData)) {
             foreach ($tableData as $dados) {
                 $id[] = $dados['id'];
-                echo '
-                    <div class="cards-main">
-                        <div class="card">
+                echo '  <div class="card">
                             <img src="'.$dados['arquivo'].'" class="card-img-top" alt="...">
                             <div class="card-body">
                                 <h5 class="card-title">'.$dados['titulo'].'</h5>
@@ -57,20 +56,19 @@
                                 <div class="card-buttons">
                                     <a href="evento.php?id='.$dados['id'].'" class="btn btn-primary">Ver detalhes</a>
                                     <div class="like-share">
-                                        <i class="bx bx-heart heart-icon"></i>
                                         <i class="bx bx-share bx-flip-horizontal compartilhar" data-id="'.$id[$count].'"></i>
                                     </div>
                                 </div>
                             </div>
-                        </div>
-                    </div>';
+                        </div>';
                 $count++;
-                if ($count > 10) {
+                if ($count > 9) {
                     break;
                 }
             }
         } 
     ?>
+    </div>
 
     <!-- Campo de texto oculto para copiar a URL -->
     <textarea id="urlField" style="display:none;"></textarea>

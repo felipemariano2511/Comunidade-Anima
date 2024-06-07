@@ -91,29 +91,28 @@
                 </div>
             </div>
         </div>
+        <div class="cards-main">
         <?php
             if ($sem_resultados == FALSE) {
                 foreach ($tableData as $dados) {
 
-                    echo '<div class="cards-main">
-                             <div class="card">
+                    echo '<div class="card">
                                 <img src="'.$dados['arquivo'].'" class="card-img-top" alt="...">
                                 <div class="card-body">
                                     <h5 class="card-title">'.$dados['titulo'].'</h5>
                                     <p class="card-text">'.$dados['descricao_inicial'].'</p>
                                     <div class="card-buttons">
                                         <a href="servicos_universitarios.php?id='.$dados['id'].'" class="btn btn-primary">Ver detalhes</a>
-                                        <div class="like-share">
-                                            <i class="bx bx-heart heart-icon"></i>
+                                        <div class="like-share">  
                                             <i class="bx bx-share bx-flip-horizontal compartilhar" data-id="'.$dados['id'].'"></i>
                                         </div>
                                     </div>
                                 </div>
-                             </div>
-                          </div>';
+                             </div>';
                 }
             }
         ?>
+        </div>
     </section>
 
     <script>

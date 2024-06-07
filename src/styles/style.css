@@ -305,13 +305,14 @@ body.dark .switch::before {
   position: absolute;
   top: 0;
   top: 0;
-  left: 118px;
+  left: 78px;
   margin-top: 56px;
   height: calc(100vh - 56px);
-  width: calc(100% - 118px);
+  width: calc(100% - 78px);
   padding-right: 30px;
   background-color: var(--body-color);
   transition: var(--tran-05);
+  padding: 25px;
 }
 
 .h1,
@@ -335,7 +336,6 @@ h6 {
   font-weight: 800;
   color: #393939;
   margin: 0;
-  margin-top: 30px;
 }
 
 .home .text p {
@@ -346,9 +346,9 @@ h6 {
 }
 
 .sidebar.close~.home {
-  left: 118px;
+  left: 78px;
   height: calc(100vh - 56px);
-  width: calc(100% - 118px);
+  width: calc(100% - 78px);
 }
 
 body.dark .home .text {
