@@ -6,7 +6,7 @@ class User{
     /**
      * @return boolean
      */
-    public static function init(){
+    private static function init(){
         session_status() !== PHP_SESSION_ACTIVE ? session_start() : true; 
           
     }
@@ -24,16 +24,15 @@ class User{
     /**
      * @param array
      */
-    public static function setDados($firstName, $id, $ra, $email, $nome_completo, $imagem_perfil){
+    public static function setDados($first_name, $id, $email, $nome, $nivel){
         self::init();
         
         $_SESSION['info_user'] = [
-        'firstName' => $firstName,
+        'firstName' => $first_name,
         'id' => $id,
-        'ra' => $ra,
         'email' => $email,
-        'nome' => $nome_completo,
-        'imagem_perfil' => $imagem_perfil
+        'nome' => $nome,
+        'nivel' => $nivel
         ];
     }
     /**

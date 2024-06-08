@@ -1,9 +1,7 @@
 <?php
     include "../app/includes/config.php";
     include "../app/Session/User.php";
-    include "../app/Session/Adm.php";
     use \App\Session\User as SessionUser;
-    use \App\Session\Adm as SessionAdm;
 
     if($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['cadastrar'])){
         $titulo = $_POST['titulo'];
@@ -21,9 +19,8 @@
             move_uploaded_file($arquivo['tmp_name'], '../imgs/posts/' . $arquivo['name']);
             $endereco_arquivo = '../imgs/posts/' . $arquivo['name'];
 
-            $query = "INSERT INTO eventos(titulo, data_inicial, horario_inicial, data_final, horario_final, endereco, descricao_inicial, descricao_completa, arquivo, situacao_post, autor)
+            $query = "INSERT INTO eventos(titulo, data_inicial, horario_inicial, data_final, horario_final, endereco, descricao_inicial, descricao_completa, arquivo, situacao, autor)
                     VALUES ('$titulo', '$data_inicial', '$horario_inicial', '$data_final','$horario_final', '$endereco','$descricao_inicial', '$descricao_completa', '$endereco_arquivo', 'ativo', '$autor')";
-            echo $query;
             $result = mysqli_query($con, $query);
 
             if($result){

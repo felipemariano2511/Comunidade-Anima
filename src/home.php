@@ -1,3 +1,6 @@
+<?php
+?>
+
 <!DOCTYPE html>
 <html lang="pt-br">
 
@@ -18,11 +21,10 @@
 <body>
 
     <section class="homepage">
-        <div class="homepage-content">
-            <h2>Home</h2>
-            <a href="index.php?page=Login">Fazer Login <img src="" alt=""></a>
+        <div class="home-title">
+            <h1>Home</h1>
+            <p>Conheça nossa comunidade!</p>
         </div>
-        <h2 class="homepage-title">Conheça nossa comunidade!</h2>
         <div class="links-container">
             <div class="links-item">
                 <a href="index.php?page=Eventos"><img src="../imgs/dev/eventos.svg" alt=""></a>

@@ -2,15 +2,22 @@
     include '../app/includes/config.php';
     include '../app/Session/User.php';
     use App\Session\User as SessionUser;
-
-    $like = FALSE;
-    $table = 'eventos';
     
+    $like = FALSE;
+    $table = 'servicos_universitarios';
+
+    $uri = $_SERVER['REQUEST_URI'];
+
+    if ($uri == "/Comunidade-Anima/public/servicos_universitarios.php" || $uri == "/Comunidade-Anima/public/servicos_universitarios.php?") {
+        header("Location: index.php?page=Home");
+        exit;
+    };
+
     if(isset($_GET['id'])){
         $id = $_GET['id'];
         //Consulta se o id do evento existe
         if($id !== ''){
-            $query = "SELECT * FROM eventos WHERE id = '$id'";
+            $query = "SELECT * FROM servicos_universitarios WHERE id = '$id'";
             $result = mysqli_query($con, $query);
 
             //Se existir, imprime na tela
@@ -18,13 +25,13 @@
                 while ($row = mysqli_fetch_assoc($result)){              
                     $tableData = $row;
                 }
-                echo '<script>window.location.href = "evento.php?id='.$tableData['id'].'#";</script>';
+                echo '<script>window.location.href = "servicos_universitarios.php?id='.$tableData['id'].'#";</script>';
             //Senão, recireciona para a página de Eventos
             }else{
-                header('Location: index.php?page=Eventos');
+                header('Location: index.php?page=Home');
             }
         }else{
-            header('Location: index.php?page=Eventos'); 
+            header('Location: index.php?page=Home'); 
         }
     }
 
@@ -36,26 +43,6 @@
         include '../app/includes/curtir.php';
     }
     
-    $encodedAddress = urlencode($tableData['endereco']);
-    // Concatena o endereço codificado na URL do Google Maps
-    $googleMapsLink = "https://www.google.com/maps/search/?api=1&query={$encodedAddress}";
-
-    //Concatena para o formato da URL do Google Agenda
-    $dataInicio = $tableData['data_inicial'];
-    $horaInicio = $tableData['horario_inicial'];
-    $dataFim = $tableData['data_final'];
-    $horaFim = $tableData['horario_final'];
-
-    $dataHoraInicio = date('Ymd\THis', strtotime("$dataInicio $horaInicio"));
-    $dataHoraFim = date('Ymd\THis', strtotime("$dataFim $horaFim"));
-   // $dataFimFormatada = date('Ymd\THis', strtotime($dataFim));
-
-    // Montar o link
-    $link_google_agenda = "https://www.google.com/calendar/render?action=TEMPLATE";
-    $link_google_agenda .= "&text=" . urlencode($tableData['titulo']);
-    $link_google_agenda .= "&dates=" . $dataHoraInicio . "/" . $dataHoraFim;
-    $link_google_agenda .= "&location=" . urlencode($tableData['endereco']);
-    $link_google_agenda .= "&details=" . urlencode($tableData['descricao_inicial']);
 ?>
 <!DOCTYPE html>
 <html lang="pt-br">
@@ -68,7 +55,7 @@
     <link rel="stylesheet" href="../src/styles/style-pattern.css">
     <link rel="stylesheet" href="../src/styles/evento.css">
     <link rel="icon" href="../imgs/dev/favicon.ico" type="image/x-icon">
-    <title>Comunidade Ânimna - Eventos</title>
+    <title>Comunidade Ânima - Serviços Universitários</title>
 </head>
 <script>
         function openInGoogleMaps() {
@@ -185,7 +172,8 @@
                             <h2>Data e Horário</h2>
                         </div>
                         <div class="event-data-content">
-                            <h3><?php echo $tableData['data_inicial'], " | " , $tableData['horario_inicial'];?></h3>
+                            <h3></h3>
+                            <h3></h3>
                         </div>
                     </div>
                     <div class="event-adress">
@@ -194,7 +182,7 @@
                             <h2>Endereço e Local</h2>
                         </div>
                         <div class="event-adress-content">
-                            <h3><?php echo $tableData['endereco']?></h3>
+                            <h3></h3>
                         </div>
                     </div>
                     <div class="event-age">
@@ -221,8 +209,8 @@
                     ?>
                 </form>
                 <div class="other-btn">
-                    <a href="<?php echo $googleMapsLink?>"><i class='bx bxs-map-pin'></i></a>
-                    <a href="<?php echo $link_google_agenda;?>"><i class='bx bx-calendar-exclamation'></i></a>
+                    <a href=""><i class='bx bxs-map-pin'></i></a>
+                    <a href=""><i class='bx bx-calendar-exclamation'></i></a>
                     <a href="#" class="share-link"><i class='bx bxs-share-alt' data-id="<?php echo $tableData['id'];?>"></i></a>
                 </div>
             </div>
@@ -245,7 +233,7 @@
                     event.preventDefault(); // Impedir a ação padrão da tag <a>
                     const id = this.getAttribute('data-id');
                     const urlField = document.getElementById('urlField');
-                    const url = `http://localhost/Comunidade-Anima/public/evento.php?id=${id}`;
+                    const url = `http://localhost/Comunidade-Anima/public/servicos_universitarios.php?id=${id}`;
                     urlField.value = url;
                     urlField.style.display = 'block';
                     urlField.select();
