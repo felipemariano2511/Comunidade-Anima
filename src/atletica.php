@@ -1,85 +1,30 @@
-<?php
-    include_once '../app/Session/User.php'; 
-    use App\Session\User as SessionUser;
-
-    $pagina = isset($_GET['page']) ? $_GET['page'] : '';
-
-    switch ($pagina){
-        case '':
-            $page = '../src/home.php';
-            break;
-
-        case 'Home':
-            $page = '../src/home.php';
-            break;
-        
-        case 'Eventos':
-            $page = '../src/eventos.php';
-            break;
-
-        case 'Atléticas':
-            $page = '../src/atleticas.php';
-            break;
-
-        case 'Comodidades':
-            $page = '../src/comodidades.php';
-            break; 
-            
-        case '':
-            $page = '../src/.php';
-            break; 
-
-        case 'MaisCurtidos':
-            $page = '../src/mais_curtidos.php';
-            break; 
-
-        case 'Suporte':
-            $page = '../src/suporte.php';
-            break;
-    }
-?>
-
-
 <!DOCTYPE html>
-<html lang="pt-br">
+<html lang="en">
 
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
     <link href='https://unpkg.com/boxicons@2.1.1/css/boxicons.min.css' rel='stylesheet'>
-    <link rel="stylesheet" href="../src/styles/styles.css">
-    <link rel="stylesheet" href="../src/styles/style.css">
-    
+    <link rel="stylesheet" href="styles/style-pattern.css">
+    <link rel="stylesheet" href="styles/atletica.css">
 </head>
 
 <body>
     <nav class="sidebar close">
         <header>
-        <div class="image-text">
-                <a href="<?php if(!SessionUser::isLogged()){echo 'login.php';}?>">
+            <div class="image-text">
+                <a href="">
                     <span class="image">
                         <img src="../imgs/usuario/user-1.webp" alt="">
                     </span>
                 </a>
-
-
                 <div class="text logo-text">
-                    <span class="name"><?php
-                                            if(SessionUser::isLogged()){
-                                                $user_info = SessionUser::getInfo();
-
-                                                echo $user_info['firstName'];
-                                            }else{
-                                                echo '<a href="login.php" class="text nav-text" style="text-decoration: none;">Login</a>';
-                                            }
-                                        ?>
-                    </span>
+                    <span class="name">Felipe</span>
                     <span class="profession">Ciência da computação</span>
                 </div>
-
+            </div>
         </header>
-
         <div class="menu-bar">
             <div class="menu">
 
@@ -92,44 +37,43 @@
                         </a>
                     </li>
 
-
                     <li class="nav-link">
-                        <a href="?page=Home">
+                        <a href="#">
                             <i class='bx bx-home-alt icon'></i>
                             <span class="text nav-text">Home</span>
                         </a>
                     </li>
 
                     <li class="nav-link">
-                        <a href="?page=Eventos">
+                        <a href="#">
                             <i class='bx bx-calendar-event icon'></i>
                             <span class="text nav-text">Evento</span>
                         </a>
                     </li>
 
                     <li class="nav-link">
-                        <a href="?page=Atléticas">
+                        <a href="#">
                             <i class='bx bx-trophy icon'></i>
                             <span class="text nav-text">Atléticas</span>
                         </a>
                     </li>
 
                     <li class="nav-link">
-                        <a href="?page=Comodidades">
+                        <a href="#">
                             <i class='bx bx-shape-triangle icon'></i>
                             <span class="text nav-text">Comodidades</span>
                         </a>
                     </li>
 
                     <li class="nav-link">
-                        <a href="?page=MaisCurtidos">
+                        <a href="#">
                             <i class='bx bx-heart icon'></i>
-                            <span class="text nav-text">Mais curtidos</span>
+                            <span class="text nav-text">Likes</span>
                         </a>
                     </li>
 
                     <li class="nav-link">
-                        <a href="?page=Suporte">
+                        <a href="#">
                             <i class='bx bx-support icon'></i>
                             <span class="text nav-text">Suporte</span>
                         </a>
@@ -137,23 +81,50 @@
 
                 </ul>
             </div>
-            <?php 
 
-            if(SessionUser::isLogged()){
-                echo '<div class="bottom-content">
-                        <li class="">
-                            <a href="../app/includes/logout.php">
-                                <i class="bx bx-log-out icon"></i>
-                                <span class="text nav-text">Logout</span>
-                            </a>
-                        </li>
-                     </div>';
-            }
-            ?>
+            <div class="bottom-content">
+                <li class="">
+                    <a href="#">
+                        <i class='bx bx-log-out icon'></i>
+                        <span class="text nav-text">Logout</span>
+                    </a>
+                </li>
+
+            </div>
         </div>
-
     </nav>
-        <?php include $page;?>
+    <section class="home">
+        <div class="event-img">
+            <img src="../imgs/card/avalanche.jpg" alt="">
+        </div>
+        <div class="event-img-small">
+            <img src="../imgs/card/avalanche.jpg" alt="">
+        </div>
+        <div class="event-text">
+            <div class="event-name">
+                <h1>Avalanche</h1>
+            </div>
+        </div>
+        <div class="atletica-container">
+            <div class="atletica-description">
+                <h1>Informações</h1>
+                <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Nihil saepe tempore quia. Perspiciatis esse nobis quia eum asperiores eaque modi est dolore dicta ab quidem cupiditate minima aliquam aspernatur iure architecto deserunt, cum dignissimos aut dolores id in veniam maxime? Illo explicabo voluptatum autem ducimus magnam nisi molestiae eaque blanditiis!</p>
+            </div>
+        </div>
+    </section>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            document.querySelectorAll('.heart-icon').forEach(function(icon) {
+                icon.addEventListener('click', function() {
+                    this.classList.toggle('bx-heart');
+                    this.classList.toggle('bxs-heart');
+                    this.classList.toggle('liked');
+                });
+            });
+        });
+    </script>
+
     <script>
         const body = document.querySelector('body'),
             sidebar = body.querySelector('nav'),
@@ -165,6 +136,21 @@
 
         toggle.addEventListener("click", () => {
             sidebar.classList.toggle("close");
+        })
+
+        searchBtn.addEventListener("click", () => {
+            sidebar.classList.remove("close");
+        })
+
+        modeSwitch.addEventListener("click", () => {
+            body.classList.toggle("dark");
+
+            if (body.classList.contains("dark")) {
+                modeText.innerText = "Light mode";
+            } else {
+                modeText.innerText = "Dark mode";
+
+            }
         });
     </script>
 </body>

@@ -2,7 +2,7 @@
 
 namespace App\Session;
 
-class User{
+class Adm{
     /**
      * @return boolean
      */
@@ -11,29 +11,26 @@ class User{
           
     }
     /**
-    * @param string $email
+    * @param string $usuario
     */
-    public static function login($email){
+    public static function login($usuario){
         self::init() ;
 
         $_SESSION['login'] = [
-            'email' => $email
+            'usuario' => $usuario
         ];
     }
   
     /**
      * @param array
      */
-    public static function setDados($firstName, $id, $ra, $email, $nome_completo, $imagem_perfil){
+    public static function setDados($usuario, $nome, $email){
         self::init();
         
-        $_SESSION['info_user'] = [
-        'firstName' => $firstName,
-        'id' => $id,
-        'ra' => $ra,
-        'email' => $email,
-        'nome' => $nome_completo,
-        'imagem_perfil' => $imagem_perfil
+        $_SESSION['info_adm'] = [
+        'usuario' => $usuario,
+        'nome' => $nome,
+        'email' => $email
         ];
     }
     /**
@@ -51,15 +48,17 @@ class User{
     public static function getInfo(){
         self::init();
 
-        return $_SESSION['info_user'] ?? [''];
+        return $_SESSION['info_adm'] ?? [''];
     }
 
     public static function logout(){
         self::init();
 
         unset($_SESSION['login']);
-        echo '<script>alert("Desconectado!"),window.location.href ="../../public/index.php";</script>';
+        //echo '<script>window.location.href ="../../public/PortalAdm/index.php";</script>';
     }
     
 }
+
+
 ?>
