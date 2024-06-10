@@ -411,7 +411,7 @@
             'Planeje seu futuro internacional!',
             '<div class=\'container\' style=\'text-align: justify;\'>
               <h1 style=\'text-align: justify;\'>Feira de Estudos no Exterior</h1>
-              <img class=\'event-image\' src=\'https://viva-mundo.com/sites/default/files/inline-images/THS_7061.jpg\' alt=\'Feira de Estudos no Exterior\' width=\'654\' height=\'342\'>
+              <img class=\'event-image\' src=\'https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEg22CfAs7EPx7ScZZSJA7V3d4JUunUCBN1MMqo6-PYJhN1ZvyMmulh2kCpNNs5sm1LMe6iY6dk8jpTueitU_7ALIO_9pqIldC8-8KO8uXgVnSVEazXmy9nVgGPnCI7PAopANzO0d4o0sEQ/s1280/Mestrado+no+exterior.jpg\' alt=\'Feira de Estudos no Exterior\' width=\'654\' height=\'342\'>
               <p style=\'text-align: justify;\'>A Feira de Estudos no Exterior é a sua chance de conhecer diversas universidades e programas de intercâmbio em todo o mundo.</p>
               <p style=\'text-align: justify;\'>Converse com representantes de instituições de ensino, participe de palestras sobre oportunidades de estudo no exterior e receba orientação sobre o processo de inscrição.</p>
               <p style=\'text-align: justify;\'>Este evento é ideal para estudantes que desejam vivenciar novas culturas, aprimorar seus conhecimentos e ampliar seus horizontes.</p>
@@ -424,7 +424,7 @@
               </ul>
               <p style=\'text-align: justify;\'>Não perca essa oportunidade de dar o primeiro passo para realizar o seu sonho de estudar no exterior!</p>
             </div>',
-            'https://www.royce.ac.uk/content/uploads/2017/05/Cambridge3.jpg',
+            'https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEg22CfAs7EPx7ScZZSJA7V3d4JUunUCBN1MMqo6-PYJhN1ZvyMmulh2kCpNNs5sm1LMe6iY6dk8jpTueitU_7ALIO_9pqIldC8-8KO8uXgVnSVEazXmy9nVgGPnCI7PAopANzO0d4o0sEQ/s1280/Mestrado+no+exterior.jpg',
             'ativo',
             1,
             12

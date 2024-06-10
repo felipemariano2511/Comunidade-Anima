@@ -3,6 +3,9 @@
     include '../app/Session/User.php';
     use App\Session\User as SessionUser;
     
+    $like = FALSE;
+    $table = 'servicos_universitarios';
+
     $uri = $_SERVER['REQUEST_URI'];
 
     if ($uri == "/Comunidade-Anima/public/servicos_universitarios.php" || $uri == "/Comunidade-Anima/public/servicos_universitarios.php?") {
@@ -31,6 +34,14 @@
             header('Location: index.php?page=Home'); 
         }
     }
+
+    if($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['like'])){
+        $like = TRUE;
+        include '../app/includes/curtir.php';
+    }elseif($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['deslike'])){
+        $like = FALSE;
+        include '../app/includes/curtir.php';
+    }
     
 ?>
 <!DOCTYPE html>
@@ -44,7 +55,7 @@
     <link rel="stylesheet" href="../src/styles/style-pattern.css">
     <link rel="stylesheet" href="../src/styles/evento.css">
     <link rel="icon" href="../imgs/dev/favicon.ico" type="image/x-icon">
-    <title>Comunidade Ânimna - Eventos</title>
+    <title>Comunidade Ânima - Serviços Universitários</title>
 </head>
 <script>
         function openInGoogleMaps() {
@@ -189,7 +200,13 @@
         <div class="event-buttons">
             <div class="event-container">
                 <form action="#" method="post" id="form-like">
-                    <button type="submit"><i class='bx bxs-heart'></i>Tenho interesse</button>
+                    <?php
+                        if($like == FALSE){
+                            echo '<button name="like"><i class="bx bxs-heart"></i>Tenho interesse</button>';
+                        } else{
+                            echo '<button name="deslike"><i class="bx bxs-heart"></i>Remover interesse</button>';
+                        }
+                    ?>
                 </form>
                 <div class="other-btn">
                     <a href=""><i class='bx bxs-map-pin'></i></a>

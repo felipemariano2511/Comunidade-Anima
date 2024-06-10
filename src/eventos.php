@@ -1,7 +1,7 @@
 <?php
 include '../app/includes/crontab.php';
 
-$query = "SELECT * FROM eventos WHERE situacao = 'ativo' ORDER BY data_inicial DESC";
+$query = "SELECT * FROM eventos WHERE situacao = 'ativo' ORDER BY data_inicial ASC";
 $result = mysqli_query($con, $query);
 
 if ($result) {
@@ -45,7 +45,6 @@ if ($result) {
                         <div class="card-buttons">
                             <a href="evento.php?id=' . $dados['id'] . '" class="btn btn-primary">Ver detalhes</a>
                             <div class="like-share">
-                                <i class="bx bx-heart heart-icon"></i>
                                 <i class="bx bx-share bx-flip-horizontal compartilhar" data-id="' . $dados['id'] . '"></i>
                             </div>
                         </div>
