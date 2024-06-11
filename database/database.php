@@ -38,6 +38,7 @@ if ($conn->query($sql) === TRUE) {
             arquivo VARCHAR(400),
             situacao VARCHAR(10),
             justificativa TEXT,
+            restrito BOOLEAN,
             autor INT,
             curtidas INT(9),
             FOREIGN KEY (autor) REFERENCES usuario(id)

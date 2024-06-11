@@ -35,11 +35,11 @@
             <h2>Comodidades</h2>
             <p>Você ja sabe das suas comodidades?</p>
         </div>
+        <div class="links-container">
         <?php
             if (is_array($tableData) && !empty($tableData)) {
                 foreach ($tableData as $dados) {
-                    echo '<div class="links-container">
-                            <div class="links-item">
+                    echo '<div class="links-item">
                                 <a href="servicos_universitarios.php?id='. $dados['id'].'"><img src="'.$dados['arquivo'].'" alt=""></a>
                                 <a href="servicos_universitarios.php?id='. $dados['id'].'" class="button">'.$dados['titulo'].'</a>
                           </div link>';
