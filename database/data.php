@@ -167,6 +167,19 @@
             nivel
           )
           VALUES (
+            'usr',
+            '202cb962ac59075b964b07152d234b70',
+            'Usuário',
+            'USR'
+          )",
+
+          "INSERT INTO usuario(
+            email,
+            senha,
+            nome,
+            nivel
+          )
+          VALUES (
             'adm',
             '202cb962ac59075b964b07152d234b70',
             'Administrador',
@@ -184,6 +197,7 @@
             descricao_completa,
             arquivo,
             situacao,
+            restrito,
             autor,
             curtidas
           )
@@ -214,6 +228,7 @@
             </div>',
             '../imgs/posts/hackathon-o-que-e-vantagens-desafios-como-promover-1280x720.jpg',
             'ativo',
+            TRUE,
             1,
             67
           )",
@@ -229,6 +244,7 @@
             descricao_completa,
             arquivo,
             situacao,
+            restrito,
             autor,
             curtidas
           )
@@ -257,6 +273,7 @@
             </div>',
             'https://i.ytimg.com/vi/27ck3rqfc-A/maxresdefault.jpg',
             'ativo',
+            TRUE,
             1,
             105
           )",
@@ -272,6 +289,7 @@
             descricao_completa,
             arquivo,
             situacao,
+            restrito,
             autor,
             curtidas
           )
@@ -300,6 +318,7 @@
             </div>',
             'https://sonhealtoviagens.com/wp-content/uploads/2020/09/INTERCA%CC%82MBIO-CANADA%CC%81-768x432.png',
             'ativo',
+            FALSE,
             1,
             156
           )",
@@ -315,6 +334,7 @@
             descricao_completa,
             arquivo,
             situacao,
+            restrito,
             autor,
             curtidas
           )
@@ -341,6 +361,7 @@
             </div>',
             'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT6B4MMxzxaHHOHoqrF4WMOXei4ctbpRDqd9QDqtYMNVFYCnOcjLobsb4bMe0tXuKRSsvU&usqp=CAU',
             'ativo',
+            FALSE,
             1,
             56
           )",
@@ -356,6 +377,7 @@
             descricao_completa,
             arquivo,
             situacao,
+            restrito,
             autor,
             curtidas
           )
@@ -383,6 +405,7 @@
             </div>',
             'https://i.ytimg.com/vi/SvRXIWfKf8k/maxresdefault.jpg',
             'ativo',
+            FALSE,
             1,
             23
           )",
@@ -398,6 +421,7 @@
             descricao_completa,
             arquivo,
             situacao,
+            restrito,
             autor,
             curtidas
           )
@@ -426,6 +450,7 @@
             </div>',
             'https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEg22CfAs7EPx7ScZZSJA7V3d4JUunUCBN1MMqo6-PYJhN1ZvyMmulh2kCpNNs5sm1LMe6iY6dk8jpTueitU_7ALIO_9pqIldC8-8KO8uXgVnSVEazXmy9nVgGPnCI7PAopANzO0d4o0sEQ/s1280/Mestrado+no+exterior.jpg',
             'ativo',
+            FALSE,
             1,
             12
           )",
@@ -441,6 +466,7 @@
             descricao_completa,
             arquivo,
             situacao,
+            restrito,
             autor,
             curtidas
           )
@@ -469,8 +495,9 @@
               <p style=\'text-align: justify;\'>Apoio: [Nome dos apoiadores da exposição, se houver]</p>
               <p style=\'text-align: justify;\'>[Incluir imagens de algumas das obras de arte que serão exibidas na exposição]</p>
             </div>',
-            'https://www.unochapeco.edu.br/static/data/portal/noticias/fotos/640x480/11873.jpg',
+            'https://dasartes.com.br/dasartes.com.br/wp-content/uploads/2022/01/unnamed-24.jpg',
             'ativo',
+            FALSE,
             1,
             5
           )",

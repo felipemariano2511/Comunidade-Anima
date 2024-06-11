@@ -213,8 +213,7 @@
                     </div>
                     <div class="event-age">
                         <?php
-                            $restrito = 'aberto';
-                            if($restrito == 'restrito'){
+                            if($tableData['restrito'] == TRUE){
                                echo'<div class="event-title">
                                         <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAB4AAAAeCAYAAAA7MK6iAAAAAXNSR0IArs4c6QAAATFJREFUSEvtloENAiEMRblNdBOdRJ1EnUSdRDfRTfReQhNyV2i5oBeNJCQGkNd+2l67MNPoZuKGqeBFCGHbz0ect1oHasGrEMJVgWDApV8/eA2oAePhybj46IV7wamneAfg3E8kZ28ff7O369dM6b1g5AXAWMZ3TZ3HgHtcALq2JPeCn/GikpS8L57jNcYVhwecyoyMSKyN9BweF+WuBZcu/H4w6bOJ0UrwMErycWZ4jtxWnyYntSdnrfiRfTUgc2BSA+ulJHohwxSTO0ZRngN70scyRtKLcyPOHyzyeaSWOp0rKG+ROq3duRLZHKylmlbRmoO1ZkCr4c3BvC1SS5X6mNQEoOeD0Nzj3wSn6WKVRmtfbYU+8XVSm4dSByKVSaLX8kzbz/bZntZnCtD8z2zgFzJjYR9xK4kLAAAAAElFTkSuQmCC"/>
                                         <h2>Restrito</h2>
@@ -222,7 +221,7 @@
                                     <div class="event-age-content">
                                         <h3>Somente membros da Universidade</h3>
                                     </div>';
-                            }elseif($restrito == 'aberto'){
+                            }elseif($tableData['restrito'] == FALSE){
                                 echo'<div class="event-title">
                                         <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAB4AAAAeCAYAAAA7MK6iAAAAAXNSR0IArs4c6QAAAPRJREFUSEvtlusNwjAMhK+bwCawCUwCTAJMQtmEUeihWgppnDqmKAjFP6Omn1+xr0Ml6ypx4QXvRocvXsc9YELPAfABoAdwB2B2xAM+AjhkIjU5kgNvANwiwHaIjuc5cOzTaTigs2+WAxNKSGgeMDOw9oB58Ro0E2tcEjGvTgK0RMzGYaRiczVOlb+BswNEmqulOm4uGRh8eitlsHylufbjqIxHaejDf4El1bKx2jtuI/PVAz+9JKqtxU+FQHFzpSaRR4FQAHK6maWPpufmhEBYmonWkp96VGZK3oo0UkFLRMwNJJvIDFoCrJWg6NyT6iKA9vETGUZVH9HMNq0AAAAASUVORK5CYII="/>
                                         <h2>Aberto</h2>
