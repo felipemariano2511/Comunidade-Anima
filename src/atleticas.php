@@ -1,3 +1,4 @@
+@ -1,119 +1,118 @@
 <?php
     include '../app/includes/config.php';
 
@@ -95,7 +96,6 @@
         <?php
             if ($sem_resultados == FALSE) {
                 foreach ($tableData as $dados) {
-
                     echo '<div class="card">
                                 <img src="'.$dados['arquivo'].'" class="card-img-top" alt="...">
                                 <div class="card-body">
@@ -114,20 +114,5 @@
         ?>
         </div>
     </section>
-
-    <script>
-        const body = document.querySelector('body'),
-            sidebar = body.querySelector('nav'),
-            toggle = body.querySelector(".toggle"),
-            searchBtn = body.querySelector(".search-box"),
-            modeSwitch = body.querySelector(".toggle-switch"),
-            modeText = body.querySelector(".mode-text");
-
-
-        toggle.addEventListener("click", () => {
-            sidebar.classList.toggle("close");
-        });
-    </script>
 </body>
-
 </html>
