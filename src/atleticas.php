@@ -1,3 +1,31 @@
+@ -1,119 +1,118 @@
+<?php
+    include '../app/includes/config.php';
+
+    if($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['search'])){
+        $pesquisa = ucwords($_POST['search']);
+    }
+
+    if(!$pesquisa == ""){
+        $query = "SELECT * FROM servicos_universitarios WHERE titulo LIKE '%$pesquisa%' AND servico = 'Atlética' AND situacao = 'ativo' ORDER BY curtidas DESC";
+    }else{
+        $query = "SELECT * FROM servicos_universitarios WHERE servico = 'Atlética' AND situacao = 'ativo' ORDER BY curtidas DESC";
+    }
+
+    $result = mysqli_query($con, $query);
+
+    if (mysqli_num_rows($result) > 0) {
+        $tableData = array();
+        while ($row = mysqli_fetch_assoc($result)) {
+            $tableData[] = $row;
+        }
+        $sem_resultados = FALSE;
+        
+    } else {
+        $sem_resultados = TRUE;
+    }
+
+?>
 <!DOCTYPE html>
 <html lang="pt-br">
 
@@ -5,110 +33,14 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css"><link href='https://unpkg.com/boxicons@2.1.1/css/boxicons.min.css' rel='stylesheet'>
     <link href='https://unpkg.com/boxicons@2.1.1/css/boxicons.min.css' rel='stylesheet'>
-    <link rel="stylesheet" href="styles/style-pattern.css">
-    <link rel="stylesheet" href="styles/style.css">
-    <link rel="stylesheet" href="styles/atleticas.css">
-    <title>Eventos</title>
-
-
+    <link rel="stylesheet" href="../src/styles/style-pattern.css">
+    <link rel="stylesheet" href="../src/styles/style.css">
+    <link rel="stylesheet" href="../src/styles/atleticas.css">
+    <link rel="stylesheet" href="../src/styles/eventos.css">
+    <title>Atléticas</title>
 </head>
-
-<body>
-    <header class="header-main">
-        <div class="container-header">
-            <img src="../imgs/dev/logo-anima-1024-white.png" alt="" width="100px">
-        </div>
-    </header>
-    <nav class="sidebar close">
-        <header>
-            <div class="image-text">
-                <a href="">
-                    <span class="image">
-                        <img src="../imgs/usuario/user-1.webp" alt="">
-                    </span>
-                </a>
-
-
-                <div class="text logo-text">
-                    <span class="name">Felipe</span>
-                    <span class="profession">Ciência da computação</span>
-                </div>
-            </div>
-
-
-        </header>
-
-        <div class="menu-bar">
-            <div class="menu">
-
-                <ul class="menu-links">
-
-                    <li class="nav-link">
-                        <a class="toggle" style="cursor:pointer;">
-                            <i class='bx bx-menu icon' id="menu-icon"></i>
-                            <span class="text nav-text">Menu</span>
-                        </a>
-                    </li>
-
-
-                    <li class="nav-link">
-                        <a href="#">
-                            <i class='bx bx-home-alt icon'></i>
-                            <span class="text nav-text">Home</span>
-                        </a>
-                    </li>
-
-                    <li class="nav-link">
-                        <a href="#">
-                            <i class='bx bx-calendar-event icon'></i>
-                            <span class="text nav-text">Evento</span>
-                        </a>
-                    </li>
-
-                    <li class="nav-link">
-                        <a href="#">
-                            <i class='bx bx-trophy icon'></i>
-                            <span class="text nav-text">Atléticas</span>
-                        </a>
-                    </li>
-
-                    <li class="nav-link">
-                        <a href="#">
-                            <i class='bx bx-shape-triangle icon'></i>
-                            <span class="text nav-text">Comodidades</span>
-                        </a>
-                    </li>
-
-                    <li class="nav-link">
-                        <a href="#">
-                            <i class='bx bx-heart icon'></i>
-                            <span class="text nav-text">Likes</span>
-                        </a>
-                    </li>
-
-                    <li class="nav-link">
-                        <a href="#">
-                            <i class='bx bx-support icon'></i>
-                            <span class="text nav-text">Suporte</span>
-                        </a>
-                    </li>
-
-                </ul>
-            </div>
-
-            <div class="bottom-content">
-                <li class="">
-                    <a href="#">
-                        <i class='bx bx-log-out icon'></i>
-                        <span class="text nav-text">Logout</span>
-                    </a>
-                </li>
-
-            </div>
-        </div>
-
-    </nav>
 
     <section class="home">
         <div class="home-title">
@@ -118,37 +50,69 @@
         <div class="atletica-content">
             <div class="atletica-container">
                 <div class="search-bar">
-                    <i class='bx bx-search'></i>
-                    <input type="search" name="barra-pesquisa" id="" placeholder="Procure por atléticas">
+                    <form action='' method="POST">
+                        <i class='bx bx-search'></i>
+                        <input type="search" name="search" id="" placeholder="Procure por atléticas">
+                    </form>
                 </div>
                 <div class="atletica-title">
-                    <h1>Mais Relevantes</h1>
+                    <?php
+                    if($sem_resultados == FALSE){
+                        echo '<h1>Mais Relevantes</h1>';
+                    }else{
+                        echo '<h1>Sem resultados para essa consulta!</h1>';
+                    }
+                    ?>
                 </div>
                 <div class="atletica-card">
-                    <a href="">Bugatos</a>
-                    <a href="">Intoxicados</a>
-                    <a href="">Avalanche</a>
-                    <a href="">Católitros</a>
-                    <a href="">Jirombinhas</a>
-                    <a href="">#SNPFC</a>
+                    <?php
+                    if ($sem_resultados == FALSE) {
+                        $rows = $tableData;
+                        $cont = 0;
+                        
+                        foreach ($rows as $data) {
+                            $relevancia[] = $data['titulo'];
+                            $id[] = $data['id'];
+                            $cont++;
+                        }
+                        if($cont > 6){
+                            $i = 6;
+                        }elseif($cont > 3 && $cont <=6){
+                            $i = 3;
+                        }else{
+                            $i = $cont;
+                        }
+                        $e = 0;
+                        while($i > $e){
+                            echo '<a href="servicos_universitarios.php?id='.$id[$e].'#">'.$relevancia[$e].'</a>';
+                            $e++;
+                        }
+                    }
+                    ?>
                 </div>
             </div>
         </div>
+        <div class="cards-main">
+        <?php
+            if ($sem_resultados == FALSE) {
+                foreach ($tableData as $dados) {
+                    echo '<div class="card">
+                                <img src="'.$dados['arquivo'].'" class="card-img-top" alt="...">
+                                <div class="card-body">
+                                    <h5 class="card-title">'.$dados['titulo'].'</h5>
+                                    <p class="card-text">'.$dados['descricao_inicial'].'</p>
+                                    <div class="card-buttons">
+                                        <a href="servicos_universitarios.php?id='.$dados['id'].'" class="btn btn-primary">Ver detalhes</a>
+                                        <div class="like-share">  
+                                            <i class="bx bx-share bx-flip-horizontal compartilhar" data-id="'.$dados['id'].'"></i>
+                                        </div>
+                                    </div>
+                                </div>
+                             </div>';
+                }
+            }
+        ?>
+        </div>
     </section>
-
-    <script>
-        const body = document.querySelector('body'),
-            sidebar = body.querySelector('nav'),
-            toggle = body.querySelector(".toggle"),
-            searchBtn = body.querySelector(".search-box"),
-            modeSwitch = body.querySelector(".toggle-switch"),
-            modeText = body.querySelector(".mode-text");
-
-
-        toggle.addEventListener("click", () => {
-            sidebar.classList.toggle("close");
-        });
-    </script>
 </body>
-
 </html>
