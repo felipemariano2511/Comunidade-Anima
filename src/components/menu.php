@@ -1,42 +1,43 @@
 <?php
-    include_once '../app/Session/User.php'; 
-    use App\Session\User as SessionUser;
+include_once '../app/Session/User.php';
 
-    $pagina = isset($_GET['page']) ? $_GET['page'] : '';
+use App\Session\User as SessionUser;
 
-    switch ($pagina){
-        case '':
-            $page = '../src/home.php';
-            break;
+$pagina = isset($_GET['page']) ? $_GET['page'] : '';
 
-        case 'Home':
-            $page = '../src/home.php';
-            break;
-        
-        case 'Eventos':
-            $page = '../src/eventos.php';
-            break;
+switch ($pagina) {
+    case '':
+        $page = '../src/home.php';
+        break;
 
-        case 'Atléticas':
-            $page = '../src/atleticas.php';
-            break;
+    case 'Home':
+        $page = '../src/home.php';
+        break;
 
-        case 'Comodidades':
-            $page = '../src/comodidades.php';
-            break; 
-            
-        case '':
-            $page = '../src/.php';
-            break; 
+    case 'Eventos':
+        $page = '../src/eventos.php';
+        break;
 
-        case 'MaisCurtidos':
-            $page = '../src/mais_curtidos.php';
-            break; 
+    case 'Atléticas':
+        $page = '../src/atleticas.php';
+        break;
 
-        case 'Suporte':
-            $page = '../src/suporte.php';
-            break;
-    }
+    case 'Comodidades':
+        $page = '../src/comodidades.php';
+        break;
+
+    case '':
+        $page = '../src/.php';
+        break;
+
+    case 'MaisCurtidos':
+        $page = '../src/mais_curtidos.php';
+        break;
+
+    case 'Suporte':
+        $page = '../src/suporte.php';
+        break;
+}
 ?>
 
 
@@ -50,14 +51,16 @@
     <link href='https://unpkg.com/boxicons@2.1.1/css/boxicons.min.css' rel='stylesheet'>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
     <link rel="stylesheet" href="../src/styles/style.css">
-    
+
 </head>
 
 <body>
     <nav class="sidebar close">
         <header>
-        <div class="image-text">
-                <a href="<?php if(!SessionUser::isLogged()){echo 'login.php';}?>">
+            <div class="image-text">
+                <a href="<?php if (!SessionUser::isLogged()) {
+                                echo 'login.php';
+                            } ?>">
                     <span class="image">
                         <img src="../imgs/usuario/user-1.webp" alt="">
                     </span>
@@ -65,15 +68,16 @@
 
 
                 <div class="text logo-text">
-                    <span class="name"><?php
-                                            if(SessionUser::isLogged()){
-                                                $user_info = SessionUser::getInfo();
+                    <span class="name">
+                        <?php
+                        if (SessionUser::isLogged()) {
+                            $user_info = SessionUser::getInfo();
 
-                                                echo $user_info['firstName'];
-                                            }else{
-                                                echo '<a href="login.php" class="text nav-text" style="text-decoration: none;">Login</a>';
-                                            }
-                                        ?>
+                            echo $user_info['firstName'];
+                        } else {
+                            echo "<a href='login.php' class='text nav-text' style='text-decoration: none; color: #9800ee; text-weight: 500; margin-left: 5px;'>Fazer Login<i class='bx bx-log-in'></i></a>";
+                        }
+                        ?>
                     </span>
                 </div>
 
@@ -120,16 +124,16 @@
                         </a>
                     </li>
                     <?php
-                        if(SessionUser::isLogged()){
-                            if($user_info['nivel'] == "USR" || $user_info['nivel'] == "ADM"){
-                                echo '<li class="nav-link">
+                    if (SessionUser::isLogged()) {
+                        if ($user_info['nivel'] == "USR" || $user_info['nivel'] == "ADM") {
+                            echo '<li class="nav-link">
                                         <a href="novo_evento.php">
                                             <i class="bx bx-plus icon"></i>
                                             <span class="text nav-text">Novo Evento</span>
                                         </a>
                                     </li>';
-                            }
                         }
+                    }
                     ?>
                     <li class="nav-link">
                         <a href="?page=MaisCurtidos">
@@ -138,8 +142,8 @@
                         </a>
                     </li>
                     <?php
-                    if(SessionUser::isLogged()){
-                        if($user_info['nivel'] == "ADM"){
+                    if (SessionUser::isLogged()) {
+                        if ($user_info['nivel'] == "ADM") {
                             echo '<li class="nav-link">
                                     <a href="portal_adm.php">
                                         <i class="bx bx-check-shield icon"></i>
@@ -147,7 +151,7 @@
                                     </a>
                                 </li>';
                         }
-                    }    
+                    }
                     ?>
                     <li class="nav-link">
                         <a href="?page=Suporte">
@@ -157,9 +161,9 @@
                     </li>
                 </ul>
             </div>
-            <?php 
+            <?php
 
-            if(SessionUser::isLogged()){
+            if (SessionUser::isLogged()) {
                 echo '<div class="bottom-content">
                         <li class="">
                             <a href="../app/includes/logout.php">
@@ -173,7 +177,7 @@
         </div>
 
     </nav>
-        <?php include $page;?>
+    <?php include $page; ?>
     <script>
         const body = document.querySelector('body'),
             sidebar = body.querySelector('nav'),

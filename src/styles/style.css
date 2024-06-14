@@ -170,6 +170,15 @@ header .image-text .name {
   font-weight: 600;
 }
 
+.name a{
+  display: flex;
+  align-items: center;
+}
+
+.name i {
+  margin-left: 5px;
+}
+
 header .image-text .profession {
   font-size: 12px;
   margin-top: -2px;
