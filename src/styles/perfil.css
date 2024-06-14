@@ -1,0 +1,130 @@
+:root {
+    --body-color: #E4E9F7;
+    --sidebar-color: #FFF;
+    --primary-color: #9800ee;
+    --primary-color-light: #F6F5FF;
+    --toggle-color: #DDD;
+    --text-color: #707070;
+
+    --tran-02: all 0.2s ease;
+    --tran-03: all 0.2s ease;
+    --tran-03: all 0.3s ease;
+    --tran-04: all 0.3s ease;
+    --tran-05: all 0.3s ease;
+    --tran-06: all 0.5s ease;
+}
+
+.home-title h1 {
+    font-size: 2.5rem;
+    font-weight: 800;
+    color: #393939;
+    margin: 0;
+}
+
+.home-title p {
+    font-size: 1.2rem;
+    font-weight: 500;
+    color: var(--text-color);
+}
+
+.login {
+    display: flex;
+    justify-content: center;
+    width: 100%;
+    margin-top: 60px;
+}
+
+.login-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 80%;
+    height: auto;
+    background-color: white;
+    border-radius: 10px;
+}
+
+.profile-img,
+.profile-info {
+    width: 50%;
+    margin: 10px;
+}
+
+.profile-img {
+    display: flex;
+    justify-content: center;
+    padding: 20px;
+}
+
+.profile-img img {
+    border-radius: 10px;
+}
+
+.profile-info {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    position: relative;
+    height: 100%;
+}
+
+.profile-info h1 {
+    position: absolute;
+    top: 0;
+    margin-top: 20px;
+    font-size: 1.2rem;
+    font-weight: 600;
+    color: var(--text-color);
+}
+
+.profile-info input {
+    width: 100%;
+    padding: 12px 10px 12px 10px;
+    border-radius: 8px;
+    font-size: 14px;
+    font-weight: 600;
+    box-sizing: border-box;
+    margin-bottom: 15px;
+    color: #424242;
+    background-color: var(--body-color);
+}
+
+.profile-info input:focus {
+    outline: 0px;
+}
+
+input[type="button"] {
+    position: absolute;
+    bottom: 0;
+    background-color: var(--primary-color);
+    color: white;
+    border: none;
+    outline: none;
+    padding: 8px 10px 8px 10px;
+}
+
+@media screen and (max-width: 1200px) {
+    input[type="button"] {
+        position: inherit;
+    }
+
+    .login-container {
+        flex-direction: column;
+        width: 100%;
+    }
+
+    .login {
+        margin-top: 50px;
+    }
+
+    .profile-img,
+    .profile-info {
+        width: 90%;
+    }
+    .profile-info h1 {
+        position: inherit;
+        margin-top: 0px;
+        margin-bottom: 20px;
+    }
+}
