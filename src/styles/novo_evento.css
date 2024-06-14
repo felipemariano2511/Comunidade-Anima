@@ -3,7 +3,9 @@ body {
     background-color: #f4f4f4;
     margin: 0;
     padding: 0;
+    display: flex;
 }
+
 .container {
     width: 50%;
     margin: 50px auto;
@@ -12,14 +14,35 @@ body {
     border-radius: 5px;
     box-shadow: 0 0 10px rgba(0,0,0,0.1);
 }
-.form-group {
-    margin-bottom: 20px;
+.input-box {
+    position: relative;
+    margin-bottom: 1rem;
+    width: 100%;
 }
 label {
     display: block;
     font-weight: bold;
     margin-bottom: 5px;
 }
+
+.placeholder {
+    position: absolute;
+    top: 10px;
+    left: 12px;
+    font-size: 0.9rem;
+    color: #393939;
+    transition: all 0.3s ease-in-out;
+    pointer-events: none;
+    background-color: white;
+    padding: 1px 5px;
+}
+
+input[type="text"]:focus + .placeholder {
+    top: -10px;
+    color: var(--primary-color);
+    background-color: white;
+}
+
 input[type="text"],
 input[type="date"],
 input[type="time"],
@@ -101,7 +124,5 @@ input:checked + .slider:before {
 
 .column {
     display: flex;
-    flex-direction: row;
-    min-width: 100%;
-    justify-content: space-between;
+    gap: 3rem;
 }

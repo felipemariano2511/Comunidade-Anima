@@ -78,31 +78,34 @@
         </div>
         <div class="container">
             <form action="#" method="post" enctype="multipart/form-data">
-                <div class="form-group">
-                    <label for="titulo">Título</label>
+                <div class="input-box">
                     <input type="text" id="titulo" name="titulo" required>
+                    <label for="titulo" class="placeholder">Título</label>
                 </div>
+
+                <div class="input-box">
+                    <input type="text" id="descricao_inicial" name="descricao_inicial" maxlength="30">
+                    <label for="descricao_inicial" class="placeholder">Descrição Inicial</label>
+                </div>
+                
                 <div class="column">
-                    <div class="form-group">
+                    <div class="input-box">
                         <label for="data_inicial">Data Inicial</label>
-                        <input type="date" id="data_inicial" name="data_inicial" required>
-                    </div>
-                    <div class="form-group">
+                        <input type="date" id="data_inicial" name="data_inicial" placeholder="teste" required>
                         <label for="horario_inicial">Horário Inicial</label>
                         <input type="time" id="horario_inicial" name="horario_inicial" required>
                     </div>
+                    <div class="input-box">
+                        <label for="data_final">Data Final</label>
+                        <input type="date" id="data_final" name="data_final" required>
+                        <label for="horario_final">Horário Final</label>
+                        <input type="time" id="horario_final" name="horario_final" required>
+                    </div>
                 </div>
-                <div class="form-group">
-                    <label for="data_final">Data Final</label>
-                    <input type="date" id="data_final" name="data_final" required>
-                </div>
-                <div class="form-group">
-                    <label for="horario_final">Horário Final</label>
-                    <input type="time" id="horario_final" name="horario_final" required>
-                </div>
-                <div class="form-group">
-                    <label for="endereco">Endereço</label>
+                
+                <div class="input-box">
                     <input type="text" id="endereco" name="endereco" required>
+                    <label for="endereco" class="placeholder">Endereço</label>
                     <button type="button" class="map-btn" onclick="openInGoogleMaps()">Verificar endereço</button>
                 </div>
                 <div class="switch-container">
@@ -113,19 +116,15 @@
                     </label>
                     <span class="label-text">Aberto ao Público</span>
                 </div>
-                <div class="form-group">
-                    <label for="descricao_inicial">Descrição Inicial:</label>
-                    <input type="text" id="descricao_inicial" name="descricao_inicial" maxlength="30">
-                </div>
-                <div class="form-group">
-                    <label for="descricao_completa">Descrição:</label>
+                <div class="input-box">
+                    <label for="descricao_completa">Descrição</label>
                     <textarea id="descricao_completa" name="descricao_completa"></textarea>
                 </div>
-                <div class="form-group">
+                <div class="input-box">
                     <label for="imagem">Imagem</label>
                     <input type="file" id="imagem" name="arquivo">
                 </div>
-                <div class="form-group">
+                <div class="input-box">
                     <input type="submit" value="Cadastrar Evento" name="cadastrar">
                 </div>
             </form>
