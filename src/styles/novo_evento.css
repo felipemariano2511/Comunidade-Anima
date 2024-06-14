@@ -41,7 +41,8 @@ label {
     padding: 1px 10px;
 }
 
-input[type="text"]:focus + .placeholder{
+input[type="text"]:focus-visible + .placeholder,
+input[type="text"]:valid + .placeholder {
     top: -10px;
     color: var(--primary-color);
     background-color: white;
@@ -230,5 +231,4 @@ input:checked + .slider:before {
         color: var(--primary-color);
         background-color: white;
     }
-}
 }

@@ -83,12 +83,12 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['cadastrar'])) {
             <form action="#" method="post" enctype="multipart/form-data">
                 <div class="input-box">
                     <input type="text" id="titulo" name="titulo" required>
-                    <label for="titulo" class="placeholder">Título</label>
+                    <label for="titulo" class="placeholder" required>Título</label>
                 </div>
 
                 <div class="input-box">
-                    <input type="text" id="descricao_inicial" name="descricao_inicial" maxlength="30">
-                    <label for="descricao_inicial" class="placeholder">Descrição Inicial</label>
+                    <input type="text" id="descricao_inicial" name="descricao_inicial" maxlength="30" required>
+                    <label for="descricao_inicial" class="placeholder" required>Descrição Inicial</label>
                 </div>
 
                 <div class="column">
