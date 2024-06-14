@@ -117,13 +117,15 @@
                 <div class="login-container">
                     <div class="profile-img">
                         <img src="../imgs/card/marciaoshowdebola.jpg" alt="">
+                        <input type="file" name="foto_perfil" id="fileInput">
+                        <label for="fileInput" class="custom-file-upload">Alterar Foto</label>
                     </div>
                     <div class="profile-info">
                         <h1>Meus Dados</h1>
                         <input type="email" name="email" id="" placeholder="Email">
                         <input type="text" name="" id="" placeholder="Nome">
                         <input type="password" name="" id="" placeholder="Senha">
-                        <input type="button" value="Salvar" name="salvar" class="botao">
+                        <input type="submit" value="Salvar" name="salvar" class="botao">
                     </div>
                 </div>
             </div>
