@@ -1,3 +1,5 @@
+
+
 body {
     font-family: Arial, sans-serif;
     background-color: #f4f4f4;
@@ -8,7 +10,7 @@ body {
 
 .container {
     width: 50%;
-    margin: 50px auto;
+    margin: 20px auto;
     background-color: #fff;
     padding: 20px;
     border-radius: 5px;
@@ -18,30 +20,33 @@ body {
     position: relative;
     margin-bottom: 1rem;
     width: 100%;
+    transition: 150ms cubic-bezier(0.4,0,0.2,1); 
 }
 label {
     display: block;
-    font-weight: bold;
     margin-bottom: 5px;
+    font-weight: bold;
+    color: #393939;
+    font-size: 0.9rem;
 }
 
 .placeholder {
     position: absolute;
     top: 10px;
     left: 12px;
-    font-size: 0.9rem;
     color: #393939;
-    transition: all 0.3s ease-in-out;
+    transition: 150ms cubic-bezier(0.4,0,0.2,1); 
     pointer-events: none;
-    background-color: white;
-    padding: 1px 5px;
+    background-color: transparent;
+    padding: 1px 10px;
 }
 
-input[type="text"]:focus + .placeholder {
+input[type="text"]:focus + .placeholder{
     top: -10px;
     color: var(--primary-color);
     background-color: white;
 }
+
 
 input[type="text"],
 input[type="date"],
@@ -53,20 +58,62 @@ textarea {
     border-radius: 5px;
     box-sizing: border-box;
 }
+
 input[type="file"] {
     margin-top: 10px;
 }
-input[type="submit"] {
-    background-color: #007BFF;
+
+.map-btn {
+    width: 50%;
+    height: 100%;
+    padding: 8px;
+    background-color: var(--primary-color);
+    color: #fff;
+    border: none;
+    padding: 10px 20px;
+    cursor: pointer;
+    border-radius: 5px;
+    font-weight: bold;
+}
+
+input[type="submit"]{
+    background-color: var(--primary-color);
     color: #fff;
     border: none;
     padding: 10px 20px;
     cursor: pointer;
     border-radius: 5px;
 }
-input[type="submit"]:hover {
-    background-color: #0056b3;
+
+input[type="submit"]:hover, .map-btn:hover {
+    background-color: #7d00c5;
 }
+
+input:focus {
+    outline: none;
+    border: 2px solid var(--primary-color);
+}
+
+.file-btn {
+    display: none; /* Ocultar o input file real */
+}
+
+.custom-file-upload {
+    display: inline-block;
+    padding: 8px 16px;
+    cursor: pointer;
+    background-color: var(--primary-color);
+    color: white;
+    border-radius: 4px;
+    font-size: 14px;
+    margin-top: 5px;
+}
+
+.custom-file-upload:hover {
+    background-color: #7d00c5;
+}
+
+
 .switch-container {
     display: flex;
     align-items: center;
@@ -107,10 +154,10 @@ input[type="submit"]:hover {
     transition: .4s;
 }
 input:checked + .slider {
-    background-color: green;
+    background-color: var(--primary-color);
 }
 input:not(:checked) + .slider {
-    background-color: red;
+    background-color: rgb(160, 160, 160);
 }
 input:checked + .slider:before {
     transform: translateX(26px);
@@ -125,4 +172,63 @@ input:checked + .slider:before {
 .column {
     display: flex;
     gap: 3rem;
+}
+
+.row {
+    display: flex;
+    
+}
+
+.submit-btn {
+    font-weight: bold;
+    width: 100%;
+    margin-top: 1rem;
+}
+
+.label-text {
+    font-size: 12px;
+}
+
+@media (max-width: 915px) {
+
+    .container {
+        width: 100%;
+    }
+    
+    .column {
+        flex-direction: column;
+        gap: 1rem;
+    }
+
+    .map-btn {
+        width: 100%;
+        margin-bottom: 1rem;
+    }
+    
+    input[type="text"],
+    textarea {
+    width: 100%;
+    padding: 20px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    box-sizing: border-box;
+    }
+
+    .placeholder {
+        position: absolute;
+        top: 21px;
+        left: 10px;
+        color: #393939;
+        transition: 150ms cubic-bezier(0.4,0,0.2,1); 
+        pointer-events: none;
+        background-color: white;
+        padding: 1px 10px;
+    }
+    
+    input[type="text"]:focus-visible + .placeholder{
+        top: -10px;
+        color: var(--primary-color);
+        background-color: white;
+    }
+}
 }

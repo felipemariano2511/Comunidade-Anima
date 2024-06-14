@@ -1,47 +1,49 @@
 <?php
-    include "../app/includes/config.php";
-    include '../app/Session/User.php';
-    use App\Session\User as SessionUser;
+include "../app/includes/config.php";
+include '../app/Session/User.php';
 
-    if(SessionUser::isLogged()){
-        $user_info = SessionUser::getInfo();
-    }else{
-        header("Location: index.php");
-    }
+use App\Session\User as SessionUser;
 
-    if($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['cadastrar'])){
-        $titulo = $_POST['titulo'];
-        $data_final = $_POST['data_inicial'];
-        $data_inicial = $_POST['data_final'];
-        $horario_inicial = $_POST['horario_inicial'];
-        $horario_final = $_POST['horario_final'];
-        $endereco = $_POST['endereco'];
-        $descricao_inicial = $_POST['descricao_inicial'];
-        $descricao_completa = $_POST['descricao_completa'];
-        $arquivo = $_FILES['arquivo'];
-        $restrito = isset($_POST['switch_status']) ? 'restrito' : 'aberto'; // Verifica o estado do switch
-        $autor = 1;
+if (SessionUser::isLogged()) {
+    $user_info = SessionUser::getInfo();
+} else {
+    header("Location: index.php");
+}
 
-        if($arquivo['error'] === 0) {
-            move_uploaded_file($arquivo['tmp_name'], '../imgs/posts/' . $arquivo['name']);
-            $endereco_arquivo = '../imgs/posts/' . $arquivo['name'];
+if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['cadastrar'])) {
+    $titulo = $_POST['titulo'];
+    $data_final = $_POST['data_inicial'];
+    $data_inicial = $_POST['data_final'];
+    $horario_inicial = $_POST['horario_inicial'];
+    $horario_final = $_POST['horario_final'];
+    $endereco = $_POST['endereco'];
+    $descricao_inicial = $_POST['descricao_inicial'];
+    $descricao_completa = $_POST['descricao_completa'];
+    $arquivo = $_FILES['arquivo'];
+    $restrito = isset($_POST['switch_status']) ? 'restrito' : 'aberto'; // Verifica o estado do switch
+    $autor = 1;
 
-            $query = "INSERT INTO eventos(titulo, data_inicial, horario_inicial, data_final, horario_final, endereco, descricao_inicial, descricao_completa, arquivo, situacao, restrito, autor)
+    if ($arquivo['error'] === 0) {
+        move_uploaded_file($arquivo['tmp_name'], '../imgs/posts/' . $arquivo['name']);
+        $endereco_arquivo = '../imgs/posts/' . $arquivo['name'];
+
+        $query = "INSERT INTO eventos(titulo, data_inicial, horario_inicial, data_final, horario_final, endereco, descricao_inicial, descricao_completa, arquivo, situacao, restrito, autor)
                     VALUES ('$titulo', '$data_inicial', '$horario_inicial', '$data_final','$horario_final', '$endereco','$descricao_inicial', '$descricao_completa', '$endereco_arquivo', 'ativo', '$restrito', '$autor')";
-            $result = mysqli_query($con, $query);
+        $result = mysqli_query($con, $query);
 
-            if($result){
-                echo '<script>alert("Cadastrado com sucesso, aguarde aprovação!")</script>';
-            } else{
-                echo '<script>alert("Falha no cadastro!")</script>';
-            }
+        if ($result) {
+            echo '<script>alert("Cadastrado com sucesso, aguarde aprovação!")</script>';
         } else {
-            echo '<script>alert("Erro ao fazer upload do arquivo. Por favor, tente novamente!")</script>';
+            echo '<script>alert("Falha no cadastro!")</script>';
         }
+    } else {
+        echo '<script>alert("Erro ao fazer upload do arquivo. Por favor, tente novamente!")</script>';
     }
+}
 ?>
 <!DOCTYPE html>
 <html lang="pt-br">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -68,6 +70,7 @@
         }
     </script>
 </head>
+
 <body>
     <?php include "../src/components/main_header.php"; ?>
     <?php include "../src/components/menu_formatted.php"; ?>
@@ -87,7 +90,32 @@
                     <input type="text" id="descricao_inicial" name="descricao_inicial" maxlength="30">
                     <label for="descricao_inicial" class="placeholder">Descrição Inicial</label>
                 </div>
+
+                <div class="column">
+                    <div class="input-box">
+                        <input type="text" id="endereco" name="endereco" required>
+                        <label for="endereco" class="placeholder">Endereço</label>
+                    </div>
+                    <button type="button" class="map-btn" onclick="openInGoogleMaps()">Verificar endereço</button>
+                </div>
                 
+                <div class="switch-container">
+                    <span class="label-text">Restrito</span>
+                    <label class="switch">
+                        <input type="checkbox" name="switch_status">
+                        <span class="slider round"></span>
+                    </label>
+                    <span class="label-text">Aberto ao Público</span>
+                </div>
+
+                <div class="input-box">
+                    <label>Imagem</label>
+                    <label for="imagem" class="custom-file-upload">
+                        Escolher arquivo
+                    </label>
+                    <input type="file" id="imagem" name="arquivo" class="file-btn">
+                </div>
+
                 <div class="column">
                     <div class="input-box">
                         <label for="data_inicial">Data Inicial</label>
@@ -102,35 +130,21 @@
                         <input type="time" id="horario_final" name="horario_final" required>
                     </div>
                 </div>
-                
-                <div class="input-box">
-                    <input type="text" id="endereco" name="endereco" required>
-                    <label for="endereco" class="placeholder">Endereço</label>
-                    <button type="button" class="map-btn" onclick="openInGoogleMaps()">Verificar endereço</button>
-                </div>
-                <div class="switch-container">
-                    <span class="label-text">Restrito</span>
-                    <label class="switch">
-                        <input type="checkbox" name="switch_status">
-                        <span class="slider round"></span>
-                    </label>
-                    <span class="label-text">Aberto ao Público</span>
-                </div>
+
                 <div class="input-box">
                     <label for="descricao_completa">Descrição</label>
                     <textarea id="descricao_completa" name="descricao_completa"></textarea>
                 </div>
-                <div class="input-box">
-                    <label for="imagem">Imagem</label>
-                    <input type="file" id="imagem" name="arquivo">
-                </div>
-                <div class="input-box">
-                    <input type="submit" value="Cadastrar Evento" name="cadastrar">
+                
+                <div class="row">
+                    <div class="input-box">
+                        <input type="submit" value="Cadastrar Evento" name="cadastrar" class="submit-btn">
+                    </div>
                 </div>
             </form>
         </div>
     </section>
-    
+
     <script>
         tinymce.init({
             selector: 'textarea',
@@ -139,9 +153,14 @@
             toolbar: 'undo redo | blocks fontfamily fontsize | bold italic underline strikethrough | link image media table mergetags | addcomment showcomments | spellcheckdialog a11ycheck typography | align lineheight | checklist numlist bullist indent outdent | emoticons charmap | removeformat',
             tinycomments_mode: 'embedded',
             tinycomments_author: 'Author name',
-            mergetags_list: [
-                { value: 'First.Name', title: 'First Name' },
-                { value: 'Email', title: 'Email' },
+            mergetags_list: [{
+                    value: 'First.Name',
+                    title: 'First Name'
+                },
+                {
+                    value: 'Email',
+                    title: 'Email'
+                },
             ],
             ai_request: (request, respondWith) => respondWith.string(() => Promise.reject("See docs to implement AI Assistant")),
             images_upload_handler: (blobInfo, progress) => new Promise((resolve, reject) => {
@@ -155,9 +174,10 @@
 
                 xhr.onload = () => {
                     if (xhr.status === 403) {
-                        reject({    
+                        reject({
                             message: 'HTTP Error: ' + xhr.status + "Aqui",
-                            remove: true });
+                            remove: true
+                        });
                         return;
                     }
 
@@ -189,4 +209,5 @@
         });
     </script>
 </body>
+
 </html>
