@@ -20,7 +20,7 @@
         $descricao_completa = $_POST['descricao_completa'];
         $arquivo = $_FILES['arquivo'];
         $restrito = isset($_POST['switch_status']) ? 'restrito' : 'aberto'; // Verifica o estado do switch
-        $autor = $user_info['id'];
+        $autor = 1;
 
         if($arquivo['error'] === 0) {
             move_uploaded_file($arquivo['tmp_name'], '../imgs/posts/' . $arquivo['name']);
@@ -46,7 +46,6 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="../src/styles/style.css">
-    <link rel="stylesheet" href="../src/styles/novo_evento.css">
     <link href='https://unpkg.com/boxicons@2.1.1/css/boxicons.min.css' rel='stylesheet'>
     <link rel="shortcut icon" href="../imgs/dev/favicon.ico" type="image/x-icon">
     <link rel="icon" href="../imgs/dev/favicon.ico" type="image/x-icon">
@@ -56,6 +55,108 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/croppie/2.6.5/croppie.js" integrity="sha512-vUJTqeDCu0MKkOhuI83/MEX5HSNPW+Lw46BA775bAWIp1Zwgz3qggia/t2EnSGB9GoS2Ln6npDmbJTdNhHy1Yw==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
     <script src="https://cdn.tiny.cloud/1/dkcuc3lf8zdkfx6zb8p2vuryz2mntql0gvb3f8vtjbqo45zp/tinymce/7/tinymce.min.js" referrerpolicy="origin"></script>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            margin: 0;
+            padding: 0;
+        }
+        .container {
+            width: 50%;
+            margin: 50px auto;
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 5px;
+            box-shadow: 0 0 10px rgba(0,0,0,0.1);
+        }
+        .form-group {
+            margin-bottom: 20px;
+        }
+        label {
+            display: block;
+            font-weight: bold;
+            margin-bottom: 5px;
+        }
+        input[type="text"],
+        input[type="date"],
+        input[type="time"],
+        textarea {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            box-sizing: border-box;
+        }
+        input[type="file"] {
+            margin-top: 10px;
+        }
+        input[type="submit"] {
+            background-color: #007BFF;
+            color: #fff;
+            border: none;
+            padding: 10px 20px;
+            cursor: pointer;
+            border-radius: 5px;
+        }
+        input[type="submit"]:hover {
+            background-color: #0056b3;
+        }
+        .switch-container {
+            display: flex;
+            align-items: center;
+            margin-bottom: 20px;
+        }
+        .switch-container .label-text {
+            margin: 0 10px;
+        }
+        .switch {
+            position: relative;
+            display: inline-block;
+            width: 60px;
+            height: 34px;
+        }
+        .switch input {
+            opacity: 0;
+            width: 0;
+            height: 0;
+        }
+        .slider {
+            position: absolute;
+            cursor: pointer;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-color: #ccc;
+            transition: .4s;
+        }
+        .slider:before {
+            position: absolute;
+            content: "";
+            height: 26px;
+            width: 26px;
+            left: 4px;
+            bottom: 4px;
+            background-color: white;
+            transition: .4s;
+        }
+        input:checked + .slider {
+            background-color: green;
+        }
+        input:not(:checked) + .slider {
+            background-color: red;
+        }
+        input:checked + .slider:before {
+            transform: translateX(26px);
+        }
+        .slider.round {
+            border-radius: 34px;
+        }
+        .slider.round:before {
+            border-radius: 50%;
+        }
+    </style>
     <script>
         function openInGoogleMaps() {
             const address = document.getElementById('endereco').value;
@@ -77,35 +178,31 @@
             <h1>Novo Evento</h1>
         </div>
         <div class="container">
+            <h2>Cadastro de Novo Evento</h2>
             <form action="#" method="post" enctype="multipart/form-data">
-                <div class="input-box">
+                <div class="form-group">
+                    <label for="titulo">Título:</label>
                     <input type="text" id="titulo" name="titulo" required>
-                    <label for="titulo" class="placeholder">Título</label>
                 </div>
-
-                <div class="input-box">
-                    <input type="text" id="descricao_inicial" name="descricao_inicial" maxlength="30">
-                    <label for="descricao_inicial" class="placeholder">Descrição Inicial</label>
+                <div class="form-group">
+                    <label for="data_inicial">Data Inicial:</label>
+                    <input type="date" id="data_inicial" name="data_inicial" required>
                 </div>
-                
-                <div class="column">
-                    <div class="input-box">
-                        <label for="data_inicial">Data Inicial</label>
-                        <input type="date" id="data_inicial" name="data_inicial" placeholder="teste" required>
-                        <label for="horario_inicial">Horário Inicial</label>
-                        <input type="time" id="horario_inicial" name="horario_inicial" required>
-                    </div>
-                    <div class="input-box">
-                        <label for="data_final">Data Final</label>
-                        <input type="date" id="data_final" name="data_final" required>
-                        <label for="horario_final">Horário Final</label>
-                        <input type="time" id="horario_final" name="horario_final" required>
-                    </div>
+                <div class="form-group">
+                    <label for="horario_inicial">Horário Inicial:</label>
+                    <input type="time" id="horario_inicial" name="horario_inicial" required>
                 </div>
-                
-                <div class="input-box">
+                <div class="form-group">
+                    <label for="data_final">Data Final:</label>
+                    <input type="date" id="data_final" name="data_final" required>
+                </div>
+                <div class="form-group">
+                    <label for="horario_final">Horário Final:</label>
+                    <input type="time" id="horario_final" name="horario_final" required>
+                </div>
+                <div class="form-group">
+                    <label for="endereco">Endereço:</label>
                     <input type="text" id="endereco" name="endereco" required>
-                    <label for="endereco" class="placeholder">Endereço</label>
                     <button type="button" class="map-btn" onclick="openInGoogleMaps()">Verificar endereço</button>
                 </div>
                 <div class="switch-container">
@@ -116,15 +213,19 @@
                     </label>
                     <span class="label-text">Aberto ao Público</span>
                 </div>
-                <div class="input-box">
-                    <label for="descricao_completa">Descrição</label>
+                <div class="form-group">
+                    <label for="descricao_inicial">Descrição Inicial:</label>
+                    <input type="text" id="descricao_inicial" name="descricao_inicial" maxlength="30">
+                </div>
+                <div class="form-group">
+                    <label for="descricao_completa">Descrição:</label>
                     <textarea id="descricao_completa" name="descricao_completa"></textarea>
                 </div>
-                <div class="input-box">
-                    <label for="imagem">Imagem</label>
+                <div class="form-group">
+                    <label for="imagem">Imagem:</label>
                     <input type="file" id="imagem" name="arquivo">
                 </div>
-                <div class="input-box">
+                <div class="form-group">
                     <input type="submit" value="Cadastrar Evento" name="cadastrar">
                 </div>
             </form>

@@ -22,11 +22,11 @@
 
     switch ($pagina){
         case '':
-            $page = 'portal_adm.php?page=PortalADM';
+            $page = 'portal_adm.php';
             break;
 
         case 'PortalADM':
-            $page = 'portal_adm.php?page=PortalADM';
+            $page = 'portal_adm.php';
             break;
         
         case 'AprovarEventos':

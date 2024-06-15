@@ -24,6 +24,6 @@
 </head>
 <body>
     <?php include "../src/components/main_header.php"; ?>
-    <?php include "../src/components/menu.php"; ?>
+    <?php include "../src/components/menu_index.php"; ?>
 </body>
 </html>

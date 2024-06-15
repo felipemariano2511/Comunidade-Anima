@@ -39,7 +39,7 @@ if ($conn->query($sql) === TRUE) {
             situacao VARCHAR(10),
             justificativa TEXT,
             restrito BOOLEAN,
-            autor INT,
+            autor INT(9),
             curtidas INT(9),
             FOREIGN KEY (autor) REFERENCES usuario(id)
         )",
