@@ -8,8 +8,8 @@ body {
     display: flex;
 }
 
-.container {
-    width: 50%;
+.form-container {
+    width: 70%;
     margin: 20px auto;
     background-color: #fff;
     padding: 20px;
@@ -30,7 +30,7 @@ label {
     font-size: 0.9rem;
 }
 
-.placeholder {
+.placeholder1 {
     position: absolute;
     top: 10px;
     left: 12px;
@@ -41,8 +41,8 @@ label {
     padding: 1px 10px;
 }
 
-input[type="text"]:focus-visible + .placeholder,
-input[type="text"]:valid + .placeholder {
+input[type="text"]:focus-visible + .placeholder1,
+input[type="text"]:valid + .placeholder1 {
     top: -10px;
     color: var(--primary-color);
     background-color: white;
@@ -192,7 +192,7 @@ input:checked + .slider:before {
 
 @media (max-width: 915px) {
 
-    .container {
+    .form-container {
         width: 100%;
     }
     
@@ -209,7 +209,7 @@ input:checked + .slider:before {
     input[type="text"],
     textarea {
     width: 100%;
-    padding: 20px;
+    padding: 10px;
     border: 1px solid #ccc;
     border-radius: 5px;
     box-sizing: border-box;
