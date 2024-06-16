@@ -1,44 +1,45 @@
 <?php
-    include "../app/includes/config.php";
-    include '../app/Session/User.php';
-    use App\Session\User as SessionUser;
+include "../app/includes/config.php";
+include '../app/Session/User.php';
+use App\Session\User as SessionUser;
 
-    if(SessionUser::isLogged()){
-        $user_info = SessionUser::getInfo();
-    }else{
-        header("Location: index.php");
-    }
+if(SessionUser::isLogged()){
+    $user_info = SessionUser::getInfo();
+} else {
+    header("Location: index.php");
+    exit();
+}
 
-    if($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['cadastrar'])){
-        $titulo = $_POST['titulo'];
-        $data_final = $_POST['data_inicial'];
-        $data_inicial = $_POST['data_final'];
-        $horario_inicial = $_POST['horario_inicial'];
-        $horario_final = $_POST['horario_final'];
-        $endereco = $_POST['endereco'];
-        $descricao_inicial = $_POST['descricao_inicial'];
-        $descricao_completa = $_POST['descricao_completa'];
-        $arquivo = $_FILES['arquivo'];
-        $restrito = isset($_POST['switch_status']) ? 'restrito' : 'aberto'; // Verifica o estado do switch
-        $autor = $user_info['id'];
+if($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['cadastrar'])){
+    $titulo = $_POST['titulo'];
+    $data_inicial = $_POST['data_inicial'];
+    $data_final = $_POST['data_final'];
+    $horario_inicial = $_POST['horario_inicial'];
+    $horario_final = $_POST['horario_final'];
+    $endereco = $_POST['endereco'];
+    $descricao_inicial = $_POST['descricao_inicial'];
+    $descricao_completa = $_POST['descricao_completa'];
+    $arquivo = $_FILES['arquivo'];
+    $restrito = isset($_POST['switch_status']) && $_POST['switch_status'] == '1' ? FALSE : TRUE;
+    $autor = $user_info['id'];
 
-        if($arquivo['error'] === 0) {
-            move_uploaded_file($arquivo['tmp_name'], '../imgs/posts/' . $arquivo['name']);
-            $endereco_arquivo = '../imgs/posts/' . $arquivo['name'];
+    if($arquivo['error'] === 0) {
+        $endereco_arquivo = '../imgs/posts/' . $arquivo['name'];
+        move_uploaded_file($arquivo['tmp_name'], $endereco_arquivo);
 
-            $query = "INSERT INTO eventos(titulo, data_inicial, horario_inicial, data_final, horario_final, endereco, descricao_inicial, descricao_completa, arquivo, situacao, restrito, autor)
-                    VALUES ('$titulo', '$data_inicial', '$horario_inicial', '$data_final','$horario_final', '$endereco','$descricao_inicial', '$descricao_completa', '$endereco_arquivo', 'ativo', '$restrito', '$autor')";
-            $result = mysqli_query($con, $query);
+        $query = "INSERT INTO eventos(titulo, data_inicial, horario_inicial, data_final, horario_final, endereco, descricao_inicial, descricao_completa, arquivo, situacao, restrito, autor)
+                  VALUES ('$titulo', '$data_inicial', '$horario_inicial', '$data_final', '$horario_final', '$endereco', '$descricao_inicial', '$descricao_completa', '$endereco_arquivo', 'ativo', '$restrito', '$autor')";
+        $result = mysqli_query($con, $query);
 
-            if($result){
-                echo '<script>alert("Cadastrado com sucesso, aguarde aprovação!")</script>';
-            } else{
-                echo '<script>alert("Falha no cadastro!")</script>';
-            }
+        if($result){
+            echo '<script>alert("Cadastrado com sucesso, aguarde aprovação!")</script>';
         } else {
-            echo '<script>alert("Erro ao fazer upload do arquivo. Por favor, tente novamente!")</script>';
+            echo '<script>alert("Falha no cadastro!")</script>';
         }
+    } else {
+        echo '<script>alert("Erro ao fazer upload do arquivo. Por favor, tente novamente!")</script>';
     }
+}
 ?>
 <!DOCTYPE html>
 <html lang="pt-br">
@@ -77,7 +78,7 @@
             <h1>Novo Evento</h1>
         </div>
         <div class="container">
-            <form action="#" method="post" enctype="multipart/form-data">
+            <form action="<?php echo $_SERVER['PHP_SELF']; ?>" method="post" enctype="multipart/form-data">
                 <div class="input-box">
                     <input type="text" id="titulo" name="titulo" required>
                     <label for="titulo" class="placeholder">Título</label>
@@ -91,7 +92,7 @@
                 <div class="column">
                     <div class="input-box">
                         <label for="data_inicial">Data Inicial</label>
-                        <input type="date" id="data_inicial" name="data_inicial" placeholder="teste" required>
+                        <input type="date" id="data_inicial" name="data_inicial" required>
                         <label for="horario_inicial">Horário Inicial</label>
                         <input type="time" id="horario_inicial" name="horario_inicial" required>
                     </div>
@@ -111,7 +112,7 @@
                 <div class="switch-container">
                     <span class="label-text">Restrito</span>
                     <label class="switch">
-                        <input type="checkbox" name="switch_status">
+                        <input type="checkbox" name="switch_status" value="1">
                         <span class="slider round"></span>
                     </label>
                     <span class="label-text">Aberto ao Público</span>
