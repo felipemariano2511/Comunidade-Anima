@@ -7,9 +7,9 @@
     }
 
     if(!$pesquisa == ""){
-        $query = "SELECT * FROM servicos_universitarios WHERE titulo LIKE '%$pesquisa%' AND servico = 'Atlética' AND situacao = 'ativo' ORDER BY curtidas DESC";
+        $query = "SELECT * FROM servicos_universitarios WHERE titulo LIKE '%$pesquisa%' AND servico = 'Atlética' ORDER BY curtidas DESC";
     }else{
-        $query = "SELECT * FROM servicos_universitarios WHERE servico = 'Atlética' AND situacao = 'ativo' ORDER BY curtidas DESC";
+        $query = "SELECT * FROM servicos_universitarios WHERE servico = 'Atlética' ORDER BY curtidas DESC";
     }
 
     $result = mysqli_query($con, $query);
