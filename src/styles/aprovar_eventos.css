@@ -53,3 +53,27 @@
 .adm-text span {
     color: #707070;
 }
+
+.card-buttons {
+    margin-top: 10px;
+}
+
+.buttons-container {
+    display: flex;
+    justify-content: space-between;
+}
+
+.buttons-container button {
+    width: 50%;
+    border-radius: 2px;
+    color: white;
+    padding: 4px;
+}
+
+.aprovar {
+    background-color: #3b9f3b;
+}
+
+.recusar {
+    background-color: #e14343;
+}

@@ -19,7 +19,7 @@
             <p>Portal para analisar eventos pendentes</p>
         </div>
         <div class="cards-container">
-            <div class="row row-cols-1 row-cols-md-3 g-4">
+            <div class="row row-cols-1 row-cols-md-3 g-5">
                 <div class="col">
                     <div class="card h-100">
                         <img src="../imgs/card/marciaoshowdebola.jpg" class="card-img-top" alt="...">
@@ -37,6 +37,15 @@
                                 <span>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Voluptatem delectus, consectetur harum ex culpa vero! Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quae, quasi.</span>
                             </div>
                         </div>
+                        <form action="" method="post">
+                            <div class="card-buttons">
+                                <div class="buttons-container">
+                                    <button class="aprovar">Aprovar</button>
+                                    <button class="recusar">Recusar</button>
+                                </div>
+                            </div>
+                        </form>
+
                     </div>
                 </div>
                 <div class="col">
@@ -56,6 +65,14 @@
                                 <span>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Voluptatem delectus, consectetur harum ex culpa vero! Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quae, quasi.</span>
                             </div>
                         </div>
+                        <form action="" method="post">
+                            <div class="card-buttons">
+                                <div class="buttons-container">
+                                    <button class="aprovar">Aprovar</button>
+                                    <button class="recusar">Recusar</button>
+                                </div>
+                            </div>
+                        </form>
                     </div>
                 </div>
                 <div class="col">
@@ -75,6 +92,14 @@
                                 <span>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Voluptatem delectus, consectetur harum ex culpa vero! Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quae, quasi.</span>
                             </div>
                         </div>
+                        <form action="" method="post">
+                            <div class="card-buttons">
+                                <div class="buttons-container">
+                                    <button class="aprovar">Aprovar</button>
+                                    <button class="recusar">Recusar</button>
+                                </div>
+                            </div>
+                        </form>
                     </div>
                 </div>
             </div>
