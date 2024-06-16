@@ -73,7 +73,7 @@ if($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['cadastrar'])){
 
 <body>
     <?php include "../src/components/main_header.php"; ?>
-    <?php include "../src/components/menu_formatted.php"; ?>
+    <?php include "../src/components/menu.php"; ?>
 
     <section class="home">
         <div class="text">
