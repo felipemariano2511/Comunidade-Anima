@@ -78,7 +78,7 @@
                                         </a>
                                     </li>
                                     <li class="nav-link">
-                                        <a href="?page=MeusEventos">
+                                        <a href="index.php?page=MeusEventos">
                                             <i class="bx bi-layout-text-window-reverse icon"></i>
                                             <span class="text nav-text">Meus eventos</span>
                                         </a>
