@@ -1,7 +1,18 @@
 <?php
     use App\Session\User as SessionUser;
 ?>
-
+<!DOCTYPE html>
+<html lang="pt-br">
+<body>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+    <link href='https://unpkg.com/boxicons@2.1.1/css/boxicons.min.css' rel='stylesheet'>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+    <link rel="stylesheet" href="../src/styles/style.css">
+    
+</head>
 <nav class="sidebar close">
         <header>
         <div class="image-text">
@@ -64,6 +75,12 @@
                                         <a href="novo_evento.php">
                                             <i class="bx bx-plus icon"></i>
                                             <span class="text nav-text">Novo Evento</span>
+                                        </a>
+                                    </li>
+                                    <li class="nav-link">
+                                        <a href="?page=MeusEventos">
+                                            <i class="bx bi-layout-text-window-reverse icon"></i>
+                                            <span class="text nav-text">Meus eventos</span>
                                         </a>
                                     </li>';
                             }
@@ -136,3 +153,8 @@
             }
         });
     </script>
+    <style>
+    
+    </style>
+</body>
+</html>

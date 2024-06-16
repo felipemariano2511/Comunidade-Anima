@@ -1,37 +1,37 @@
 <?php
 include "../app/includes/config.php";
 include '../app/Session/User.php';
-
 use App\Session\User as SessionUser;
 
-if (SessionUser::isLogged()) {
+if(SessionUser::isLogged()){
     $user_info = SessionUser::getInfo();
 } else {
     header("Location: index.php");
+    exit();
 }
 
-if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['cadastrar'])) {
+if($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['cadastrar'])){
     $titulo = $_POST['titulo'];
-    $data_final = $_POST['data_inicial'];
-    $data_inicial = $_POST['data_final'];
+    $data_inicial = $_POST['data_inicial'];
+    $data_final = $_POST['data_final'];
     $horario_inicial = $_POST['horario_inicial'];
     $horario_final = $_POST['horario_final'];
     $endereco = $_POST['endereco'];
     $descricao_inicial = $_POST['descricao_inicial'];
     $descricao_completa = $_POST['descricao_completa'];
     $arquivo = $_FILES['arquivo'];
-    $restrito = isset($_POST['switch_status']) ? 'restrito' : 'aberto'; // Verifica o estado do switch
-    $autor = 1;
+    $restrito = isset($_POST['switch_status']) && $_POST['switch_status'] == '1' ? FALSE : TRUE;
+    $autor = $user_info['id'];
 
-    if ($arquivo['error'] === 0) {
-        move_uploaded_file($arquivo['tmp_name'], '../imgs/posts/' . $arquivo['name']);
+    if($arquivo['error'] === 0) {
         $endereco_arquivo = '../imgs/posts/' . $arquivo['name'];
+        move_uploaded_file($arquivo['tmp_name'], $endereco_arquivo);
 
         $query = "INSERT INTO eventos(titulo, data_inicial, horario_inicial, data_final, horario_final, endereco, descricao_inicial, descricao_completa, arquivo, situacao, restrito, autor)
-                    VALUES ('$titulo', '$data_inicial', '$horario_inicial', '$data_final','$horario_final', '$endereco','$descricao_inicial', '$descricao_completa', '$endereco_arquivo', 'ativo', '$restrito', '$autor')";
+                  VALUES ('$titulo', '$data_inicial', '$horario_inicial', '$data_final', '$horario_final', '$endereco', '$descricao_inicial', '$descricao_completa', '$endereco_arquivo', 'ativo', '$restrito', '$autor')";
         $result = mysqli_query($con, $query);
 
-        if ($result) {
+        if($result){
             echo '<script>alert("Cadastrado com sucesso, aguarde aprovação!")</script>';
         } else {
             echo '<script>alert("Falha no cadastro!")</script>';
@@ -79,22 +79,22 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['cadastrar'])) {
         <div class="text">
             <h1>Novo Evento</h1>
         </div>
-        <div class="container">
+        <div class="form-container">
             <form action="#" method="post" enctype="multipart/form-data">
                 <div class="input-box">
                     <input type="text" id="titulo" name="titulo" required>
-                    <label for="titulo" class="placeholder" required>Título</label>
+                    <label for="titulo" class="placeholder1" required>Título</label>
                 </div>
 
                 <div class="input-box">
                     <input type="text" id="descricao_inicial" name="descricao_inicial" maxlength="30" required>
-                    <label for="descricao_inicial" class="placeholder" required>Descrição Inicial</label>
+                    <label for="descricao_inicial" class="placeholder1" required>Descrição Inicial</label>
                 </div>
 
                 <div class="column">
                     <div class="input-box">
                         <input type="text" id="endereco" name="endereco" required>
-                        <label for="endereco" class="placeholder">Endereço</label>
+                        <label for="endereco" class="placeholder1">Endereço</label>
                     </div>
                     <button type="button" class="map-btn" onclick="openInGoogleMaps()">Verificar endereço</button>
                 </div>
@@ -119,7 +119,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['cadastrar'])) {
                 <div class="column">
                     <div class="input-box">
                         <label for="data_inicial">Data Inicial</label>
-                        <input type="date" id="data_inicial" name="data_inicial" placeholder="teste" required>
+                        <input type="date" id="data_inicial" name="data_inicial" required>
                         <label for="horario_inicial">Horário Inicial</label>
                         <input type="time" id="horario_inicial" name="horario_inicial" required>
                     </div>
