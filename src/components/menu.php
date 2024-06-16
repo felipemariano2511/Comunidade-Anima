@@ -24,13 +24,13 @@
                 <div class="text logo-text">
                     <span class="name">
                         <?php
-                            if(SessionUser::isLogged()){
-                                $user_info = SessionUser::getInfo();
+                        if (SessionUser::isLogged()) {
+                            $user_info = SessionUser::getInfo();
 
-                                echo $user_info['firstName'];
-                            }else{
-                                echo '<a href="login.php" class="text nav-text" style="text-decoration: none;">Login</a>';
-                            }
+                            echo $user_info['firstName'];
+                        } else {
+                            echo "<a href='login.php' class='text nav-text' style='text-decoration: none; color: #9800ee; text-weight: 500; margin-left: 5px;'>Fazer Login<i class='bx bx-log-in'></i></a>";
+                        }
                         ?>
                     </span>
                 </div>
