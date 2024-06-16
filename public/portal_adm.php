@@ -1,4 +1,5 @@
 <?php
+    include '../app/includes/config.php'; 
     include '../app/Session/User.php';
     use App\Session\User as SessionUser;
 
@@ -62,7 +63,7 @@
 </head>
 <body>
     <?php include "../src/components/main_header.php"; ?>
-    <?php include "../src/components/menu_formatted.php"; ?>
+    <?php include "../src/components/menu.php"; ?>
     
 
     <section class="homepage">
