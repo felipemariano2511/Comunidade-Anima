@@ -57,6 +57,7 @@ class User{
         self::init();
 
         unset($_SESSION['login']);
+        unset($_SESSION['info_user']);   
         echo '<script>alert("Desconectado!"),window.location.href ="../../public/index.php";</script>';
     }
     

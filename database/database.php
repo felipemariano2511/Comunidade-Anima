@@ -23,7 +23,8 @@ if ($conn->query($sql) === TRUE) {
             email VARCHAR(50),
             senha VARCHAR(100),
             nome VARCHAR(70),
-            nivel VARCHAR(3)
+            nivel VARCHAR(3),
+            imagem VARCHAR(400)
         )",
         "CREATE TABLE eventos (
             id INT(9) AUTO_INCREMENT PRIMARY KEY,
@@ -39,7 +40,7 @@ if ($conn->query($sql) === TRUE) {
             situacao VARCHAR(10),
             justificativa TEXT,
             restrito BOOLEAN,
-            autor INT,
+            autor INT(9),
             curtidas INT(9),
             FOREIGN KEY (autor) REFERENCES usuario(id)
         )",
@@ -47,18 +48,18 @@ if ($conn->query($sql) === TRUE) {
             id INT(6) AUTO_INCREMENT PRIMARY KEY,
             servico VARCHAR(30),
             titulo VARCHAR(30),
+            responsavel VARCHAR(60),
             descricao_inicial VARCHAR(50),
             descricao_completa TEXT,
             telefone VARCHAR(15),
             email VARCHAR(50),
             curtidas INT(9),
-            arquivo VARCHAR(400),
-            situacao VARCHAR(10)
+            arquivo VARCHAR(400)
         )",
         
     ];
 
-    foreach ($queries as $query) {
+    foreach ($queries as $query) {echo $query;
         if ($conn->query($query) !== TRUE) {
             die("Error creating table: " . $conn->error);
         }

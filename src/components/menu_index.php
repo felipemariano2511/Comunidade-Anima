@@ -1,9 +1,48 @@
 <?php
+    include_once '../app/Session/User.php'; 
     use App\Session\User as SessionUser;
+
+    $pagina = isset($_GET['page']) ? $_GET['page'] : '';
+
+    switch ($pagina){
+        case '':
+            $page = '../src/home.php';
+            break;
+
+        case 'Home':
+            $page = '../src/home.php';
+            break;
+        
+        case 'Eventos':
+            $page = '../src/eventos.php';
+            break;
+
+        case 'Atléticas':
+            $page = '../src/atleticas.php';
+            break;
+
+        case 'Comodidades':
+            $page = '../src/comodidades.php';
+            break; 
+            
+        case 'MeusEventos':
+            $page = '../src/meus_eventos.php';
+            break; 
+
+        case 'MaisCurtidos':
+            $page = '../src/mais_curtidos.php';
+            break; 
+
+        case 'Suporte':
+            $page = '../src/suporte.php';
+            break;
+    }
 ?>
+
+
 <!DOCTYPE html>
 <html lang="pt-br">
-<body>
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -13,7 +52,9 @@
     <link rel="stylesheet" href="../src/styles/style.css">
     
 </head>
-<nav class="sidebar close">
+
+<body>
+    <nav class="sidebar close">
         <header>
         <div class="image-text">
                 <a href="<?php if(!SessionUser::isLogged()){echo 'login.php';}?>">
@@ -21,49 +62,59 @@
                         <img src="../imgs/usuario/user-1.webp" alt="">
                     </span>
                 </a>
-                <div class="text logo-text">
-                    <span class="name">
-                        <?php
-                        if (SessionUser::isLogged()) {
-                            $user_info = SessionUser::getInfo();
 
-                            echo $user_info['firstName'];
-                        } else {
-                            echo "<a href='login.php' class='text nav-text' style='text-decoration: none; color: #9800ee; text-weight: 500; margin-left: 5px;'>Fazer Login<i class='bx bx-log-in'></i></a>";
-                        }
-                        ?>
+
+                <div class="text logo-text">
+                    <span class="name"><?php
+                                            if(SessionUser::isLogged()){
+                                                $user_info = SessionUser::getInfo();
+
+                                                echo $user_info['firstName'];
+                                            }else{
+                                                echo "<a href='login.php' class='text nav-text' style='text-decoration: none; color: #9800ee; text-weight: 500; margin-left: 5px;'>Fazer Login<i class='bx bx-log-in'></i></a>";
+                                            }
+                                        ?>
                     </span>
                 </div>
+
         </header>
+
         <div class="menu-bar">
             <div class="menu">
+
                 <ul class="menu-links">
+
                     <li class="nav-link">
                         <a class="toggle" style="cursor:pointer;">
                             <i class='bx bx-menu icon' id="menu-icon"></i>
                             <span class="text nav-text">Menu</span>
                         </a>
                     </li>
+
+
                     <li class="nav-link">
-                        <a href="index.php?page=Home">
+                        <a href="?page=Home">
                             <i class='bx bx-home-alt icon'></i>
                             <span class="text nav-text">Home</span>
                         </a>
                     </li>
+
                     <li class="nav-link">
-                        <a href="index.php?page=Eventos">
+                        <a href="?page=Eventos">
                             <i class='bx bx-calendar-event icon'></i>
                             <span class="text nav-text">Eventos</span>
                         </a>
                     </li>
+
                     <li class="nav-link">
-                        <a href="index.php?page=Atléticas">
+                        <a href="?page=Atléticas">
                             <i class='bx bx-trophy icon'></i>
                             <span class="text nav-text">Atléticas</span>
                         </a>
                     </li>
+
                     <li class="nav-link">
-                        <a href="index.php?page=Comodidades">
+                        <a href="?page=Comodidades">
                             <i class='bx bx-shape-triangle icon'></i>
                             <span class="text nav-text">Comodidades</span>
                         </a>
@@ -74,11 +125,12 @@
                                 echo '<li class="nav-link">
                                         <a href="novo_evento.php">
                                             <i class="bx bx-plus icon"></i>
-                                            <span class="text nav-text">Novo Evento</span>
+                                            <span class="text nav-text">Novo evento</span>
                                         </a>
                                     </li>
                                     <li class="nav-link">
                                         <a href="?page=MeusEventos">
+
                                             <i class="bx bi-layout-text-window-reverse icon"></i>
                                             <span class="text nav-text">Meus eventos</span>
                                         </a>
@@ -87,7 +139,7 @@
                         }
                     ?>
                     <li class="nav-link">
-                        <a href="index.php?page=MaisCurtidos">
+                        <a href="?page=MaisCurtidos">
                             <i class='bx bx-heart icon'></i>
                             <span class="text nav-text">Mais curtidos</span>
                         </a>
@@ -105,7 +157,7 @@
                     }    
                     ?>
                     <li class="nav-link">
-                        <a href="index.php?page=Suporte">
+                        <a href="?page=Suporte">
                             <i class='bx bx-support icon'></i>
                             <span class="text nav-text">Suporte</span>
                         </a>
@@ -113,19 +165,22 @@
                 </ul>
             </div>
             <?php 
-                if(SessionUser::isLogged()){
-                    echo '<div class="bottom-content">
-                            <li class="">
-                                <a href="../app/includes/logout.php">
-                                    <i class="bx bx-log-out icon"></i>
-                                    <span class="text nav-text">Logout</span>
-                                </a>
-                            </li>
-                        </div>';
-                }
+
+            if(SessionUser::isLogged()){
+                echo '<div class="bottom-content">
+                        <li class="">
+                            <a href="../app/includes/logout.php">
+                                <i class="bx bx-log-out icon"></i>
+                                <span class="text nav-text">Logout</span>
+                            </a>
+                        </li>
+                     </div>';
+            }
             ?>
         </div>
+
     </nav>
+        <?php include $page;?>
     <script>
         const body = document.querySelector('body'),
             sidebar = body.querySelector('nav'),
@@ -134,24 +189,11 @@
             modeSwitch = body.querySelector(".toggle-switch"),
             modeText = body.querySelector(".mode-text");
 
+
         toggle.addEventListener("click", () => {
             sidebar.classList.toggle("close");
-        })
-
-        searchBtn.addEventListener("click", () => {
-            sidebar.classList.remove("close");
-        })
-
-        modeSwitch.addEventListener("click", () => {
-            body.classList.toggle("dark");
-
-            if (body.classList.contains("dark")) {
-                modeText.innerText = "Light mode";
-            } else {
-                modeText.innerText = "Dark mode";
-
-            }
         });
     </script>
 </body>
+
 </html>

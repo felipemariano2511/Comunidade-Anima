@@ -1,14 +1,13 @@
 <?php
 
-    $query = "SELECT id, titulo, descricao_inicial, arquivo, situacao, curtidas
+    $query = "SELECT id, titulo, descricao_inicial, arquivo, curtidas
                 FROM eventos
                 WHERE situacao = 'ativo'
                 
                 UNION ALL
                 
-                SELECT id, titulo, descricao_inicial, arquivo, situacao, curtidas 
+                SELECT id, titulo, descricao_inicial, arquivo, curtidas 
                 FROM servicos_universitarios
-                WHERE situacao = 'ativo'
 
                 ORDER BY curtidas DESC;
                 ";

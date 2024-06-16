@@ -3,6 +3,7 @@
     include '../app/Session/User.php';
     use App\Session\User as SessionUser;
 
+    $user_info = SessionUser::getInfo();
     $like = FALSE;
     $table = 'eventos';
     
@@ -27,6 +28,12 @@
             }
         }else{
             header('Location: index.php?page=Eventos'); 
+        }
+    }
+    if($tableData['situacao'] == 'arquivado'){
+        if($tableData['autor'] == $user_info['id'] || $user_info['nivel'] == 'ADM'){
+        }else{
+            header('Location: index.php?page=Eventos');
         }
     }
 
@@ -99,8 +106,6 @@
                 <div class="text logo-text">
                     <span class="name"><?php
                                             if(SessionUser::isLogged()){
-                                                $user_info = SessionUser::getInfo();
-
                                                 echo $user_info['firstName'];
                                             }else{
                                                 echo '<a href="login.php" class="text nav-text" style="text-decoration: none;">Login</a>';

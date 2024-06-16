@@ -1,3 +1,40 @@
+<?php
+    use App\Session\User as SessionUser;
+
+    $user_info = SessionUser::getInfo();
+
+    if($user_info['nivel'] == 'ADM'){   
+        $query = "SELECT * FROM usuario";
+        $result = mysqli_query($con, $query);
+
+        if(mysqli_num_rows($result) > 0){echo "Entrou"; 
+            while($row = mysqli_fetch_assoc($result)){
+                $tableData[] = $row;
+            }
+        }else{
+            $tableData = null;
+        }
+    }else{
+        header('Location: index.php');
+    }
+    //Deletar usuario baseado no id
+    if($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['delete'])){
+        $id = $_POST['delete'];
+
+        $query = "DELETE FROM usuario WHERE id = '$id'";
+        $result = mysqli_query($con, $query);
+
+        if($result){
+            echo '<script>alert("O usuário foi deletado com sucesso!")</script>';
+            header('Location: portal_adm.php?page=GerenciarUsuários');
+            exit();
+        }
+        
+    }
+
+
+
+?>
 <!DOCTYPE html>
 <html lang="pt-br">
 
@@ -10,10 +47,8 @@
     <link rel="stylesheet" href="../src/styles/style-pattern.css">
     <link rel="stylesheet" href="../src/styles/style.css">
     <link rel="stylesheet" href="../src/styles/gerenciar_usuarios.css">
-    <title>Eventos</title>
+    <title>Comunidade Ânima - Gerenciar usuários</title>
 </head>
-
-<body>
     <section class="home">
         <div class="home-title">
             <h1>Gerenciar Usuários</h1>
@@ -33,28 +68,23 @@
                     </tr>
                 </thead>
                 <tbody>
-                    <tr>
-                        <td>1</td>
-                        <td>user1@example.com</td>
-                        <td>Usuário 1</td>
-                        <td>senha1</td>
-                        <td class="actions">
-                            <button class="icon-button editBtn"><i class='bx bx-edit'></i></button>
-                            <button class="icon-button deleteBtn"><i class='bx bx-trash'></i></button>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>2</td>
-                        <td>user2@example.com</td>
-                        <td>Usuário 2</td>
-                        <td>senha2</td>
-                        <td class="actions">
-                            <button class="icon-button editBtn"><i class='bx bx-edit'></i></button>
-                            <button class="icon-button deleteBtn"><i class='bx bx-trash'></i></button>
-                        </td>
-                    </tr>
+                    <?php
+                        foreach($tableData as $data){
+                            echo '  <tr>  
+                                        <td>'.$data['id'].'</td>
+                                        <td>'.$data['email'].'</td>
+                                        <td>'.$data['nome'].'</td>
+                                        <td>************************</td>
+                                        <td class="actions">
+                                            <form method="POST">
+                                                <button class="icon-button editBtn" name="edit"><i class="bx bx-edit"></i></button>
+                                                <button class="icon-button deleteBtn" value="'.$data['id'].'" name="delete"><i class="bx bx-trash"></i></button>
+                                            </form>
+                                        </td>
+                                    </tr>';
+                        }
+                    ?>
                 </tbody>
             </table>
         </div>
     </section>
-</body>

@@ -1,5 +1,5 @@
 <?php
-    $query = "SELECT * FROM servicos_universitarios WHERE situacao = 'ativo' AND servico = 'Comodidades'";
+    $query = "SELECT * FROM servicos_universitarios WHERE servico = 'Comodidade'";
     $result = mysqli_query($con, $query);
 
     if ($result) {

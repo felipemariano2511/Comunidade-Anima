@@ -1,3 +1,41 @@
+<?php
+    use App\Session\User as SessionUser;
+
+    $user_info = SessionUser::getInfo();
+
+    if($user_info['nivel'] == 'ADM'){    
+        $query = "SELECT * FROM servicos_universitarios WHERE servico = 'Comodidade'";
+        $result = mysqli_query($con, $query);
+
+        if(mysqli_num_rows($result) > 0){
+            while($row = mysqli_fetch_assoc($result)){
+                $tableData[] = $row;
+            }
+        }else{
+            $tableData = null;
+        }
+    }else{
+        header('Location: index.php');
+    }
+    //Deletar comodidade baseado no id
+    if($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['delete'])){
+        $id = $_POST['delete'];
+
+        $query = "DELETE FROM servicos_universitarios WHERE id = '$id'";
+        $result = mysqli_query($con, $query);
+
+        if($result){
+            echo '<script>alert("A atlética deleetada com sucesso!")</script>';
+            header('Location: portal_adm.php?page=GerenciarComodidades');
+            exit();
+        }
+        
+    }
+
+
+
+?>
+
 <!DOCTYPE html>
 <html lang="pt-br">
 
@@ -10,49 +48,54 @@
     <link rel="stylesheet" href="../src/styles/style-pattern.css">
     <link rel="stylesheet" href="../src/styles/style.css">
     <link rel="stylesheet" href="../src/styles/gerenciar_usuarios.css">
-    <title>Eventos</title>
 </head>
 
 <body>
     <section class="home">
         <div class="home-title">
             <h1>Gerenciar Comodidades</h1>
-            <p>CRUD para comodidades</p>
+            <p>Administre as comodidades de um só lugar!</p>
         </div>
         <div class="container">
             <h1>Administração de Comodidades</h1>
-            <button id="addUserBtn">Adicionar Comodidade<i class='bx bx-plus'></i></button>
+            <button id="addUserBtn">Adicionar comodidade<i class='bx bx-plus'></i></button>
             <table id="usersTable">
                 <thead>
                     <tr>
                         <th>ID</th>
-                        <th>Comodidade</th>
-                        <th>Outro</th>
-                        <th>Outro</th>
+                        <th>comodidade</th>
+                        <th>Responsável</th>
+                        <th>Whatsapp</th>
+                        <th>Email</th>
                         <th>Ações</th>
                     </tr>
                 </thead>
                 <tbody>
-                    <tr>
-                        <td>1</td>
-                        <td>Assistência Odontológica</td>
-                        <td>Outro</td>
-                        <td>Outro</td>
-                        <td class="actions">
-                            <button class="icon-button editBtn"><i class='bx bx-edit'></i></button>
-                            <button class="icon-button deleteBtn"><i class='bx bx-trash'></i></button>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>2</td>
-                        <td>Consulta Veterinária</td>
-                        <td>Outro</td>
-                        <td>Outro</td>
-                        <td class="actions">
-                            <button class="icon-button editBtn"><i class='bx bx-edit'></i></button>
-                            <button class="icon-button deleteBtn"><i class='bx bx-trash'></i></button>
-                        </td>
-                    </tr>
+                    
+                        <?php
+
+                        if($tableData != null){
+                            foreach($tableData as $data){
+                                echo '  <tr>  
+                                            <td>'.$data['id'].'</td>
+                                            <td>'.$data['titulo'].'</td>
+                                            <td>'.$data['responsavel'].'</td>
+                                            <td>'.$data['telefone'].'</td>
+                                            <td>'.$data['email'].'</td>
+                                            <td class="actions">
+                                                <form method="POST">
+                                                    <button class="icon-button editBtn" name="edit"><i class="bx bx-edit"></i></button>
+                                                    <button class="icon-button deleteBtn" value="'.$data['id'].'" name="delete"><i class="bx bx-trash"></i></button>
+                                                </form>     
+                                            </td>
+                                        </tr>';
+                            }
+                        }else{
+                            echo '<br>'.'Nenhuma comodidade cadastrada. Para começar, cadastre uma logo acima!';
+                        }
+                                
+                        ?>
+                    
                 </tbody>
             </table>
         </div>

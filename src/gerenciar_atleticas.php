@@ -1,3 +1,40 @@
+<?php
+    use App\Session\User as SessionUser;
+
+    $user_info = SessionUser::getInfo();
+
+    if($user_info['nivel'] == 'ADM'){    
+        $query = "SELECT * FROM servicos_universitarios WHERE servico = 'Atlética'";
+        $result = mysqli_query($con, $query);
+
+        if(mysqli_num_rows($result) > 0){
+            while($row = mysqli_fetch_assoc($result)){
+                $tableData[] = $row;
+            }
+        }else{
+            $tableData = null;
+        }
+    }else{
+        header('Location: index.php');
+    }
+    //Deletar atlética baseado no id
+    if($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['delete'])){
+        $id = $_POST['delete'];
+
+        $query = "DELETE FROM servicos_universitarios WHERE id = '$id'";
+        $result = mysqli_query($con, $query);
+
+        if($result){
+            echo '<script>alert("A atlética deleetada com sucesso!")</script>';
+            header('Location: portal_adm.php?page=GerenciarAtléticas');
+            exit();
+        }
+        
+    }
+
+
+?>
+
 <!DOCTYPE html>
 <html lang="pt-br">
 
@@ -16,7 +53,7 @@
     <section class="home">
         <div class="home-title">
             <h1>Gerenciar Atléticas</h1>
-            <p>CRUD para as atléticas</p>
+            <p>Administre as atléticas de um só lugar!</p>
         </div>
         <div class="container">
             <h1>Administração de Atléticas</h1>
@@ -27,34 +64,37 @@
                         <th>ID</th>
                         <th>Nome Atlética</th>
                         <th>Responsável</th>
-                        <th>Outro</th>
-                        <th>Banner</th>
+                        <th>Whatsapp</th>
+                        <th>Email</th>
                         <th>Ações</th>
                     </tr>
                 </thead>
                 <tbody>
-                    <tr>
-                        <td>1</td>
-                        <td>Avalanche</td>
-                        <td>Robertinho</td>
-                        <td>Outro</td>
-                        <td>Imagem</td>
-                        <td class="actions">
-                            <button class="icon-button editBtn"><i class='bx bx-edit'></i></button>
-                            <button class="icon-button deleteBtn"><i class='bx bx-trash'></i></button>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>2</td>
-                        <td>Católitros</td>
-                        <td>Alisson</td>
-                        <td>Outro</td>
-                        <td>Imagem</td>
-                        <td class="actions">
-                            <button class="icon-button editBtn"><i class='bx bx-edit'></i></button>
-                            <button class="icon-button deleteBtn"><i class='bx bx-trash'></i></button>
-                        </td>
-                    </tr>
+                    
+                        <?php
+
+                        if($tableData != null){
+                            foreach($tableData as $data){
+                                echo '  <tr>  
+                                            <td>'.$data['id'].'</td>
+                                            <td>'.$data['titulo'].'</td>
+                                            <td>'.$data['responsavel'].'</td>
+                                            <td>'.$data['telefone'].'</td>
+                                            <td>'.$data['email'].'</td>
+                                            <td class="actions">
+                                                <form method="POST">
+                                                    <button class="icon-button editBtn" name="edit"><i class="bx bx-edit"></i></button>
+                                                    <button class="icon-button deleteBtn" value="'.$data['id'].'" name="delete"><i class="bx bx-trash"></i></button>
+                                                </form>
+                                            </td>
+                                        </tr>';
+                            }
+                        }else{
+                            echo '<br>'.'Nenhuma atlética cadastrada. Para começar, cadastre uma logo acima!';
+                        }
+                                
+                        ?>
+                    
                 </tbody>
             </table>
         </div>

@@ -1,51 +1,54 @@
 <?php
-    include "../app/includes/config.php";
-    include '../app/Session/User.php';
-    use App\Session\User as SessionUser;
+include "../app/includes/config.php";
+include '../app/Session/User.php';
+use App\Session\User as SessionUser;
 
-    if(SessionUser::isLogged()){
-        $user_info = SessionUser::getInfo();
-    }else{
-        header("Location: index.php");
-    }
+if(SessionUser::isLogged()){
+    $user_info = SessionUser::getInfo();
+} else {
+    header("Location: index.php");
+    exit();
+}
 
-    if($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['cadastrar'])){
-        $titulo = $_POST['titulo'];
-        $data_final = $_POST['data_inicial'];
-        $data_inicial = $_POST['data_final'];
-        $horario_inicial = $_POST['horario_inicial'];
-        $horario_final = $_POST['horario_final'];
-        $endereco = $_POST['endereco'];
-        $descricao_inicial = $_POST['descricao_inicial'];
-        $descricao_completa = $_POST['descricao_completa'];
-        $arquivo = $_FILES['arquivo'];
-        $restrito = isset($_POST['switch_status']) ? 'restrito' : 'aberto'; // Verifica o estado do switch
-        $autor = 1;
+if($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['cadastrar'])){
+    $titulo = $_POST['titulo'];
+    $data_inicial = $_POST['data_inicial'];
+    $data_final = $_POST['data_final'];
+    $horario_inicial = $_POST['horario_inicial'];
+    $horario_final = $_POST['horario_final'];
+    $endereco = $_POST['endereco'];
+    $descricao_inicial = $_POST['descricao_inicial'];
+    $descricao_completa = $_POST['descricao_completa'];
+    $arquivo = $_FILES['arquivo'];
+    $restrito = isset($_POST['switch_status']) && $_POST['switch_status'] == '1' ? FALSE : TRUE;
+    $autor = $user_info['id'];
 
-        if($arquivo['error'] === 0) {
-            move_uploaded_file($arquivo['tmp_name'], '../imgs/posts/' . $arquivo['name']);
-            $endereco_arquivo = '../imgs/posts/' . $arquivo['name'];
+    if($arquivo['error'] === 0) {
+        $endereco_arquivo = '../imgs/posts/' . $arquivo['name'];
+        move_uploaded_file($arquivo['tmp_name'], $endereco_arquivo);
 
-            $query = "INSERT INTO eventos(titulo, data_inicial, horario_inicial, data_final, horario_final, endereco, descricao_inicial, descricao_completa, arquivo, situacao, restrito, autor)
-                    VALUES ('$titulo', '$data_inicial', '$horario_inicial', '$data_final','$horario_final', '$endereco','$descricao_inicial', '$descricao_completa', '$endereco_arquivo', 'ativo', '$restrito', '$autor')";
-            $result = mysqli_query($con, $query);
+        $query = "INSERT INTO eventos(titulo, data_inicial, horario_inicial, data_final, horario_final, endereco, descricao_inicial, descricao_completa, arquivo, situacao, restrito, autor)
+                  VALUES ('$titulo', '$data_inicial', '$horario_inicial', '$data_final', '$horario_final', '$endereco', '$descricao_inicial', '$descricao_completa', '$endereco_arquivo', 'ativo', '$restrito', '$autor')";
+        $result = mysqli_query($con, $query);
 
-            if($result){
-                echo '<script>alert("Cadastrado com sucesso, aguarde aprovação!")</script>';
-            } else{
-                echo '<script>alert("Falha no cadastro!")</script>';
-            }
+        if($result){
+            echo '<script>alert("Cadastrado com sucesso, aguarde aprovação!")</script>';
         } else {
-            echo '<script>alert("Erro ao fazer upload do arquivo. Por favor, tente novamente!")</script>';
+            echo '<script>alert("Falha no cadastro!")</script>';
         }
+    } else {
+        echo '<script>alert("Erro ao fazer upload do arquivo. Por favor, tente novamente!")</script>';
     }
+}
 ?>
 <!DOCTYPE html>
 <html lang="pt-br">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="../src/styles/style.css">
+    <link rel="stylesheet" href="../src/styles/novo_evento.css">
     <link href='https://unpkg.com/boxicons@2.1.1/css/boxicons.min.css' rel='stylesheet'>
     <link rel="shortcut icon" href="../imgs/dev/favicon.ico" type="image/x-icon">
     <link rel="icon" href="../imgs/dev/favicon.ico" type="image/x-icon">
@@ -55,108 +58,6 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/croppie/2.6.5/croppie.js" integrity="sha512-vUJTqeDCu0MKkOhuI83/MEX5HSNPW+Lw46BA775bAWIp1Zwgz3qggia/t2EnSGB9GoS2Ln6npDmbJTdNhHy1Yw==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
     <script src="https://cdn.tiny.cloud/1/dkcuc3lf8zdkfx6zb8p2vuryz2mntql0gvb3f8vtjbqo45zp/tinymce/7/tinymce.min.js" referrerpolicy="origin"></script>
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            background-color: #f4f4f4;
-            margin: 0;
-            padding: 0;
-        }
-        .container {
-            width: 50%;
-            margin: 50px auto;
-            background-color: #fff;
-            padding: 20px;
-            border-radius: 5px;
-            box-shadow: 0 0 10px rgba(0,0,0,0.1);
-        }
-        .form-group {
-            margin-bottom: 20px;
-        }
-        label {
-            display: block;
-            font-weight: bold;
-            margin-bottom: 5px;
-        }
-        input[type="text"],
-        input[type="date"],
-        input[type="time"],
-        textarea {
-            width: 100%;
-            padding: 10px;
-            border: 1px solid #ccc;
-            border-radius: 5px;
-            box-sizing: border-box;
-        }
-        input[type="file"] {
-            margin-top: 10px;
-        }
-        input[type="submit"] {
-            background-color: #007BFF;
-            color: #fff;
-            border: none;
-            padding: 10px 20px;
-            cursor: pointer;
-            border-radius: 5px;
-        }
-        input[type="submit"]:hover {
-            background-color: #0056b3;
-        }
-        .switch-container {
-            display: flex;
-            align-items: center;
-            margin-bottom: 20px;
-        }
-        .switch-container .label-text {
-            margin: 0 10px;
-        }
-        .switch {
-            position: relative;
-            display: inline-block;
-            width: 60px;
-            height: 34px;
-        }
-        .switch input {
-            opacity: 0;
-            width: 0;
-            height: 0;
-        }
-        .slider {
-            position: absolute;
-            cursor: pointer;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            background-color: #ccc;
-            transition: .4s;
-        }
-        .slider:before {
-            position: absolute;
-            content: "";
-            height: 26px;
-            width: 26px;
-            left: 4px;
-            bottom: 4px;
-            background-color: white;
-            transition: .4s;
-        }
-        input:checked + .slider {
-            background-color: green;
-        }
-        input:not(:checked) + .slider {
-            background-color: red;
-        }
-        input:checked + .slider:before {
-            transform: translateX(26px);
-        }
-        .slider.round {
-            border-radius: 34px;
-        }
-        .slider.round:before {
-            border-radius: 50%;
-        }
-    </style>
     <script>
         function openInGoogleMaps() {
             const address = document.getElementById('endereco').value;
@@ -169,6 +70,7 @@
         }
     </script>
 </head>
+
 <body>
     <?php include "../src/components/main_header.php"; ?>
     <?php include "../src/components/menu_formatted.php"; ?>
@@ -178,33 +80,25 @@
             <h1>Novo Evento</h1>
         </div>
         <div class="container">
-            <h2>Cadastro de Novo Evento</h2>
             <form action="#" method="post" enctype="multipart/form-data">
-                <div class="form-group">
-                    <label for="titulo">Título:</label>
+                <div class="input-box">
                     <input type="text" id="titulo" name="titulo" required>
+                    <label for="titulo" class="placeholder" required>Título</label>
                 </div>
-                <div class="form-group">
-                    <label for="data_inicial">Data Inicial:</label>
-                    <input type="date" id="data_inicial" name="data_inicial" required>
+
+                <div class="input-box">
+                    <input type="text" id="descricao_inicial" name="descricao_inicial" maxlength="30" required>
+                    <label for="descricao_inicial" class="placeholder" required>Descrição Inicial</label>
                 </div>
-                <div class="form-group">
-                    <label for="horario_inicial">Horário Inicial:</label>
-                    <input type="time" id="horario_inicial" name="horario_inicial" required>
-                </div>
-                <div class="form-group">
-                    <label for="data_final">Data Final:</label>
-                    <input type="date" id="data_final" name="data_final" required>
-                </div>
-                <div class="form-group">
-                    <label for="horario_final">Horário Final:</label>
-                    <input type="time" id="horario_final" name="horario_final" required>
-                </div>
-                <div class="form-group">
-                    <label for="endereco">Endereço:</label>
-                    <input type="text" id="endereco" name="endereco" required>
+
+                <div class="column">
+                    <div class="input-box">
+                        <input type="text" id="endereco" name="endereco" required>
+                        <label for="endereco" class="placeholder">Endereço</label>
+                    </div>
                     <button type="button" class="map-btn" onclick="openInGoogleMaps()">Verificar endereço</button>
                 </div>
+                
                 <div class="switch-container">
                     <span class="label-text">Restrito</span>
                     <label class="switch">
@@ -213,25 +107,44 @@
                     </label>
                     <span class="label-text">Aberto ao Público</span>
                 </div>
-                <div class="form-group">
-                    <label for="descricao_inicial">Descrição Inicial:</label>
-                    <input type="text" id="descricao_inicial" name="descricao_inicial" maxlength="30">
+
+                <div class="input-box">
+                    <label>Imagem</label>
+                    <label for="imagem" class="custom-file-upload">
+                        Escolher arquivo
+                    </label>
+                    <input type="file" id="imagem" name="arquivo" class="file-btn">
                 </div>
-                <div class="form-group">
-                    <label for="descricao_completa">Descrição:</label>
+
+                <div class="column">
+                    <div class="input-box">
+                        <label for="data_inicial">Data Inicial</label>
+                        <input type="date" id="data_inicial" name="data_inicial" placeholder="teste" required>
+                        <label for="horario_inicial">Horário Inicial</label>
+                        <input type="time" id="horario_inicial" name="horario_inicial" required>
+                    </div>
+                    <div class="input-box">
+                        <label for="data_final">Data Final</label>
+                        <input type="date" id="data_final" name="data_final" required>
+                        <label for="horario_final">Horário Final</label>
+                        <input type="time" id="horario_final" name="horario_final" required>
+                    </div>
+                </div>
+
+                <div class="input-box">
+                    <label for="descricao_completa">Descrição</label>
                     <textarea id="descricao_completa" name="descricao_completa"></textarea>
                 </div>
-                <div class="form-group">
-                    <label for="imagem">Imagem:</label>
-                    <input type="file" id="imagem" name="arquivo">
-                </div>
-                <div class="form-group">
-                    <input type="submit" value="Cadastrar Evento" name="cadastrar">
+                
+                <div class="row">
+                    <div class="input-box">
+                        <input type="submit" value="Cadastrar Evento" name="cadastrar" class="submit-btn">
+                    </div>
                 </div>
             </form>
         </div>
     </section>
-    
+
     <script>
         tinymce.init({
             selector: 'textarea',
@@ -240,9 +153,14 @@
             toolbar: 'undo redo | blocks fontfamily fontsize | bold italic underline strikethrough | link image media table mergetags | addcomment showcomments | spellcheckdialog a11ycheck typography | align lineheight | checklist numlist bullist indent outdent | emoticons charmap | removeformat',
             tinycomments_mode: 'embedded',
             tinycomments_author: 'Author name',
-            mergetags_list: [
-                { value: 'First.Name', title: 'First Name' },
-                { value: 'Email', title: 'Email' },
+            mergetags_list: [{
+                    value: 'First.Name',
+                    title: 'First Name'
+                },
+                {
+                    value: 'Email',
+                    title: 'Email'
+                },
             ],
             ai_request: (request, respondWith) => respondWith.string(() => Promise.reject("See docs to implement AI Assistant")),
             images_upload_handler: (blobInfo, progress) => new Promise((resolve, reject) => {
@@ -256,9 +174,10 @@
 
                 xhr.onload = () => {
                     if (xhr.status === 403) {
-                        reject({    
+                        reject({
                             message: 'HTTP Error: ' + xhr.status + "Aqui",
-                            remove: true });
+                            remove: true
+                        });
                         return;
                     }
 
@@ -290,4 +209,5 @@
         });
     </script>
 </body>
+
 </html>
