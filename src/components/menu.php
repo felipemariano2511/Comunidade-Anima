@@ -18,7 +18,7 @@
         <div class="image-text">
                 <a href="<?php if(!SessionUser::isLogged()){echo 'login.php';}?>">
                     <span class="image">
-                        <img src="../imgs/usuario/user-1.webp" alt="">
+                        <img src="../imgs/card/marciaoshowdebola.jpg" alt="">
                     </span>
                 </a>
                 <div class="text logo-text">
@@ -27,7 +27,7 @@
                         if (SessionUser::isLogged()) {
                             $user_info = SessionUser::getInfo();
 
-                            echo $user_info['firstName'];
+                            echo "<a href='perfil.php' class='text nav-text'>".$user_info['firstName']."</a>";
                         } else {
                             echo "<a href='login.php' class='text nav-text' style='text-decoration: none; color: #9800ee; text-weight: 500; margin-left: 5px;'>Fazer Login<i class='bx bx-log-in'></i></a>";
                         }
@@ -104,12 +104,6 @@
                         }
                     }    
                     ?>
-                    <li class="nav-link">
-                        <a href="index.php?page=Suporte">
-                            <i class='bx bx-support icon'></i>
-                            <span class="text nav-text">Suporte</span>
-                        </a>
-                    </li>
                 </ul>
             </div>
             <?php 

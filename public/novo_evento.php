@@ -119,7 +119,7 @@ if($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['cadastrar'])){
                 <div class="column">
                     <div class="input-box">
                         <label for="data_inicial">Data Inicial</label>
-                        <input type="date" id="data_inicial" name="data_inicial" placeholder1="teste" required>
+                        <input type="date" id="data_inicial" name="data_inicial" required>
                         <label for="horario_inicial">Horário Inicial</label>
                         <input type="time" id="horario_inicial" name="horario_inicial" required>
                     </div>

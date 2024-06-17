@@ -1,7 +1,7 @@
 @ -1,119 +1,118 @@
 <?php
     include '../app/includes/config.php';
-
+    
     if($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['search'])){
         $pesquisa = ucwords($_POST['search']);
     }
@@ -113,6 +113,37 @@
             }
         ?>
         </div>
+        <!-- Campo de texto oculto para copiar a URL -->
+        <textarea id="urlField" style="display:none;"></textarea>
+
+        <script>
+            document.addEventListener('DOMContentLoaded', function() {
+                const shareButtons = document.querySelectorAll('.compartilhar');
+
+                shareButtons.forEach(button => {
+                    button.addEventListener('click', function() {
+                        const currentHost = window.location.host;
+                        const id = this.getAttribute('data-id');
+                        const urlField = document.getElementById('urlField');
+                        const url = `http://${currentHost}/Comunidade-Anima/public/servicos_universitarios.php?id=${id}`;
+                        urlField.value = url;
+                        urlField.style.display = 'block';
+                        urlField.select();
+                        urlField.setSelectionRange(0, 99999); // Para dispositivos móveis
+
+                        try {
+                            const successful = document.execCommand('copy');
+                            const msg = successful ? 'URL copiada com sucesso!' : 'Falha ao copiar a URL';
+                            alert(msg);
+                        } catch (err) {
+                            console.error('Erro ao copiar a URL: ', err);
+                        }
+
+                        urlField.style.display = 'none';
+                    });
+                });
+            });
+        </script>
     </section>
 </body>
 </html>

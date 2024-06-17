@@ -32,10 +32,6 @@
         case 'MaisCurtidos':
             $page = '../src/mais_curtidos.php';
             break; 
-
-        case 'Suporte':
-            $page = '../src/suporte.php';
-            break;
     }
 ?>
 
@@ -57,7 +53,7 @@
     <nav class="sidebar close">
         <header>
         <div class="image-text">
-                <a href="<?php if(!SessionUser::isLogged()){echo 'login.php';}?>">
+                <a href="<?php if(!SessionUser::isLogged()){echo 'login.php';}else{echo  'perfil.php';}?>">
                     <span class="image">
                         <img src="../imgs/usuario/user-1.webp" alt="">
                     </span>
@@ -69,7 +65,7 @@
                                             if(SessionUser::isLogged()){
                                                 $user_info = SessionUser::getInfo();
 
-                                                echo $user_info['firstName'];
+                                                echo "<a href='perfil.php'>".$user_info['firstName']."</a>";
                                             }else{
                                                 echo "<a href='login.php' class='text nav-text' style='text-decoration: none; color: #9800ee; text-weight: 500; margin-left: 5px;'>Fazer Login<i class='bx bx-log-in'></i></a>";
                                             }
@@ -145,37 +141,30 @@
                         </a>
                     </li>
                     <?php
-                    if(SessionUser::isLogged()){
-                        if($user_info['nivel'] == "ADM"){
-                            echo '<li class="nav-link">
-                                    <a href="portal_adm.php">
-                                        <i class="bx bx-check-shield icon"></i>
-                                        <span class="text nav-text">Portal ADM</span>
-                                    </a>
-                                </li>';
-                        }
-                    }    
+                        if(SessionUser::isLogged()){
+                            if($user_info['nivel'] == "ADM"){
+                                echo '<li class="nav-link">
+                                        <a href="portal_adm.php">
+                                            <i class="bx bx-check-shield icon"></i>
+                                            <span class="text nav-text">Portal ADM</span>
+                                        </a>
+                                    </li>';
+                            }
+                        }    
                     ?>
-                    <li class="nav-link">
-                        <a href="?page=Suporte">
-                            <i class='bx bx-support icon'></i>
-                            <span class="text nav-text">Suporte</span>
-                        </a>
-                    </li>
                 </ul>
             </div>
             <?php 
-
-            if(SessionUser::isLogged()){
-                echo '<div class="bottom-content">
-                        <li class="">
-                            <a href="../app/includes/logout.php">
-                                <i class="bx bx-log-out icon"></i>
-                                <span class="text nav-text">Logout</span>
-                            </a>
-                        </li>
-                     </div>';
-            }
+                if(SessionUser::isLogged()){
+                    echo '<div class="bottom-content">
+                            <li class="">
+                                <a href="../app/includes/logout.php">
+                                    <i class="bx bx-log-out icon"></i>
+                                    <span class="text nav-text">Logout</span>
+                                </a>
+                            </li>
+                        </div>';
+                }
             ?>
         </div>
 

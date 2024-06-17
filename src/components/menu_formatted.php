@@ -27,7 +27,7 @@
                             if(SessionUser::isLogged()){
                                 $user_info = SessionUser::getInfo();
 
-                                echo $user_info['firstName'];
+                                echo "<a href='perfil.php'>".$user_info['firstName']."</a>";
                             }else{
                                 echo '<a href="login.php" class="text nav-text" style="text-decoration: none;">Login</a>';
                             }
@@ -104,12 +104,6 @@
                         }
                     }    
                     ?>
-                    <li class="nav-link">
-                        <a href="index.php?page=Suporte">
-                            <i class='bx bx-support icon'></i>
-                            <span class="text nav-text">Suporte</span>
-                        </a>
-                    </li>
                 </ul>
             </div>
             <?php 
@@ -153,8 +147,5 @@
             }
         });
     </script>
-    <style>
-    
-    </style>
 </body>
 </html>

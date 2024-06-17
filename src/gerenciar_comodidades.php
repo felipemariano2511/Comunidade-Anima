@@ -58,7 +58,7 @@
         </div>
         <div class="container">
             <h1>Administração de Comodidades</h1>
-            <button id="addUserBtn">Adicionar comodidade<i class='bx bx-plus'></i></button>
+            <a href="novo_servico.php?servico=Comodidade" id="addUserBtn">Adicionar comodidade<i class='bx bx-plus'></i></a>
             <table id="usersTable">
                 <thead>
                     <tr>

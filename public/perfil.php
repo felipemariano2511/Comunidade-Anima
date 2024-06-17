@@ -1,4 +1,7 @@
-<!DOCTYPE html>
+<?php
+    include '../app/Session/User.php';
+
+?><!DOCTYPE html>
 <html lang="pt-br">
 
 <head>
@@ -21,92 +24,7 @@
             </a>
         </div>
     </header>
-    <nav class="sidebar close">
-        <header>
-            <div class="image-text">
-                <a href="">
-                    <span class="image">
-                        <img src="../imgs/usuario/user-1.webp" alt="">
-                    </span>
-                </a>
-
-
-                <div class="text logo-text">
-                    <span class="name">Felipe</span>
-                    <span class="profession">Ciência da computação</span>
-                </div>
-            </div>
-        </header>
-
-        <div class="menu-bar">
-            <div class="menu">
-
-                <ul class="menu-links">
-
-                    <li class="nav-link">
-                        <a class="toggle" style="cursor:pointer;">
-                            <i class='bx bx-menu icon' id="menu-icon"></i>
-                            <span class="text nav-text">Menu</span>
-                        </a>
-                    </li>
-
-
-                    <li class="nav-link">
-                        <a href="#">
-                            <i class='bx bx-home-alt icon'></i>
-                            <span class="text nav-text">Home</span>
-                        </a>
-                    </li>
-
-                    <li class="nav-link">
-                        <a href="#">
-                            <i class='bx bx-calendar-event icon'></i>
-                            <span class="text nav-text">Evento</span>
-                        </a>
-                    </li>
-
-                    <li class="nav-link">
-                        <a href="#">
-                            <i class='bx bx-trophy icon'></i>
-                            <span class="text nav-text">Atléticas</span>
-                        </a>
-                    </li>
-
-                    <li class="nav-link">
-                        <a href="#">
-                            <i class='bx bx-shape-triangle icon'></i>
-                            <span class="text nav-text">Comodidades</span>
-                        </a>
-                    </li>
-
-                    <li class="nav-link">
-                        <a href="#">
-                            <i class='bx bx-heart icon'></i>
-                            <span class="text nav-text">Likes</span>
-                        </a>
-                    </li>
-
-                    <li class="nav-link">
-                        <a href="#">
-                            <i class='bx bx-support icon'></i>
-                            <span class="text nav-text">Suporte</span>
-                        </a>
-                    </li>
-
-                </ul>
-            </div>
-
-            <div class="bottom-content">
-                <li class="">
-                    <a href="#">
-                        <i class='bx bx-log-out icon'></i>
-                        <span class="text nav-text">Logout</span>
-                    </a>
-                </li>
-
-            </div>
-        </div>
-    </nav>
+    <?php include '../src/components/menu.php';?>
     <form action="" method="post">
         <section class="home">
             <div class="home-title">

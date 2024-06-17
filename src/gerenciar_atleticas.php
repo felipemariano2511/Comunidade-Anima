@@ -57,7 +57,7 @@
         </div>
         <div class="container">
             <h1>Administração de Atléticas</h1>
-            <button id="addUserBtn">Adicionar Atlética<i class='bx bx-plus'></i></button>
+            <a href="novo_servico.php?servico=Atlética" id="addUserBtn">Adicionar Atlética<i class='bx bx-plus'></i></a>
             <table id="usersTable">
                 <thead>
                     <tr>
