@@ -111,7 +111,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['cadastrar'])) {
                 
                 <div class="input-box">
                     <label for="imagem" class="custom-file-upload">
-                        Escolher imagem
+                        Escolher Imagem
                     </label>
                     <input type="file" id="imagem" name="arquivo" class="file-btn">
                 </div>
