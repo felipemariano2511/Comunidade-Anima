@@ -78,17 +78,17 @@
                     <?php
                         if($servico == "Atlética"){
                             echo   '<div class="form-check form-check-inline">
-                                        <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio1" value="Atlética"  checked>
+                                        <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio1" value="Atlética"  checked >
                                         <label class="form-check-label" for="inlineRadio1">Atlética</label>
                                     </div>';
                         }elseif($servico == "Comodidade"){
                             echo   '<div class="form-check form-check-inline">
-                                       <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio2" value="Comodidade"  checked>
+                                       <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio2" value="Comodidade"  >
                                        <label class="form-check-label" for="inlineRadio2">Comodidade</label>
                                     </div>';
                         }else{
                             echo   '<div class="form-check form-check-inline">
-                                        <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio1" value="Atlética"   checked>
+                                        <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio1" value="Atlética"   >
                                         <label class="form-check-label" for="inlineRadio1">Atlética</label>
                                     </div>
                                     <div class="form-check form-check-inline">
@@ -128,7 +128,6 @@
                 </div>
 
                 <div class="input-box">
-                    <label>Imagem</label>
                     <label for="imagem" class="custom-file-upload">
                         Escolher arquivo
                     </label>
@@ -175,7 +174,7 @@
                 xhr.onload = () => {
                     if (xhr.status === 403) {
                         reject({
-                            message: 'HTTP Error: ' + xhr.status,
+                            message: 'HTTP Error: ' + xhr.status + "Aqui",
                             remove: true
                         });
                         return;

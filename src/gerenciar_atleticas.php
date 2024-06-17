@@ -25,9 +25,8 @@
         $result = mysqli_query($con, $query);
 
         if($result){
-            echo '<script>alert("A atlética deleetada com sucesso!")</script>';
-            header('Location: portal_adm.php?page=GerenciarAtléticas');
-            exit();
+            echo '<script>alert("A atlética deleetada com sucesso!");location.reload;</script>';
+            header("Location: " . $_SERVER['PHP_SELF']);
         }
         
     }
@@ -84,7 +83,7 @@
                                             <td class="actions">
                                                 <form method="POST">
                                                     <button class="icon-button editBtn" name="edit"><i class="bx bx-edit"></i></button>
-                                                    <button class="icon-button deleteBtn" value="'.$data['id'].'" name="delete"><i class="bx bx-trash"></i></button>
+                                                    <button type="submit" class="icon-button deleteBtn" value="'.$data['id'].'" name="delete"><i class="bx bx-trash"></i></button>
                                                 </form>
                                             </td>
                                         </tr>';

@@ -1,5 +1,43 @@
 <?php
+    include '../app/includes/config.php';
     include '../app/Session/User.php';
+
+    use App\Session\User as SessionUser;
+
+    $user_info = SessionUser::getInfo();
+    $id = isset($_GET['id']) ? $_GET['id'] : '';
+
+    if($id != ''){
+        if($user_info['id'] == $id || $user_info['nivel'] == "ADM"){
+            $query = "SELECT * FROM usuario WHERE id = '$id'";
+            $result = mysqli_query($con, $query);
+            
+            $tableData = mysqli_fetch_assoc($result);
+        }else{
+            header('Location: index.php');
+        }
+    }else{
+        header('Location: index.php');
+    }
+
+    if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['salvar'])) {
+        $email = $_POST['email'] ?? $tableData['email'];
+        $nome = $_POST['nome'] ?? $tableData['nome'];
+        $senha = md5($_POST['senha']) ?? $tableData['senha'];
+        $imagem = $_FILES['foto_perfil'] ?? $tableData['imagem'];
+
+        if($imagem['error'] === 0) {
+            $endereco_imagem = '../imgs/usuario/' . $imagem['name'];
+            move_uploaded_file($imagem['tmp_name'], $endereco_imagem);
+        }
+        
+        $query = "UPDATE usuario SET email = '$email', nome = '$nome', senha = '$senha', imagem = '$endereco_imagem' WHERE id = $id";
+        echo $query;
+        $result = mysqli_query($con, $query);
+        //header("Location:".$_SERVER['REQUEST_URI']);
+
+    }
+    
 
 ?><!DOCTYPE html>
 <html lang="pt-br">
@@ -13,7 +51,8 @@
     <link rel="stylesheet" href="../src/styles/style-pattern.css">
     <link rel="stylesheet" href="../src/styles/style.css">
     <link rel="stylesheet" href="../src/styles/perfil.css">
-    <title>Eventos</title>
+    <link rel="icon" href="../imgs/dev/favicon.ico" type="image/x-icon">
+    <title>Comunidade Ânima - Perfil</title>
 </head>
 
 <body>
@@ -25,7 +64,7 @@
         </div>
     </header>
     <?php include '../src/components/menu.php';?>
-    <form action="" method="post">
+    <form action="" method="post" enctype="multipart/form-data">
         <section class="home">
             <div class="home-title">
                 <h1>Minhas Informações</h1>
@@ -34,15 +73,18 @@
             <div class="login">
                 <div class="login-container">
                     <div class="profile-img">
-                        <img src="../imgs/card/marciaoshowdebola.jpg" alt="">
+                        <img src="<?php if($tableData['imagem'] != NULL){echo $tableData['imagem'];}else{echo '../imgs/usuario/user-1.webp';} ?>" alt="Foto de perfil">
+
                         <input type="file" name="foto_perfil" id="fileInput">
                         <label for="fileInput" class="custom-file-upload">Alterar Foto</label>
                     </div>
                     <div class="profile-info">
                         <h1>Meus Dados</h1>
-                        <input type="email" name="email" id="" placeholder="Email">
-                        <input type="text" name="" id="" placeholder="Nome">
-                        <input type="password" name="" id="" placeholder="Senha">
+                        <input type="email" name="email" id="" placeholder="<?php echo $tableData['email']; ?>">
+
+                        <input type="text" name="nome" id="" placeholder="<?php  echo $tableData['nome']; ?>">
+
+                        <input type="password" name="senha" id="" placeholder="Senha">
                         <input type="submit" value="Salvar" name="salvar" class="botao">
                     </div>
                 </div>
