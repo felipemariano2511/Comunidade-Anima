@@ -1,0 +1,31 @@
+@import url(formularios.css);
+
+.radio-container {
+    margin-bottom: 20px;
+}
+
+input[type="number"]:focus + .placeholder1,
+input[type="number"]:valid + .placeholder1 {
+    top: -10px;
+    color: var(--primary-color);
+    background-color: white;
+}
+
+input[type="number"] {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    box-sizing: border-box;
+}
+
+input[type=number]::-webkit-inner-spin-button,
+input[type=number]::-webkit-outer-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+}
+
+input:focus {
+    outline: none;
+    border: 2px solid var(--primary-color);
+}

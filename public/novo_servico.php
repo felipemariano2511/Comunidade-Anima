@@ -1,16 +1,17 @@
 <?php
 include "../app/includes/config.php";
 include '../app/Session/User.php';
+
 use App\Session\User as SessionUser;
 
-if(SessionUser::isLogged()){
+if (SessionUser::isLogged()) {
     $user_info = SessionUser::getInfo();
 } else {
     header("Location: index.php");
     exit();
 }
 
-if($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['cadastrar'])){
+if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['cadastrar'])) {
     $titulo = $_POST['titulo'];
     $data_inicial = $_POST['data_inicial'];
     $data_final = $_POST['data_final'];
@@ -23,7 +24,7 @@ if($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['cadastrar'])){
     $restrito = isset($_POST['switch_status']) && $_POST['switch_status'] == '1' ? FALSE : TRUE;
     $autor = $user_info['id'];
 
-    if($arquivo['error'] === 0) {
+    if ($arquivo['error'] === 0) {
         $endereco_arquivo = '../imgs/posts/' . $arquivo['name'];
         move_uploaded_file($arquivo['tmp_name'], $endereco_arquivo);
 
@@ -31,7 +32,7 @@ if($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['cadastrar'])){
                   VALUES ('$titulo', '$data_inicial', '$horario_inicial', '$data_final', '$horario_final', '$endereco', '$descricao_inicial', '$descricao_completa', '$endereco_arquivo', 'ativo', '$restrito', '$autor')";
         $result = mysqli_query($con, $query);
 
-        if($result){
+        if ($result) {
             echo '<script>alert("Cadastrado com sucesso, aguarde aprovação!")</script>';
         } else {
             echo '<script>alert("Falha no cadastro!")</script>';
@@ -48,11 +49,11 @@ if($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['cadastrar'])){
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="../src/styles/style.css">
-    <link rel="stylesheet" href="../src/styles/formularios.css">
+    <link rel="stylesheet" href="../src/styles/novo_servico.css">
     <link href='https://unpkg.com/boxicons@2.1.1/css/boxicons.min.css' rel='stylesheet'>
     <link rel="shortcut icon" href="../imgs/dev/favicon.ico" type="image/x-icon">
     <link rel="icon" href="../imgs/dev/favicon.ico" type="image/x-icon">
-    <title>Comunidade Ânima - Novo Evento</title>
+    <title>Comunidade Ânima - Novo Serviço</title>
 
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/croppie/2.6.5/croppie.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
@@ -73,39 +74,51 @@ if($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['cadastrar'])){
 
 <body>
     <?php include "../src/components/main_header.php"; ?>
-    <?php include "../src/components/menu.php"; ?>
+    <?php include "../src/components/menu_formatted.php"; ?>
 
     <section class="home">
         <div class="text">
-            <h1>Novo Evento</h1>
+            <h1>Novo Serviço</h1>
         </div>
         <div class="form-container">
             <form action="#" method="post" enctype="multipart/form-data">
-                <div class="input-box">
-                    <input type="text" id="titulo" name="titulo" required>
-                    <label for="titulo" class="placeholder1" required>Título</label>
+                
+                <div class="radio-container">
+                    <div class="form-check form-check-inline">
+                        <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio1" value="option1">
+                        <label class="form-check-label" for="inlineRadio1">Atletica</label>
+                    </div>
+                    <div class="form-check form-check-inline">
+                        <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio2" value="option2">
+                        <label class="form-check-label" for="inlineRadio2">Comodidade</label>
+                    </div>
+                </div>
+
+                <div class="column">
+                    <div class="input-box">
+                        <input type="text" id="titulo" name="titulo" required>
+                        <label for="titulo" class="placeholder1" required>Título</label>
+                    </div>
+                    <div class="input-box">
+                        <input type="text" id="responsavel" name="responsavel" required>
+                        <label for="responsavel" class="placeholder1" required>Responsável</label>
+                    </div>
+                </div>
+
+                <div class="column">
+                    <div class="input-box">
+                        <input type="text" id="email" name="email" required>
+                        <label for="email" class="placeholder1" required>E-mail</label>
+                    </div>
+                    <div class="input-box">
+                        <input type="number" id="telefone" name="telefone" required>
+                        <label for="telefone" class="placeholder1" required>Telefone</label>
+                    </div>
                 </div>
 
                 <div class="input-box">
                     <input type="text" id="descricao_inicial" name="descricao_inicial" maxlength="30" required>
                     <label for="descricao_inicial" class="placeholder1" required>Descrição Inicial</label>
-                </div>
-
-                <div class="column">
-                    <div class="input-box">
-                        <input type="text" id="endereco" name="endereco" required>
-                        <label for="endereco" class="placeholder1">Endereço</label>
-                    </div>
-                    <button type="button" class="map-btn" onclick="openInGoogleMaps()">Verificar endereço</button>
-                </div>
-                
-                <div class="switch-container">
-                    <span class="label-text">Restrito</span>
-                    <label class="switch">
-                        <input type="checkbox" name="switch_status">
-                        <span class="slider round"></span>
-                    </label>
-                    <span class="label-text">Aberto ao Público</span>
                 </div>
 
                 <div class="input-box">
@@ -115,29 +128,14 @@ if($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['cadastrar'])){
                     <input type="file" id="imagem" name="arquivo" class="file-btn">
                 </div>
 
-                <div class="column">
-                    <div class="input-box">
-                        <label for="data_inicial">Data Inicial</label>
-                        <input type="date" id="data_inicial" name="data_inicial" required>
-                        <label for="horario_inicial">Horário Inicial</label>
-                        <input type="time" id="horario_inicial" name="horario_inicial" required>
-                    </div>
-                    <div class="input-box">
-                        <label for="data_final">Data Final</label>
-                        <input type="date" id="data_final" name="data_final" required>
-                        <label for="horario_final">Horário Final</label>
-                        <input type="time" id="horario_final" name="horario_final" required>
-                    </div>
-                </div>
-
                 <div class="input-box">
                     <label for="descricao_completa">Descrição</label>
                     <textarea id="descricao_completa" name="descricao_completa"></textarea>
                 </div>
-                
+
                 <div class="row">
                     <div class="input-box">
-                        <input type="submit" value="Cadastrar Evento" name="cadastrar" class="submit-btn">
+                        <input type="submit" value="Cadastrar Serviço" name="cadastrar" class="submit-btn">
                     </div>
                 </div>
             </form>
