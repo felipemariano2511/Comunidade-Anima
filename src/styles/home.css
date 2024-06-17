@@ -53,6 +53,11 @@
   text-align: center;
   text-decoration: none;
   cursor: pointer;
+  transition: all 0.3s ease-in-out;
+}
+
+.links-item > .button:hover {
+  background-color: #7d00c5;
 }
 
 .homepage-content {
