@@ -96,7 +96,7 @@ input:focus {
 }
 
 .file-btn {
-    display: none; /* Ocultar o input file real */
+    display: none; 
 }
 
 .custom-file-upload {

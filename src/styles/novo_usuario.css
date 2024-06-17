@@ -7,7 +7,7 @@ body {
 }
 
 .form-container {
-    width: 70%;
+    width: 40%;
     margin: 20px auto;
     background-color: #fff;
     padding: 20px;
@@ -55,7 +55,7 @@ input:valid + .placeholder1 {
 
 input[type="text"],
 input[type="email"],
-input[type="number"],
+input[type="password"],
 textarea {
     width: 100%;
     padding: 10px;
