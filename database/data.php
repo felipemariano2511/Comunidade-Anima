@@ -164,26 +164,30 @@
             email,
             senha,
             nome,
-            nivel
+            nivel,
+            imagem
           )
           VALUES (
             'adm',
             '202cb962ac59075b964b07152d234b70',
             'Administrador',
-            'ADM'
+            'ADM',
+            '../imgs/usuario/user-1.webp'
           )",
 
           "INSERT INTO usuario(
             email,
             senha,
             nome,
-            nivel
+            nivel,
+            imagem
           )
           VALUES (
             'usr',
             '202cb962ac59075b964b07152d234b70',
             'Usuário',
-            'USR'
+            'USR',
+            '../imgs/usuario/user-1.webp'
           )",
         
           "INSERT INTO eventos (
@@ -197,6 +201,7 @@
             descricao_completa,
             arquivo,
             situacao,
+            justificativa,
             restrito,
             autor,
             curtidas
@@ -227,7 +232,8 @@
               <p style=\'text-align: center;\'><img src=\'../imgs/posts/665e6a9e0f393.png\' alt=\'\' width=\'278\' height=\'210\'></p>
             </div>',
             '../imgs/posts/hackathon-o-que-e-vantagens-desafios-como-promover-1280x720.jpg',
-            'ativo',
+            'pendente',
+            'Seu evento ainda não foi publicado, espere a aprovação do administrador!',
             TRUE,
             1,
             67
@@ -244,6 +250,7 @@
             descricao_completa,
             arquivo,
             situacao,
+            justificativa,
             restrito,
             autor,
             curtidas
@@ -273,6 +280,7 @@
             </div>',
             'https://i.ytimg.com/vi/27ck3rqfc-A/maxresdefault.jpg',
             'ativo',
+            'Seu evento foi publicado!',
             TRUE,
             1,
             105
@@ -289,6 +297,7 @@
             descricao_completa,
             arquivo,
             situacao,
+            justificativa,
             restrito,
             autor,
             curtidas
@@ -318,6 +327,7 @@
             </div>',
             'https://sonhealtoviagens.com/wp-content/uploads/2020/09/INTERCA%CC%82MBIO-CANADA%CC%81-768x432.png',
             'ativo',
+            'Seu evento foi publicado!',
             FALSE,
             1,
             156
@@ -334,6 +344,7 @@
             descricao_completa,
             arquivo,
             situacao,
+            justificativa,
             restrito,
             autor,
             curtidas
@@ -360,7 +371,8 @@
               <p style=\'text-align: justify;\'>Não perca essa oportunidade de relaxar e se divertir com seus amigos!</p>
             </div>',
             'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT6B4MMxzxaHHOHoqrF4WMOXei4ctbpRDqd9QDqtYMNVFYCnOcjLobsb4bMe0tXuKRSsvU&usqp=CAU',
-            'ativo',
+            'recusado',
+            'O evento foi recusado, pois a data final do evento expirou!',
             FALSE,
             1,
             56
@@ -377,6 +389,7 @@
             descricao_completa,
             arquivo,
             situacao,
+            justificativa,
             restrito,
             autor,
             curtidas
@@ -404,7 +417,8 @@
               <p style=\'text-align: justify;\'>Faça a sua parte para um mundo mais sustentável!</p>
             </div>',
             'https://i.ytimg.com/vi/SvRXIWfKf8k/maxresdefault.jpg',
-            'ativo',
+            'recusado',
+            'O evento foi arquivado, pois a data final do evento expirou!',
             FALSE,
             1,
             23
@@ -421,6 +435,7 @@
             descricao_completa,
             arquivo,
             situacao,
+            justificativa,
             restrito,
             autor,
             curtidas
@@ -450,6 +465,7 @@
             </div>',
             'https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEg22CfAs7EPx7ScZZSJA7V3d4JUunUCBN1MMqo6-PYJhN1ZvyMmulh2kCpNNs5sm1LMe6iY6dk8jpTueitU_7ALIO_9pqIldC8-8KO8uXgVnSVEazXmy9nVgGPnCI7PAopANzO0d4o0sEQ/s1280/Mestrado+no+exterior.jpg',
             'ativo',
+            'Seu evento foi publicado!',
             FALSE,
             1,
             12
@@ -466,6 +482,7 @@
             descricao_completa,
             arquivo,
             situacao,
+            justificativa,
             restrito,
             autor,
             curtidas
@@ -497,6 +514,7 @@
             </div>',
             'https://dasartes.com.br/dasartes.com.br/wp-content/uploads/2022/01/unnamed-24.jpg',
             'ativo',
+            'Seu evento foi publicado!',
             FALSE,
             1,
             5

@@ -25,8 +25,8 @@
         $result = mysqli_query($con, $query);
 
         if($result){
-            echo '<script>alert("A atlética deleetada com sucesso!")</script>';
-            header('Location: portal_adm.php?page=GerenciarComodidades');
+            echo '<script>alert("A comodidade deletada com sucesso!")</script>';
+            header('Location: '.$_SERVER['HTTP_HOST']);
             exit();
         }
         
@@ -58,7 +58,7 @@
         </div>
         <div class="container">
             <h1>Administração de Comodidades</h1>
-            <button id="addUserBtn">Adicionar comodidade<i class='bx bx-plus'></i></button>
+            <a href="novo_servico.php?servico=Comodidade" id="addUserBtn">Adicionar comodidade<i class='bx bx-plus'></i></a>
             <table id="usersTable">
                 <thead>
                     <tr>

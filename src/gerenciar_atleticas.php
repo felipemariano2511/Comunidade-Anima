@@ -25,8 +25,8 @@
         $result = mysqli_query($con, $query);
 
         if($result){
-            echo '<script>alert("A atlética deleetada com sucesso!")</script>';
-            header('Location: portal_adm.php?page=GerenciarAtléticas');
+            echo '<script>alert("A atlética deleetada com sucesso!");location.reload;</script>';
+            header('Location: '.$_SERVER['REQUEST_URI']);
             exit();
         }
         
@@ -57,7 +57,7 @@
         </div>
         <div class="container">
             <h1>Administração de Atléticas</h1>
-            <button id="addUserBtn">Adicionar Atlética<i class='bx bx-plus'></i></button>
+            <a href="novo_servico.php?servico=Atlética" id="addUserBtn">Adicionar Atlética<i class='bx bx-plus'></i></a>
             <table id="usersTable">
                 <thead>
                     <tr>
@@ -84,7 +84,7 @@
                                             <td class="actions">
                                                 <form method="POST">
                                                     <button class="icon-button editBtn" name="edit"><i class="bx bx-edit"></i></button>
-                                                    <button class="icon-button deleteBtn" value="'.$data['id'].'" name="delete"><i class="bx bx-trash"></i></button>
+                                                    <button type="submit" class="icon-button deleteBtn" value="'.$data['id'].'" name="delete"><i class="bx bx-trash"></i></button>
                                                 </form>
                                             </td>
                                         </tr>';

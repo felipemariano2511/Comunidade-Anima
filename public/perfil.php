@@ -1,4 +1,57 @@
-<!DOCTYPE html>
+<?php
+    include '../app/includes/config.php';
+    include '../app/Session/User.php';
+
+    use App\Session\User as SessionUser;
+
+    if(SessionUser::isLogged()){
+        $user_info = SessionUser::getInfo();
+    }else{
+        header("Location: index.php");
+    }
+    $id = isset($_GET['id']) ? $_GET['id'] : '';
+
+    if($id != ''){
+        if($user_info['id'] == $id || $user_info['nivel'] == "ADM"){
+            $query = "SELECT * FROM usuario WHERE id = '$id'";
+            $result = mysqli_query($con, $query);
+            
+            $tableData = mysqli_fetch_assoc($result);
+        }else{
+            header('Location: index.php');
+        }
+    }else{
+        header('Location: index.php');
+    }
+
+    if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['salvar'])) {
+        $email = $_POST['email'];
+        $nome = $_POST['nome'];
+        $senha = md5($_POST['senha']);
+        $imagem = $_FILES['foto_perfil'];
+
+        if($imagem['tmp_name'] == ''){
+            $endereco_imagem = $tableData['imagem'];
+        }
+
+        if($imagem['error'] === 0) {
+            $endereco_imagem = '../imgs/usuario/' . $imagem['name'];
+            move_uploaded_file($imagem['tmp_name'], $endereco_imagem);
+        }
+
+        if($senha == "d41d8cd98f00b204e9800998ecf8427e"){
+            $query = "UPDATE usuario SET email = '$email', nome = '$nome', imagem = '$endereco_imagem' WHERE id = $id";
+        }else{
+            $query = "UPDATE usuario SET email = '$email', nome = '$nome', senha = '$senha', imagem = '$endereco_imagem' WHERE id = $id";
+        }
+        $result = mysqli_query($con, $query);
+        include '../app/includes/get_dados_usuario.php'; 
+        header("Location:".$_SERVER['REQUEST_URI']);
+
+    }
+    
+
+?><!DOCTYPE html>
 <html lang="pt-br">
 
 <head>
@@ -10,7 +63,8 @@
     <link rel="stylesheet" href="../src/styles/style-pattern.css">
     <link rel="stylesheet" href="../src/styles/style.css">
     <link rel="stylesheet" href="../src/styles/perfil.css">
-    <title>Eventos</title>
+    <link rel="icon" href="../imgs/dev/favicon.ico" type="image/x-icon">
+    <title>Comunidade Ânima - Perfil</title>
 </head>
 
 <body>
@@ -21,93 +75,8 @@
             </a>
         </div>
     </header>
-    <nav class="sidebar close">
-        <header>
-            <div class="image-text">
-                <a href="">
-                    <span class="image">
-                        <img src="../imgs/usuario/user-1.webp" alt="">
-                    </span>
-                </a>
-
-
-                <div class="text logo-text">
-                    <span class="name">Felipe</span>
-                    <span class="profession">Ciência da computação</span>
-                </div>
-            </div>
-        </header>
-
-        <div class="menu-bar">
-            <div class="menu">
-
-                <ul class="menu-links">
-
-                    <li class="nav-link">
-                        <a class="toggle" style="cursor:pointer;">
-                            <i class='bx bx-menu icon' id="menu-icon"></i>
-                            <span class="text nav-text">Menu</span>
-                        </a>
-                    </li>
-
-
-                    <li class="nav-link">
-                        <a href="#">
-                            <i class='bx bx-home-alt icon'></i>
-                            <span class="text nav-text">Home</span>
-                        </a>
-                    </li>
-
-                    <li class="nav-link">
-                        <a href="#">
-                            <i class='bx bx-calendar-event icon'></i>
-                            <span class="text nav-text">Evento</span>
-                        </a>
-                    </li>
-
-                    <li class="nav-link">
-                        <a href="#">
-                            <i class='bx bx-trophy icon'></i>
-                            <span class="text nav-text">Atléticas</span>
-                        </a>
-                    </li>
-
-                    <li class="nav-link">
-                        <a href="#">
-                            <i class='bx bx-shape-triangle icon'></i>
-                            <span class="text nav-text">Comodidades</span>
-                        </a>
-                    </li>
-
-                    <li class="nav-link">
-                        <a href="#">
-                            <i class='bx bx-heart icon'></i>
-                            <span class="text nav-text">Likes</span>
-                        </a>
-                    </li>
-
-                    <li class="nav-link">
-                        <a href="#">
-                            <i class='bx bx-support icon'></i>
-                            <span class="text nav-text">Suporte</span>
-                        </a>
-                    </li>
-
-                </ul>
-            </div>
-
-            <div class="bottom-content">
-                <li class="">
-                    <a href="#">
-                        <i class='bx bx-log-out icon'></i>
-                        <span class="text nav-text">Logout</span>
-                    </a>
-                </li>
-
-            </div>
-        </div>
-    </nav>
-    <form action="" method="post">
+    <?php include '../src/components/menu.php';?>
+    <form action="" method="post" enctype="multipart/form-data">
         <section class="home">
             <div class="home-title">
                 <h1>Minhas Informações</h1>
@@ -116,48 +85,22 @@
             <div class="login">
                 <div class="login-container">
                     <div class="profile-img">
-                        <img src="../imgs/card/marciaoshowdebola.jpg" alt="">
+                        <img src="<?php if($tableData['imagem'] != NULL){echo $tableData['imagem'];}else{echo '../imgs/usuario/user-1.webp';} ?>" alt="Foto de perfil">
+
                         <input type="file" name="foto_perfil" id="fileInput">
                         <label for="fileInput" class="custom-file-upload">Alterar Foto</label>
                     </div>
                     <div class="profile-info">
                         <h1>Meus Dados</h1>
-                        <input type="email" name="email" id="" placeholder="Email">
-                        <input type="text" name="" id="" placeholder="Nome">
-                        <input type="password" name="" id="" placeholder="Senha">
+                        <input type="email" name="email" id="" value="<?php echo $tableData['email']; ?>">
+
+                        <input type="text" name="nome" id="" value="<?php  echo $tableData['nome']; ?>">
+
+                        <input type="password" name="senha" id="" placeholder="Senha">
                         <input type="submit" value="Salvar" name="salvar" class="botao">
                     </div>
                 </div>
             </div>
         </section>
     </form>
-
-    <script>
-        const body = document.querySelector('body'),
-            sidebar = body.querySelector('nav'),
-            toggle = body.querySelector(".toggle"),
-            searchBtn = body.querySelector(".search-box"),
-            modeSwitch = body.querySelector(".toggle-switch"),
-            modeText = body.querySelector(".mode-text");
-
-
-        toggle.addEventListener("click", () => {
-            sidebar.classList.toggle("close");
-        })
-
-        searchBtn.addEventListener("click", () => {
-            sidebar.classList.remove("close");
-        })
-
-        modeSwitch.addEventListener("click", () => {
-            body.classList.toggle("dark");
-
-            if (body.classList.contains("dark")) {
-                modeText.innerText = "Light mode";
-            } else {
-                modeText.innerText = "Dark mode";
-
-            }
-        });
-    </script>
 </body>

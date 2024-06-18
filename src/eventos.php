@@ -1,4 +1,5 @@
 <?php
+include '../app/includes/config.php';
 include '../app/includes/crontab.php';
 
 $query = "SELECT * FROM eventos WHERE situacao = 'ativo' ORDER BY data_inicial ASC";
@@ -65,9 +66,10 @@ if ($result) {
 
             shareButtons.forEach(button => {
                 button.addEventListener('click', function() {
+                    const currentHost = window.location.host;
                     const id = this.getAttribute('data-id');
                     const urlField = document.getElementById('urlField');
-                    const url = `http://localhost/Comunidade-Anima/public/evento.php?id=${id}`;
+                    const url = `http://${currentHost}/Comunidade-Anima/public/evento.php?id=${id}`;
                     urlField.value = url;
                     urlField.style.display = 'block';
                     urlField.select();
@@ -87,46 +89,6 @@ if ($result) {
         });
     </script>
 </section>
-<script>
-    document.addEventListener('DOMContentLoaded', function() {
-        document.querySelectorAll('.heart-icon').forEach(function(icon) {
-            icon.addEventListener('click', function() {
-                this.classList.toggle('bx-heart');
-                this.classList.toggle('bxs-heart');
-                this.classList.toggle('liked');
-            });
-        });
-    });
-</script>
-
-<script>
-    const body = document.querySelector('body'),
-        sidebar = body.querySelector('nav'),
-        toggle = body.querySelector(".toggle"),
-        searchBtn = body.querySelector(".search-box"),
-        modeSwitch = body.querySelector(".toggle-switch"),
-        modeText = body.querySelector(".mode-text");
-
-
-    toggle.addEventListener("click", () => {
-        sidebar.classList.toggle("close");
-    })
-
-    searchBtn.addEventListener("click", () => {
-        sidebar.classList.remove("close");
-    })
-
-    modeSwitch.addEventListener("click", () => {
-        body.classList.toggle("dark");
-
-        if (body.classList.contains("dark")) {
-            modeText.innerText = "Light mode";
-        } else {
-            modeText.innerText = "Dark mode";
-
-        }
-    });
-</script>
 </body>
 
 </html>

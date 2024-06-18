@@ -26,7 +26,7 @@
 
         if($result){
             echo '<script>alert("O usuário foi deletado com sucesso!")</script>';
-            header('Location: portal_adm.php?page=GerenciarUsuários');
+            header('Location: '.$_SERVER['HTTP_HOST']);
             exit();
         }
         
@@ -56,7 +56,7 @@
         </div>
         <div class="container">
             <h1>Administração de Usuários</h1>
-            <button id="addUserBtn">Adicionar Usuário<i class='bx bx-plus'></i></button>
+            <a href="novo_usuario.php" id="addUserBtn">Adicionar Usuário<i class='bx bx-plus'></i></a>
             <table id="usersTable">
                 <thead>
                     <tr>

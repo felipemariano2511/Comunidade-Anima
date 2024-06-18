@@ -1,5 +1,10 @@
 <?php
+    include_once '../app/Session/User.php'; 
     use App\Session\User as SessionUser;
+
+    if(SessionUser::isLogged()){
+        $user_info = SessionUser::getInfo();
+    }
 ?>
 <!DOCTYPE html>
 <html lang="pt-br">
@@ -15,25 +20,24 @@
 </head>
 <nav class="sidebar close">
         <header>
-        <div class="image-text">
+            <div class="image-text">
                 <a href="<?php if(!SessionUser::isLogged()){echo 'login.php';}else{echo  'perfil.php?id='.$user_info['id'].'';}?>">
                     <span class="image">
-                        <img src="../imgs/usuario/user-1.webp" alt="">
+                        <img src="<?php if(SessionUser::isLogged()){echo  $user_info['imagem'];}else{echo "../imgs/usuario/user-1.webp";} ?>" alt="Foto de perfil">
                     </span>
                 </a>
-                <div class="text logo-text">
-                    <span class="name">
-                        <?php
-                        if (SessionUser::isLogged()) {
-                            $user_info = SessionUser::getInfo();
-
-                            echo $user_info['firstName'];
-                        } else {
+            <div class="text logo-text">
+                <span class="name">
+                    <?php
+                    
+                        if(SessionUser::isLogged()){
+                            echo "<a href='perfil.php?id=".$user_info['id']."' style='text-decoration: none; color: #707070;'> ".$user_info['firstName']." </a>";
+                        }else{
                             echo "<a href='login.php' class='text nav-text' style='text-decoration: none; color: #8C52FF; text-weight: 500; margin-left: 5px;'>Fazer Login<i class='bx bx-log-in'></i></a>";
                         }
-                        ?>
-                    </span>
-                </div>
+                    ?>
+                </span>
+            </div>
         </header>
         <div class="menu-bar">
             <div class="menu">
@@ -104,12 +108,6 @@
                         }
                     }    
                     ?>
-                    <li class="nav-link">
-                        <a href="index.php?page=Suporte">
-                            <i class='bx bx-support icon'></i>
-                            <span class="text nav-text">Suporte</span>
-                        </a>
-                    </li>
                 </ul>
             </div>
             <?php 

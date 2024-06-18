@@ -130,9 +130,10 @@
             shareIcons.forEach(icon => {
                 icon.addEventListener('click', function(event) {
                     event.preventDefault(); // Impedir a ação padrão da tag <a>
+                    const currentHost = window.location.host;
                     const id = this.getAttribute('data-id');
                     const urlField = document.getElementById('urlField');
-                    const url = `http://localhost/Comunidade-Anima/public/servicos_universitarios.php?id=${id}`;
+                    const url = `http://${currentHost}/Comunidade-Anima/public/evento.php?id=${id}`;
                     urlField.value = url;
                     urlField.style.display = 'block';
                     urlField.select();

@@ -2,7 +2,7 @@
   /***************************************************
    * Only these origins are allowed to upload images *
    ***************************************************/
-  $accepted_origins = array("http://localhost");
+  $accepted_origins = array($_SERVER['HTTP_HOST']);
 
   /*********************************************
    * Change this line to set the upload folder *

@@ -24,7 +24,7 @@ class User{
     /**
      * @param array
      */
-    public static function setDados($first_name, $id, $email, $nome, $nivel){
+    public static function setDados($first_name, $id, $email, $nome, $nivel, $imagem){
         self::init();
         
         $_SESSION['info_user'] = [
@@ -32,7 +32,8 @@ class User{
         'id' => $id,
         'email' => $email,
         'nome' => $nome,
-        'nivel' => $nivel
+        'nivel' => $nivel,
+        'imagem' => $imagem
         ];
     }
     /**
