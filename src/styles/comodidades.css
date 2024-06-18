@@ -54,7 +54,7 @@
 }
 
 .links-item>.button:hover {
-    background-color: #7d00c5;
+    background-color: var(--hover);
 }
 
 .homepage-content {

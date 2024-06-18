@@ -89,7 +89,7 @@ input[type="search"]::-webkit-search-cancel-button {
 }
 
 .atletica-card a:hover {
-    background-color: var(--hover-btn-primary);
+    background-color: var(--hover);
 }
 
 @media screen and (max-width: 1200px) {

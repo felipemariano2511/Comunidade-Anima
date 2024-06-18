@@ -136,7 +136,7 @@ body.dark .home .text {
 }
 
 #form-like button:hover {
-    background-color: var(--hover-btn-primary);
+    background-color: var(--hover);
 }
 
 #form-like button i {

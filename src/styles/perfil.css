@@ -54,7 +54,7 @@ input[type="file"] {
 
 .custom-file-upload {
     text-align: center;
-    background-color: #9800ee;
+    background-color: var(--primary-color);
     color: var(--primary-color-light);
     font-weight: 600;
     font-size: 14px;
@@ -63,10 +63,11 @@ input[type="file"] {
     padding: 4px 10px;
     display: inline-block;
     cursor: pointer;
+    transition: 0.3s all ease-in-out;
 }
 
 .custom-file-upload:hover {
-    background-color: #7d00c5;
+    background-color: var(--hover);
 }
 
 .profile-info {
@@ -115,10 +116,11 @@ input[type="submit"] {
     border: none;
     outline: none;
     padding: 8px 10px 8px 10px;
+    transition: 0.3s all ease-in-out;
 }
 
 input[type="submit"]:hover {
-    background-color: var(--btn-hover);
+    background-color: var(--hover);
 }
 
 @media screen and (max-width: 1200px) {
