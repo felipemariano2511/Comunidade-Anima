@@ -25,9 +25,7 @@
         $result = mysqli_query($con, $query);
 
         if($result){
-            echo '<script>alert("A atlética deleetada com sucesso!");location.reload;</script>';
-            header('Location: '.$_SERVER['REQUEST_URI']);
-            exit();
+            echo '<script>alert("Atlética deletada com sucesso!");window.location.href="portal_adm.php?page=GerenciarAtléticas";</script>';
         }
         
     }

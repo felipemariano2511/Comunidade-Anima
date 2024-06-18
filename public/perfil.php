@@ -7,7 +7,7 @@
     if(SessionUser::isLogged()){
         $user_info = SessionUser::getInfo();
     }else{
-        header("Location: index.php");
+        //header("Location: index.php");
     }
     $id = isset($_GET['id']) ? $_GET['id'] : '';
 
@@ -18,10 +18,10 @@
             
             $tableData = mysqli_fetch_assoc($result);
         }else{
-            header('Location: index.php');
+            //header('Location: index.php');
         }
     }else{
-        header('Location: index.php');
+        //header('Location: index.php');
     }
 
     if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['salvar'])) {

@@ -25,9 +25,8 @@
         $result = mysqli_query($con, $query);
 
         if($result){
-            echo '<script>alert("A comodidade deletada com sucesso!")</script>';
-            header('Location: '.$_SERVER['HTTP_HOST']);
-            exit();
+            echo '<script>alert("Comodidade deletada com sucesso!");window.location.href="portal_adm.php?page=GerenciarComodidades";</script>';
+
         }
         
     }

@@ -27,9 +27,7 @@
         $query = "UPDATE eventos SET situacao = 'aprovado' WHERE id = '$id'";
         $result = mysqli_query($con, $query);
 
-        header('Location: '.$_SERVER['REQUEST_URI']);
-        exit();
-    
+        echo '<script>window.location.href="portal_adm.php?page=AprovarEventos"</script>';
 
     }elseif($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['recusar'])){
         $id = $_POST['recusar'];
@@ -37,8 +35,7 @@
         $query = "UPDATE eventos SET situacao = 'recusado', justificativa = 'Seu evento foi recusado por não estra coerente' WHERE id = '$id'";
         $result = mysqli_query($con, $query);
 
-        header('Location: '.$_SERVER['REQUEST_URI']);
-        exit();
+        echo '<script>window.location.href="portal_adm.php?page=AprovarEventos"</script>';
 
     }
 ?>

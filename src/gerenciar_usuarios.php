@@ -7,12 +7,10 @@
         $query = "SELECT * FROM usuario";
         $result = mysqli_query($con, $query);
 
-        if(mysqli_num_rows($result) > 0){echo "Entrou"; 
+        if(mysqli_num_rows($result) > 0){
             while($row = mysqli_fetch_assoc($result)){
                 $tableData[] = $row;
             }
-        }else{
-            $tableData = null;
         }
     }else{
         header('Location: index.php');
@@ -25,9 +23,8 @@
         $result = mysqli_query($con, $query);
 
         if($result){
-            echo '<script>alert("O usuário foi deletado com sucesso!")</script>';
-            header('Location: '.$_SERVER['HTTP_HOST']);
-            exit();
+            echo '<script>alert("Usuário deletado com sucesso!");window.location.href="portal_adm.php?page=GerenciarUsuários";</script>';
+
         }
         
     }
@@ -77,7 +74,7 @@
                                         <td>************************</td>
                                         <td class="actions">
                                             <form method="POST">
-                                                <button class="icon-button editBtn" name="edit"><i class="bx bx-edit"></i></button>
+                                                <a href="perfil.php?id='.$data['id'].'" class="icon-button editBtn" name="edit"><i class="bx bx-edit"></i></a>
                                                 <button class="icon-button deleteBtn" value="'.$data['id'].'" name="delete"><i class="bx bx-trash"></i></button>
                                             </form>
                                         </td>
