@@ -83,7 +83,7 @@
                                             <td>'.$data['email'].'</td>
                                             <td class="actions">
                                                 <form method="POST">
-                                                    <button class="icon-button editBtn" name="edit"><i class="bx bx-edit"></i></button>
+                                                    <a href="editar_servico.php?id='.$data['id'].'" class="icon-button editBtn" name="edit"><i class="bx bx-edit"></i></a>
                                                     <button type="submit" class="icon-button deleteBtn" value="'.$data['id'].'" name="delete"><i class="bx bx-trash"></i></button>
                                                 </form>
                                             </td>

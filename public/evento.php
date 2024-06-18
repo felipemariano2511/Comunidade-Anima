@@ -30,7 +30,9 @@
             header('Location: index.php?page=Eventos'); 
         }
     }
-    if($tableData['situacao'] == 'arquivado'){
+
+    //Garante que somente ADM ou o autor do evento vizualize antes de o evento ser publicado
+    if($tableData['situacao'] == 'pendente' || $tableData['situacao'] == 'recusado'){
         if($tableData['autor'] == $user_info['id'] || $user_info['nivel'] == 'ADM'){
         }else{
             header('Location: index.php?page=Eventos');
