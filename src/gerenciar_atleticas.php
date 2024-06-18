@@ -26,7 +26,8 @@
 
         if($result){
             echo '<script>alert("A atlética deleetada com sucesso!");location.reload;</script>';
-            header("Location: " . $_SERVER['PHP_SELF']);
+            header('Location: '.$_SERVER['REQUEST_URI']);
+            exit();
         }
         
     }

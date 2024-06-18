@@ -12,33 +12,22 @@ if (SessionUser::isLogged()) {
 }
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['cadastrar'])) {
-    $titulo = $_POST['titulo'];
-    $data_inicial = $_POST['data_inicial'];
-    $data_final = $_POST['data_final'];
-    $horario_inicial = $_POST['horario_inicial'];
-    $horario_final = $_POST['horario_final'];
-    $endereco = $_POST['endereco'];
-    $descricao_inicial = $_POST['descricao_inicial'];
-    $descricao_completa = $_POST['descricao_completa'];
-    $arquivo = $_FILES['arquivo'];
-    $restrito = isset($_POST['switch_status']) && $_POST['switch_status'] == '1' ? FALSE : TRUE;
-    $autor = $user_info['id'];
+    $nome = $_POST['nome'];
+    $email = $_POST['email'];
+    $senha = md5($_POST['senha']);
+    $nivel = $_POST['inlineRadioOptions'];
+    $imagem = "../imgs/usuario/user-1.webp";
 
-    if ($arquivo['error'] === 0) {
-        $endereco_arquivo = '../imgs/posts/' . $arquivo['name'];
-        move_uploaded_file($arquivo['tmp_name'], $endereco_arquivo);
+    $query = "INSERT INTO usuario(email, senha, nome, nivel, imagem)
+                VALUES ('$email', '$senha', '$nome', '$nivel', '$imagem')";
+    $result = mysqli_query($con, $query);
 
-        $query = "INSERT INTO eventos(titulo, data_inicial, horario_inicial, data_final, horario_final, endereco, descricao_inicial, descricao_completa, arquivo, situacao, restrito, autor)
-                  VALUES ('$titulo', '$data_inicial', '$horario_inicial', '$data_final', '$horario_final', '$endereco', '$descricao_inicial', '$descricao_completa', '$endereco_arquivo', 'ativo', '$restrito', '$autor')";
-        $result = mysqli_query($con, $query);
-
-        if ($result) {
-            echo '<script>alert("Cadastrado com sucesso, aguarde aprovação!")</script>';
-        } else {
-            echo '<script>alert("Falha no cadastro!")</script>';
-        }
+    if ($result) {
+        echo '<script>alert("Usuário cadastrado com sucesso!")</script>';
+        header('Location: '.$_SERVER['REQUEST_URI']);
+        exit();
     } else {
-        echo '<script>alert("Erro ao fazer upload do arquivo. Por favor, tente novamente!")</script>';
+        echo '<script>alert("Falha no cadastro!")</script>';
     }
 }
 ?>
@@ -91,13 +80,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['cadastrar'])) {
                         <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio2" value="ADM">
                         <label class="form-check-label" for="inlineRadio2">Administrador</label>
                     </div>
-                </div>
-                
-                <div class="input-box">
-                    <label for="imagem" class="custom-file-upload">
-                        Escolher Imagem
-                    </label>
-                    <input type="file" id="imagem" name="arquivo" class="file-btn">
                 </div>
 
                 <div class="row">

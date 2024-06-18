@@ -33,6 +33,8 @@ if($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['cadastrar'])){
 
         if($result){
             echo '<script>alert("Cadastrado com sucesso, aguarde aprovação!")</script>';
+            header('Location: '.$_SERVER['REQUEST_URI']);
+            exit();
         } else {
             echo '<script>alert("Falha no cadastro!")</script>';
         }

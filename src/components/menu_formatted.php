@@ -16,9 +16,9 @@
 <nav class="sidebar close">
         <header>
         <div class="image-text">
-                <a href="<?php if(!SessionUser::isLogged()){echo 'login.php';}?>">
+            <a href="<?php if(!SessionUser::isLogged()){echo 'login.php';}else{echo  'perfil.php?id='.$user_info['id'].'';}?>">
                     <span class="image">
-                        <img src="../imgs/usuario/user-1.webp" alt="">
+                    <img src="<?php if(SessionUser::isLogged()){echo  $user_info['imagem'];}else{echo "../imgs/usuario/user-1.webp";} ?>" alt="Foto de perfil">
                     </span>
                 </a>
                 <div class="text logo-text">

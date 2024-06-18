@@ -164,26 +164,30 @@
             email,
             senha,
             nome,
-            nivel
+            nivel,
+            imagem
           )
           VALUES (
             'adm',
             '202cb962ac59075b964b07152d234b70',
             'Administrador',
-            'ADM'
+            'ADM',
+            '../imgs/usuario/user-1.webp'
           )",
 
           "INSERT INTO usuario(
             email,
             senha,
             nome,
-            nivel
+            nivel,
+            imagem
           )
           VALUES (
             'usr',
             '202cb962ac59075b964b07152d234b70',
             'Usuário',
-            'USR'
+            'USR',
+            '../imgs/usuario/user-1.webp'
           )",
         
           "INSERT INTO eventos (

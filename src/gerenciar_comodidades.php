@@ -25,9 +25,9 @@
         $result = mysqli_query($con, $query);
 
         if($result){
-            echo '<script>alert("A atlética deleetada com sucesso!")</script>';
-            header('Location: portal_adm.php?page=GerenciarComodidades');
-            exit();
+            echo '<script>alert("Comodidade deletada com sucesso!")</script>';
+            header('Location: '.$_SERVER['REQUEST_URI']);
+            exit;
         }
         
     }

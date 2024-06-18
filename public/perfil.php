@@ -21,20 +21,28 @@
     }
 
     if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['salvar'])) {
-        $email = $_POST['email'] ?? $tableData['email'];
-        $nome = $_POST['nome'] ?? $tableData['nome'];
-        $senha = md5($_POST['senha']) ?? $tableData['senha'];
-        $imagem = $_FILES['foto_perfil'] ?? $tableData['imagem'];
+        $email = $_POST['email'];
+        $nome = $_POST['nome'];
+        $senha = md5($_POST['senha']);
+        $imagem = $_FILES['foto_perfil'];
+
+        if($imagem['tmp_name'] == ''){
+            $endereco_imagem = $tableData['imagem'];
+        }
 
         if($imagem['error'] === 0) {
             $endereco_imagem = '../imgs/usuario/' . $imagem['name'];
             move_uploaded_file($imagem['tmp_name'], $endereco_imagem);
         }
-        
-        $query = "UPDATE usuario SET email = '$email', nome = '$nome', senha = '$senha', imagem = '$endereco_imagem' WHERE id = $id";
-        echo $query;
+
+        if($senha == "d41d8cd98f00b204e9800998ecf8427e"){
+            $query = "UPDATE usuario SET email = '$email', nome = '$nome', imagem = '$endereco_imagem' WHERE id = $id";
+        }else{
+            $query = "UPDATE usuario SET email = '$email', nome = '$nome', senha = '$senha', imagem = '$endereco_imagem' WHERE id = $id";
+        }
         $result = mysqli_query($con, $query);
-        //header("Location:".$_SERVER['REQUEST_URI']);
+        include '../app/includes/get_dados_usuario.php'; 
+        header("Location:".$_SERVER['REQUEST_URI']);
 
     }
     
@@ -80,9 +88,9 @@
                     </div>
                     <div class="profile-info">
                         <h1>Meus Dados</h1>
-                        <input type="email" name="email" id="" placeholder="<?php echo $tableData['email']; ?>">
+                        <input type="email" name="email" id="" value="<?php echo $tableData['email']; ?>">
 
-                        <input type="text" name="nome" id="" placeholder="<?php  echo $tableData['nome']; ?>">
+                        <input type="text" name="nome" id="" value="<?php  echo $tableData['nome']; ?>">
 
                         <input type="password" name="senha" id="" placeholder="Senha">
                         <input type="submit" value="Salvar" name="salvar" class="botao">

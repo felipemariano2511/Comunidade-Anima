@@ -10,7 +10,7 @@
         $nome = $tableData['nome'];
         $first_name = explode(" ", $nome);
 
-        SessionUser::setDados($first_name[0], $tableData['id'], $tableData['email'], $tableData['nome'], $tableData['nivel']);
+        SessionUser::setDados($first_name[0], $tableData['id'], $tableData['email'], $tableData['nome'], $tableData['nivel'], $tableData['imagem']);
     }
     
 ?>
