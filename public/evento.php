@@ -119,11 +119,11 @@
                         <div class="event-data-content">
                             <?php
                                 if($data_inicial_formatada == $data_final_formatada){
-                                    echo '<h3>   '.$data_inicial_formatada.' | '.$horario_inicial.'</h3>
-                                    <h3>-Até-</h3>
-                                    <h3> '.$data_final_formatada.' | '.$horario_final.'</h3>';
+                                    echo '<h3>'.$data_inicial_formatada.' | '.$horario_inicial.' às '.$horario_final.'</h3>';
+                                    
                                 }else{
-                                    echo '   '.$data_final_formatada.' | '.$horario_inicial . ' às ' . $horario_final;
+                                    $dia_inicial = substr($data_inicial_formatada, 0,2);
+                                    echo $dia_inicial.' -  '.$data_final_formatada.' | '.$horario_inicial . ' às ' . $horario_final;
                                 }
                         
                             ?>
@@ -220,45 +220,5 @@
         });
     </script>
     </section>
-    
-
-    <script>
-        document.addEventListener('DOMContentLoaded', function() {
-            document.querySelectorAll('.heart-icon').forEach(function(icon) {
-                icon.addEventListener('click', function() {
-                    this.classList.toggle('bx-heart');
-                    this.classList.toggle('bxs-heart');
-                    this.classList.toggle('liked');
-                });
-            });
-        });
-    </script>
-    <script>
-        const body = document.querySelector('body'),
-            sidebar = body.querySelector('nav'),
-            toggle = body.querySelector(".toggle"),
-            searchBtn = body.querySelector(".search-box"),
-            modeSwitch = body.querySelector(".toggle-switch"),
-            modeText = body.querySelector(".mode-text");
-
-        toggle.addEventListener("click", () => {
-            sidebar.classList.toggle("close");
-        })
-
-        searchBtn.addEventListener("click", () => {
-            sidebar.classList.remove("close");
-        })
-
-        modeSwitch.addEventListener("click", () => {
-            body.classList.toggle("dark");
-
-            if (body.classList.contains("dark")) {
-                modeText.innerText = "Light mode";
-            } else {
-                modeText.innerText = "Dark mode";
-
-            }
-        });
-    </script>
 </body>
 </html>
