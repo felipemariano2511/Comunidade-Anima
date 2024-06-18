@@ -9,11 +9,11 @@
     }else{
         //header("Location: index.php");
     }
-    $id = isset($_GET['id']) ? $_GET['id'] : '';
+    $id_url = isset($_GET['id']) ? $_GET['id'] : '';
 
-    if($id != ''){
-        if($user_info['id'] == $id || $user_info['nivel'] == "ADM"){
-            $query = "SELECT * FROM usuario WHERE id = '$id'";
+    if($id_url != ''){
+        if($user_info['id'] == $id_url || $user_info['nivel'] == "ADM"){
+            $query = "SELECT * FROM usuario WHERE id = '$id_url'";
             $result = mysqli_query($con, $query);
             
             $tableData = mysqli_fetch_assoc($result);
@@ -40,9 +40,9 @@
         }
 
         if($senha == "d41d8cd98f00b204e9800998ecf8427e"){
-            $query = "UPDATE usuario SET email = '$email', nome = '$nome', imagem = '$endereco_imagem' WHERE id = $id";
+            $query = "UPDATE usuario SET email = '$email', nome = '$nome', imagem = '$endereco_imagem' WHERE id = $id_url";
         }else{
-            $query = "UPDATE usuario SET email = '$email', nome = '$nome', senha = '$senha', imagem = '$endereco_imagem' WHERE id = $id";
+            $query = "UPDATE usuario SET email = '$email', nome = '$nome', senha = '$senha', imagem = '$endereco_imagem' WHERE id = $id_url";
         }
         $result = mysqli_query($con, $query);
         include '../app/includes/get_dados_usuario.php'; 
@@ -68,19 +68,20 @@
 </head>
 
 <body>
-    <header class="header-main">
-        <div class="container-header">
-            <a href="index.php?page=Home">
-                <img src="../imgs/dev/logo-anima-1024-white.png" alt="" width="100px">
-            </a>
-        </div>
-    </header>
+    <?php include '../src/components/main_header.php';?>
     <?php include '../src/components/menu.php';?>
     <form action="" method="post" enctype="multipart/form-data">
         <section class="home">
             <div class="home-title">
-                <h1>Minhas Informações</h1>
-                <p>Confira os dados do seu perfil</p>
+                <?php
+                    if($user_info['id'] != $id_url){
+                        echo "  <h1>Perfil de ".$tableData['nome']."</h1>
+                                <p>Confira os dados de ".$tableData['nome']."</p>";
+                    }else{
+                        echo "  <h1>Meu Perfil</h1>
+                                <p>Confira os dados do seu perfil</p>";
+                    }                
+                ?>
             </div>
             <div class="login">
                 <div class="login-container">
@@ -91,7 +92,8 @@
                         <label for="fileInput" class="custom-file-upload">Alterar Foto</label>
                     </div>
                     <div class="profile-info">
-                        <h1>Meus Dados</h1>
+                        <?php if($user_info['id'] != $id_url){echo '<h1>Dados de '.$tableData['nome'].'</h1>';}else{echo '<h1>Meus Dados</h1>';}?>
+                        
                         <input type="email" name="email" id="" value="<?php echo $tableData['email']; ?>">
 
                         <input type="text" name="nome" id="" value="<?php  echo $tableData['nome']; ?>">
