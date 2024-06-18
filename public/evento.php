@@ -122,8 +122,8 @@
                                     echo '<h3>'.$data_inicial_formatada.' | '.$horario_inicial.' às '.$horario_final.'</h3>';
                                     
                                 }else{
-                                    $dia_inicial = substr($data_inicial_formatada, 0,2);
-                                    echo $dia_inicial.' -  '.$data_final_formatada.' | '.$horario_inicial . ' às ' . $horario_final;
+                                    $dia_inicial = substr($data_inicial_formatada, 0, 2);
+                                    echo $dia_inicial.' a  '.$data_final_formatada.' | '.$horario_inicial . ' às ' . $horario_final;
                                 }
                         
                             ?>
