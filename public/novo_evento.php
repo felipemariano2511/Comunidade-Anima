@@ -99,13 +99,15 @@ if($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['cadastrar'])){
                     <button type="button" class="map-btn" onclick="openInGoogleMaps()">Verificar endereço</button>
                 </div>
                 
-                <div class="switch-container">
-                    <span class="label-text">Restrito</span>
-                    <label class="switch">
-                        <input type="checkbox" name="switch_status">
-                        <span class="slider round"></span>
-                    </label>
-                    <span class="label-text">Aberto ao Público</span>
+                <div class="radio-container">
+                    <div class="form-check form-check-inline">
+                        <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio1" value="true"checked >
+                        <label class="form-check-label" for="inlineRadio1">Restrito</label>
+                    </div>
+                    <div class="form-check form-check-inline">
+                        <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio2" value="false">
+                        <label class="form-check-label" for="inlineRadio2">Aberto ao Público</label>
+                    </div>
                 </div>
 
                 <div class="input-box">

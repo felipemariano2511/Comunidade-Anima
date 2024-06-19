@@ -90,7 +90,7 @@ input[type="submit"]{
 }
 
 input[type="submit"]:hover, .map-btn:hover {
-    background-color: #7d00c5;
+    background-color: var(--hover);
 }
 
 input:focus,
@@ -116,7 +116,7 @@ input[type="password"]:focus {
 }
 
 .custom-file-upload:hover {
-    background-color: #7d00c5;
+    background-color: var(--hover);
 }
 
 
@@ -194,6 +194,14 @@ input:checked + .slider:before {
 
 .label-text {
     font-size: 12px;
+}
+
+.radio-container {
+    margin: 1rem 0;
+}
+
+.radio-container div label, input {
+    cursor: pointer;
 }
 
 @media (max-width: 915px) {

@@ -51,7 +51,7 @@
 }
 
 #addUserBtn:hover {
-    background-color: #7d00c5;
+    background-color: var(--hover);
 }
 
 table {
@@ -103,7 +103,7 @@ a.icon-button {
 }
 
 .editBtn:hover {
-    background-color: #7d00c5;
+    background-color: var(--hover);
 }
 
 .deleteBtn {
