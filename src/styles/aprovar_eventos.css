@@ -77,3 +77,9 @@
 .recusar {
     background-color: #e14343;
 }
+.acessar-evento{
+    display: flex;
+    justify-content: center;
+    text-decoration-color: white;
+    background-color:   #8C52FF;
+}

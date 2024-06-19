@@ -11,7 +11,7 @@ if ($result) {
         $tableData[] = $row;
     }
 } else {
-    echo "Sem resultados para essa consulta! ";
+    $tableData = NULL;
 }
 ?>
 <!DOCTYPE html>
@@ -52,6 +52,8 @@ if ($result) {
                     </div>
                 </div>';
             }
+        }else{
+            echo "Sem resultados para essa consulta!";
         }
         ?>
     </div>
