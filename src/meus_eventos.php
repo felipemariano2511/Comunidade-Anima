@@ -66,6 +66,11 @@
                                                 }
                                                 echo '  
                                                 </div>
+                                                <div class="acessar-evento">
+                                                    <a href="editar_evento.php?id='.$dados['id'].'">Editar<i class="bx bx-edit"></i></a>
+                                                    <a href="evento.php?id='.$dados['id'].'">Visualizar<i class="bx bx-link-external"></i></a>
+
+                                                </div>
                                                 <div class="adm-text">
                                                     <small class="text-body-secondary">Esclarecimento:</small>
                                                     <span>'.$dados['justificativa'].'</span>

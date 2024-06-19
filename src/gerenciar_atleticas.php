@@ -44,7 +44,7 @@
     <link href='https://unpkg.com/boxicons@2.1.1/css/boxicons.min.css' rel='stylesheet'>
     <link rel="stylesheet" href="../src/styles/style-pattern.css">
     <link rel="stylesheet" href="../src/styles/style.css">
-    <link rel="stylesheet" href="../src/styles/gerenciar_usuarios.css">
+    <link rel="stylesheet" href="../src/styles/gerenciar.css">
 </head>
 
 <body>

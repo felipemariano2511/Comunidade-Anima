@@ -101,6 +101,7 @@ if($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['cadastrar'])){
                 
                 <div class="radio-container">
                     <div class="form-check form-check-inline">
+                        <h2>Evento:</h2>
                         <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio1" value="true"checked >
                         <label class="form-check-label" for="inlineRadio1">Restrito</label>
                     </div>

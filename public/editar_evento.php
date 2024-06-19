@@ -38,7 +38,7 @@
         $descricao_inicial = $_POST['descricao_inicial'];
         $descricao_completa = $_POST['descricao_completa'];
         $arquivo = $_FILES['arquivo'];
-        $restrito = isset($_POST['switch_status']) && $_POST['switch_status'] == '1' ? FALSE : TRUE;
+        $restrito = $_POST['inlineRadioOptions'] == '1' ? TRUE : FALSE;
 
         if($arquivo['tmp_name'] == ''){
             $endereco_arquivo = $tableData['arquivo'];
@@ -66,7 +66,7 @@
         $result = mysqli_query($con, $query);
 
         if($result){
-            echo '<script>alert("Atualizado com sucesso!")</script>';
+            echo '<script>alert("Atualizado com sucesso!");window.location.href="editar_evento.php?id='.$id_url.'#";</script>';
         }
     }
 ?>
@@ -129,13 +129,17 @@
                     <button type="button" class="map-btn" onclick="openInGoogleMaps()">Verificar endereço</button>
                 </div>
                 
-                <div class="switch-container">
-                    <span class="label-text">Restrito</span>
-                    <label class="switch">
-                        <input type="checkbox" name="switch_status">
-                        <span class="slider round"></span>
-                    </label>
-                    <span class="label-text">Aberto ao Público</span>
+                <div class="radio-container">
+                    <div class="form-check form-check-inline">
+                        <h2>Evento:</h2>
+                        <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio1" value="1" <?php if($tableData['restrito'] == TRUE) echo "checked"; ?>>
+
+                        <label class="form-check-label" for="inlineRadio1">Restrito</label>
+                    </div>
+                    <div class="form-check form-check-inline">
+                        <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio2" value="0"<?php if($tableData['restrito'] == FALSE) echo "checked"; ?>>
+                        <label class="form-check-label" for="inlineRadio2">Aberto ao Público</label>
+                    </div>
                 </div>
 
                 <div class="input-box">

@@ -155,6 +155,7 @@
     margin-inline: 20px;
     box-shadow: 0px 0px 8px 0px rgba(0,0,0,0.1);
     transition: var(--tran-05);
+    text-decoration: none;
 }
 
 .other-btn a:hover {
@@ -164,6 +165,7 @@
 
 .other-btn i {
     font-size: 20px;
+    color: #707070;
 }
 
 .event-description {
