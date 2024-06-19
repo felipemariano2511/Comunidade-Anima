@@ -79,13 +79,14 @@ td {
     color: #666;
 }
 
-.actions {
+form {
     display: flex;
     justify-content: flex-start;
     gap: 20px;
 }
 
-button.icon-button {
+button.icon-button,
+a.icon-button {
     border: none;
     padding: 8px;
     border-radius: 5px;
