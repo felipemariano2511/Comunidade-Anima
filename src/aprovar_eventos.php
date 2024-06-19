@@ -73,7 +73,7 @@
                                             <p class="card-text">'.$dados['descricao_inicial'].'</p>
                                         </div>
                                         <div class="acessar-evento">
-                                            <a href="evento.php?id='.$dados['id'].'">Acesse Aqui!</a>
+                                            <a href="evento.php?id='.$dados['id'].'">Acesse Aqui!<i class="bx bx-link-external"></i></a>
                                         </div>
                                         <form action="" method="post">
                                             <div class="card-buttons">
