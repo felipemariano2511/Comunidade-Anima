@@ -7,7 +7,7 @@
     if(SessionUser::isLogged()){
         $user_info = SessionUser::getInfo();
     }else{
-        //header("Location: index.php");
+        header("Location: index.php");
     }
     $id_url = isset($_GET['id']) ? $_GET['id'] : '';
 
@@ -18,10 +18,10 @@
             
             $tableData = mysqli_fetch_assoc($result);
         }else{
-            //header('Location: index.php');
+            header('Location: index.php');
         }
     }else{
-        //header('Location: index.php');
+        header('Location: index.php');
     }
 
     if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['salvar'])) {
@@ -44,7 +44,10 @@
             $query = "UPDATE usuario SET email = '$email', nome = '$nome', senha = '$senha', imagem = '$endereco_imagem' WHERE id = $id_url";
         }
         $result = mysqli_query($con, $query);
-        include '../app/includes/get_dados_usuario.php'; 
+        if($id_url == $user_info['id']){
+            include '../app/includes/get_dados_usuario.php'; 
+        }
+        
         header("Location:".$_SERVER['REQUEST_URI']);
 
     }

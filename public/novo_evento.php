@@ -101,10 +101,8 @@ if($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['cadastrar'])){
                 
                 <div class="radio-container">
                     <div class="form-check form-check-inline">
-                        <h2>Evento:</h2>
                         <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio1" value="true"checked >
                         <label class="form-check-label" for="inlineRadio1">Restrito</label>
-                    </div>
                     <div class="form-check form-check-inline">
                         <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio2" value="false">
                         <label class="form-check-label" for="inlineRadio2">Aberto ao Público</label>
@@ -115,7 +113,7 @@ if($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['cadastrar'])){
                     <label for="imagem" class="custom-file-upload">
                         Escolher imagem
                     </label>
-                    <input type="file" id="imagem" name="arquivo" class="file-btn">
+                    <input type="file" id="imagem" name="arquivo" class="file-btn" required>
                 </div>
 
                 <div class="column">
