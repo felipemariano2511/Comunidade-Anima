@@ -24,7 +24,7 @@
     if($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['aprovar'])){
         $id = $_POST['aprovar'];
 
-        $query = "UPDATE eventos SET situacao = 'aprovado' WHERE id = '$id'";
+        $query = "UPDATE eventos SET situacao = 'ativo' WHERE id = '$id'";
         $result = mysqli_query($con, $query);
 
         echo '<script>window.location.href="portal_adm.php?page=AprovarEventos"</script>';
@@ -72,8 +72,9 @@
                                             <h5 class="card-title">'.$dados['titulo'].'</h5>
                                             <p class="card-text">'.$dados['descricao_inicial'].'</p>
                                         </div>
-                                        <a href="evento.php?id='.$dados['id'].'">Acesse Aqui!</a>
-                                        <br>
+                                        <div class="acessar-evento">
+                                            <a href="evento.php?id='.$dados['id'].'">Acesse Aqui!</a>
+                                        </div>
                                         <form action="" method="post">
                                             <div class="card-buttons">
                                                 <div class="buttons-container">

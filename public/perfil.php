@@ -32,9 +32,8 @@
 
         if($imagem['tmp_name'] == ''){
             $endereco_imagem = $tableData['imagem'];
-        }
-
-        if($imagem['error'] === 0) {
+            
+        }elseif($imagem['error'] === 0) {
             $endereco_imagem = '../imgs/usuario/' . $imagem['name'];
             move_uploaded_file($imagem['tmp_name'], $endereco_imagem);
         }
