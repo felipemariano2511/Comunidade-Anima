@@ -1,6 +1,6 @@
 <?php
 
-    $query = "SELECT * FROM eventos WHERE situacao = 'ativo' ORDER BY data_final ASC";
+    $query = "SELECT * FROM eventos ORDER BY data_final ASC";
     $result = mysqli_query($con, $query);
 
     if ($result) {
