@@ -1,0 +1,248 @@
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f4f4f4;
+    margin: 0;
+    padding: 0;
+    display: flex;
+}
+
+.form-container {
+    width: 70%;
+    margin: 20px auto;
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 5px;
+    box-shadow: 0 0 10px rgba(0,0,0,0.1);
+}
+.input-box {
+    position: relative;
+    margin-bottom: 1rem;
+    width: 100%;
+    transition: 150ms cubic-bezier(0.4,0,0.2,1); 
+}
+label {
+    display: block;
+    margin-bottom: 5px;
+    font-weight: bold;
+    color: #393939;
+    font-size: 0.9rem;
+}
+
+.placeholder1 {
+    position: absolute;
+    top: 10px;
+    left: 12px;
+    color: #393939;
+    transition: 150ms cubic-bezier(0.4,0,0.2,1); 
+    pointer-events: none;
+    background-color: transparent;
+    padding: 1px 10px;
+}
+
+input[type="text"]:focus-visible + .placeholder1,
+input[type="text"]:valid + .placeholder1,
+input[type="password"]:focus-visible + .placeholder1,
+input[type="password"]:valid + .placeholder1 {
+    top: -10px;
+    color: var(--primary-color);
+    background-color: white;
+}
+
+
+input[type="text"],
+input[type="date"],
+input[type="time"],
+input[type="number"],
+textarea {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    box-sizing: border-box;
+}
+
+input[type="file"] {
+    margin-top: 10px;
+}
+
+.map-btn {
+    width: 50%;
+    height: 100%;
+    padding: 8px;
+    background-color: var(--primary-color);
+    color: #fff;
+    border: none;
+    padding: 10px 20px;
+    cursor: pointer;
+    border-radius: 5px;
+    font-weight: bold;
+    transition: all 0.15s ease-in-out;
+}
+
+input[type="submit"]{
+    background-color: var(--primary-color);
+    color: #fff;
+    border: none;
+    padding: 10px 20px;
+    cursor: pointer;
+    border-radius: 5px;
+    transition: 0.3s all ease-in-out;
+}
+
+input[type="submit"]:hover, .map-btn:hover {
+    background-color: var(--hover);
+}
+
+input:focus,
+input[type="password"]:focus {
+    outline: none;
+    border: 2px solid var(--primary-color);
+}
+
+.file-btn {
+    display: none; 
+}
+
+.custom-file-upload {
+    display: inline-block;
+    padding: 8px 16px;
+    cursor: pointer;
+    background-color: var(--primary-color);
+    color: white;
+    border-radius: 4px;
+    font-size: 14px;
+    margin-top: 5px;
+    transition: all 0.15s ease-in-out;
+}
+
+.custom-file-upload:hover {
+    background-color: var(--hover);
+}
+
+
+.switch-container {
+    display: flex;
+    align-items: center;
+    margin-bottom: 20px;
+}
+.switch-container .label-text {
+    margin: 0 10px;
+}
+.switch {
+    position: relative;
+    display: inline-block;
+    width: 60px;
+    height: 34px;
+}
+.switch input {
+    opacity: 0;
+    width: 0;
+    height: 0;
+}
+.slider {
+    position: absolute;
+    cursor: pointer;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: #ccc;
+    transition: .4s;
+}
+.slider:before {
+    position: absolute;
+    content: "";
+    height: 26px;
+    width: 26px;
+    left: 4px;
+    bottom: 4px;
+    background-color: white;
+    transition: .4s;
+}
+input:checked + .slider {
+    background-color: var(--primary-color);
+}
+input:not(:checked) + .slider {
+    background-color: rgb(160, 160, 160);
+}
+input:checked + .slider:before {
+    transform: translateX(26px);
+}
+.slider.round {
+    border-radius: 34px;
+}
+.slider.round:before {
+    border-radius: 50%;
+}
+
+.column {
+    display: flex;
+    gap: 3rem;
+}
+
+.row {
+    display: flex;
+    
+}
+
+.submit-btn {
+    font-weight: bold;
+    width: 100%;
+    margin-top: 1rem;
+    transition: all 0.15s ease-in-out;
+}
+
+.label-text {
+    font-size: 12px;
+}
+
+.radio-container {
+    margin: 1rem 0;
+}
+
+.radio-container div label, input {
+    cursor: pointer;
+}
+
+@media (max-width: 915px) {
+
+    .form-container {
+        width: 100%;
+    }
+    
+    .column {
+        flex-direction: column;
+        gap: 1rem;
+    }
+
+    .map-btn {
+        width: 100%;
+        margin-bottom: 1rem;
+    }
+    
+    input[type="text"],
+    textarea {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    box-sizing: border-box;
+    }
+
+    .placeholder {
+        position: absolute;
+        top: 21px;
+        left: 10px;
+        color: #393939;
+        transition: 150ms cubic-bezier(0.4,0,0.2,1); 
+        pointer-events: none;
+        background-color: white;
+        padding: 1px 10px;
+    }
+    
+    input[type="text"]:focus-visible + .placeholder{
+        top: -10px;
+        color: var(--primary-color);
+        background-color: white;
+    }
+}

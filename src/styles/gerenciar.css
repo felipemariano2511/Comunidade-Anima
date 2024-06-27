@@ -1,0 +1,138 @@
+@import url(style.css);
+
+.home-title h1 {
+    font-size: 2.5rem;
+    font-weight: 800;
+    color: #393939;
+    margin: 0;
+}
+
+.home-title p {
+    font-size: 1.2rem;
+    font-weight: 500;
+    color: var(--text-color);
+    margin: 0;
+}
+
+.container {
+    background-color: #fff;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    padding: 20px;
+    width: 90%;
+    text-align: center;
+    overflow-x: auto;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    margin-top: 50px;
+}
+
+.container h1 {
+    font-size: 25px;
+    font-weight: 600;
+    margin-bottom: 20px;
+    color: #555;
+}
+
+#addUserBtn {
+    background-color: var(--primary-color);
+    color: #fff;
+    border: none;
+    padding: 10px 20px;
+    font-size: 16px;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 5px;
+}
+
+#addUserBtn:hover {
+    background-color: var(--hover);
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+}
+
+thead {
+    background-color: #f4f4f4;
+}
+
+th,
+td {
+    padding: 12px;
+    text-align: left;
+    border-bottom: 1px solid #ddd;
+}
+
+th {
+    color: #555;
+}
+
+td {
+    color: #666;
+}
+
+form {
+    display: flex;
+    justify-content: flex-start;
+    gap: 20px;
+}
+
+button.icon-button,
+a.icon-button {
+    border: none;
+    padding: 8px;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.editBtn {
+    background-color: var(--primary-color);
+    color: #fff;
+}
+
+.editBtn:hover {
+    background-color: var(--hover);
+}
+
+.deleteBtn {
+    background-color: #c9302c;
+    color: #fff;
+}
+
+.deleteBtn:hover {
+    background-color: #96201c;
+}
+
+@media screen and (max-width: 800px) {
+
+    th,
+    td {
+        padding: 8px;
+    }
+
+    .actions {
+        flex-direction: column;
+        gap: 0px;
+    }
+
+    .actions button {
+        margin-bottom: 5px;
+    }
+
+    #addUserBtn {
+        width: 100%;
+        padding: 10px;
+    }
+}
