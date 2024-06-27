@@ -11,8 +11,8 @@ if (SessionUser::isLogged()) {
     exit();
 }
 
-if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['cadastrar'])) {
-    $nome = $_POST['nome'];
+if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['cadastrar'])) {
+    $nome = mysqli_real_escape_string($con, $_POST['nome']);
     $email = $_POST['email'];
     $senha = md5($_POST['senha']);
     $nivel = $_POST['inlineRadioOptions'];

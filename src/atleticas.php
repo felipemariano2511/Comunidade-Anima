@@ -1,5 +1,6 @@
 @ -1,119 +1,118 @@
 <?php
+<<<<<<< Updated upstream
     include '../app/includes/config.php';
     
     if($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['search'])){
@@ -23,6 +24,26 @@
         
     } else {
         $sem_resultados = TRUE;
+=======
+include '../app/includes/config.php';
+
+if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['search'])) {
+    $pesquisa = mysqli_real_escape_string($con,ucwords($_POST['search']));
+}
+
+if (!$pesquisa == "") {
+    $query = "SELECT * FROM servicos_universitarios WHERE titulo LIKE '%$pesquisa%' AND servico = 'Atlética' ORDER BY curtidas DESC";
+} else {
+    $query = "SELECT * FROM servicos_universitarios WHERE servico = 'Atlética' ORDER BY curtidas DESC";
+}
+
+$result = mysqli_query($con, $query);
+
+if (mysqli_num_rows($result) > 0) {
+    $tableData = array();
+    while ($row = mysqli_fetch_assoc($result)) {
+        $tableData[] = $row;
+>>>>>>> Stashed changes
     }
 
 ?>
@@ -39,7 +60,7 @@
     <link rel="stylesheet" href="../src/styles/style.css">
     <link rel="stylesheet" href="../src/styles/atleticas.css">
     <link rel="stylesheet" href="../src/styles/eventos.css">
-    <title>Atléticas</title>
+    <title>Comunidade Ânima - Atléticas</title>
 </head>
 
     <section class="home">

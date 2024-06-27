@@ -1,47 +1,74 @@
 <?php
-include "../app/includes/config.php";
-include '../app/Session/User.php';
-use App\Session\User as SessionUser;
+    include "../app/includes/config.php";
+    include '../app/Session/User.php';
+    use App\Session\User as SessionUser;
 
-if(SessionUser::isLogged()){
-    $user_info = SessionUser::getInfo();
-} else {
-    header("Location: index.php");
-    exit();
-}
+    $uri = $_SERVER['REQUEST_URI'];
+    if ($uri == "/Comunidade-Anima/public/editar_evento.php" || $uri == "/Comunidade-Anima/public/editar_evento.php?id=") {
+        header("Location: index.php?page=Home");
+        exit;
+    };
 
-if($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['cadastrar'])){
-    $titulo = mysqli_real_escape_string($con, $_POST['titulo']);
-    $data_inicial = $_POST['data_inicial'];
-    $data_final = $_POST['data_final'];
-    $horario_inicial = $_POST['horario_inicial'];
-    $horario_final = $_POST['horario_final'];
-    $endereco = mysqli_real_escape_string($con, $_POST['endereco']);
-    $descricao_inicial = mysqli_real_escape_string($con, $_POST['descricao_inicial']);
-    $descricao_completa = mysqli_real_escape_string($con, $_POST['descricao_completa']);
-    $arquivo = $_FILES['arquivo'];
-    $restrito = $_POST['inlineRadioOptions'] == '1' ? TRUE : FALSE;
-    $autor = $user_info['id'];
+    $id_url = isset($_GET['id']) ? $_GET['id'] : '';
 
-    if($arquivo['error'] === 0) {
-        $endereco_arquivo = '../imgs/posts/' . $arquivo['name'];
-        move_uploaded_file($arquivo['tmp_name'], $endereco_arquivo);
+    $query = "SELECT * FROM eventos WHERE id = '$id_url'";
+    $result = mysqli_query($con, $query);
 
-        $query = "INSERT INTO eventos(titulo, data_inicial, horario_inicial, data_final, horario_final, endereco, descricao_inicial, descricao_completa, arquivo, situacao, restrito, autor)
-                  VALUES ('$titulo', '$data_inicial', '$horario_inicial', '$data_final', '$horario_final', '$endereco', '$descricao_inicial', '$descricao_completa', '$endereco_arquivo', 'pendente', '$restrito', '$autor')";
+    $tableData = mysqli_fetch_assoc($result);
+
+    if(SessionUser::isLogged()){
+        $user_info = SessionUser::getInfo();
+        if($user_info['id'] != $tableData['autor']){
+            header("Location: index.php");
+        }
+    } else {
+        header("Location: index.php");
+        exit();
+    }
+
+
+
+    if($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['atualizar'])){
+        $titulo = mysqli_real_escape_string($con, $_POST['titulo']);
+        $data_inicial = $_POST['data_inicial'];
+        $data_final = $_POST['data_final'];
+        $horario_inicial = $_POST['horario_inicial'];
+        $horario_final = $_POST['horario_final'];
+        $endereco = mysqli_real_escape_string($con, $_POST['endereco']);
+        $descricao_inicial = mysqli_real_escape_string($con, $_POST['descricao_inicial']);
+        $descricao_completa = mysqli_real_escape_string($con, $_POST['descricao_completa']);
+        $arquivo = $_FILES['arquivo'];
+        $restrito = $_POST['inlineRadioOptions'] == '1' ? TRUE : FALSE;
+
+        if($arquivo['tmp_name'] == ''){
+            $endereco_arquivo = $tableData['arquivo'];
+            
+        }elseif($arquivo['error'] === 0) {
+            $endereco_arquivo = '../imgs/usuario/' . $arquivo['name'];
+            move_uploaded_file($arquivo['tmp_name'], $endereco_arquivo);
+        }
+
+        $query = "UPDATE eventos 
+                    SET titulo = '$titulo',
+                        data_inicial = '$data_inicial',
+                        data_final = '$data_final',
+                        horario_inicial = '$data_final',
+                        horario_final = '$horario_final',
+                        endereco = '$endereco',
+                        descricao_inicial = '$descricao_inicial',
+                        descricao_completa = '$descricao_completa',
+                        arquivo = '$endereco_arquivo',
+                        situacao = 'pendente',
+                        justificativa = 'Seu evento foi editado e precisa de aprovação do administrador. Por favor, aguarde!',
+                        restrito = '$restrito'"
+                        . "WHERE id = '$id_url'";
+
         $result = mysqli_query($con, $query);
 
         if($result){
-            echo '<script>alert("Cadastrado com sucesso, aguarde aprovação!")</script>';
-            header('Location: '.$_SERVER['REQUEST_URI']);
-            exit();
-        } else {
-            echo '<script>alert("Falha no cadastro!")</script>';
+            echo '<script>alert("Atualizado com sucesso!");window.location.href="editar_evento.php?id='.$id_url.'#";</script>';
         }
-    } else {
-        echo '<script>alert("Erro ao fazer upload do arquivo. Por favor, tente novamente!")</script>';
     }
-}
 ?>
 <!DOCTYPE html>
 <html lang="pt-br">
@@ -50,16 +77,16 @@ if($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['cadastrar'])){
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="../src/styles/style.css">
-    <link rel="stylesheet" href="../src/styles/novo_evento.css">
+    <link rel="stylesheet" href="../src/styles/formularios.css">
     <link href='https://unpkg.com/boxicons@2.1.1/css/boxicons.min.css' rel='stylesheet'>
     <link rel="shortcut icon" href="../imgs/dev/favicon.ico" type="image/x-icon">
     <link rel="icon" href="../imgs/dev/favicon.ico" type="image/x-icon">
-    <title>Comunidade Ânima - Novo Evento</title>
+    <title>Comunidade Ânima - Editar Evento</title>
 
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/croppie/2.6.5/croppie.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/croppie/2.6.5/croppie.js" integrity="sha512-vUJTqeDCu0MKkOhuI83/MEX5HSNPW+Lw46BA775bAWIp1Zwgz3qggia/t2EnSGB9GoS2Ln6npDmbJTdNhHy1Yw==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
-    <script src="https://cdn.tiny.cloud/1/dkcuc3lf8zdkfx6zb8p2vuryz2mntql0gvb3f8vtjbqo45zp/tinymce/7/tinymce.min.js" referrerpolicy="origin"></script>
+    <script src="https://cdn.tiny.cloud/1/1urspdm91tdq0tsrsyoyoqy2axv2xbtaajwhi7k8usek8jcd/tinymce/7/tinymce.min.js" referrerpolicy="origin"></script>
     <script>
         function openInGoogleMaps() {
             const address = document.getElementById('endereco').value;
@@ -79,69 +106,72 @@ if($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['cadastrar'])){
 
     <section class="home">
         <div class="text">
-            <h1>Novo Evento</h1>
+            <h1>Editar Evento</h1>
         </div>
         <div class="form-container">
             <form action="#" method="post" enctype="multipart/form-data">
                 <div class="input-box">
-                    <input type="text" id="titulo" name="titulo" required>
+                    <input type="text" id="titulo" name="titulo" value="<?php echo $tableData['titulo']; ?>" required>
+
                     <label for="titulo" class="placeholder1" required>Título</label>
                 </div>
 
                 <div class="input-box">
-                    <input type="text" id="descricao_inicial" name="descricao_inicial" maxlength="30" required>
+                    <input type="text" id="descricao_inicial" name="descricao_inicial" maxlength="70" value="<?php echo $tableData['descricao_inicial']; ?>" required>
                     <label for="descricao_inicial" class="placeholder1" required>Descrição Inicial</label>
                 </div>
 
                 <div class="column">
                     <div class="input-box">
-                        <input type="text" id="endereco" name="endereco" required>
+                        <input type="text" id="endereco" name="endereco" maxlength="100" value="<?php echo $tableData['endereco']; ?>"required>
                         <label for="endereco" class="placeholder1">Endereço</label>
                     </div>
                     <button type="button" class="map-btn" onclick="openInGoogleMaps()">Verificar endereço</button>
                 </div>
                 
-                <div class="switch-container">
-                    <span class="label-text">Restrito</span>
-                    <label class="switch">
-                        <input type="checkbox" name="switch_status">
-                        <span class="slider round"></span>
-                    </label>
-                    <span class="label-text">Aberto ao Público</span>
+                <div class="radio-container">
+                    <div class="form-check form-check-inline">
+                        <h2>Evento:</h2>
+                        <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio1" value="1" <?php if($tableData['restrito'] == TRUE) echo "checked"; ?>>
+
+                        <label class="form-check-label" for="inlineRadio1">Restrito</label>
+                    </div>
+                    <div class="form-check form-check-inline">
+                        <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio2" value="0"<?php if($tableData['restrito'] == FALSE) echo "checked"; ?>>
+                        <label class="form-check-label" for="inlineRadio2">Aberto ao Público</label>
+                    </div>
                 </div>
 
                 <div class="input-box">
-                    <label>Imagem</label>
                     <label for="imagem" class="custom-file-upload">
-                        Escolher arquivo
+                        Escolher imagem
                     </label>
                     <input type="file" id="imagem" name="arquivo" class="file-btn">
                 </div>
-                <img id="preview" src="#" alt="Preview da imagem" style="max-width: 100%; display: none;">
-                
+
                 <div class="column">
                     <div class="input-box">
-                        <label for="data_inicial">Data Inicial</label>
-                        <input type="date" id="data_inicial" name="data_inicial" required>
+                        <label for="data_inicial" >Data Inicial</label>
+                        <input type="date" id="data_inicial" name="data_inicial" value="<?php echo $tableData['data_inicial']; ?>"required>
                         <label for="horario_inicial">Horário Inicial</label>
-                        <input type="time" id="horario_inicial" name="horario_inicial" required>
+                        <input type="time" id="horario_inicial" name="horario_inicial" value="<?php echo $tableData['horario_inicial']; ?>" required>
                     </div>
                     <div class="input-box">
                         <label for="data_final">Data Final</label>
-                        <input type="date" id="data_final" name="data_final" required>
+                        <input type="date" id="data_final" name="data_final" value="<?php echo $tableData['data_final']; ?>" required>
                         <label for="horario_final">Horário Final</label>
-                        <input type="time" id="horario_final" name="horario_final" required>
+                        <input type="time" id="horario_final" name="horario_final" value="<?php echo $tableData['horario_final']; ?>" required>
                     </div>
                 </div>
 
                 <div class="input-box">
                     <label for="descricao_completa">Descrição</label>
-                    <textarea id="descricao_completa" name="descricao_completa"></textarea>
+                    <textarea id="descricao_completa" name="descricao_completa"><?php echo $tableData['descricao_completa'];?>"</textarea>
                 </div>
                 
                 <div class="row">
                     <div class="input-box">
-                        <input type="submit" value="Cadastrar Evento" name="cadastrar" class="submit-btn">
+                        <input type="submit" value="Atualizar Evento" name="atualizar" class="submit-btn">
                     </div>
                 </div>
             </form>
@@ -178,7 +208,7 @@ if($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['cadastrar'])){
                 xhr.onload = () => {
                     if (xhr.status === 403) {
                         reject({
-                            message: 'HTTP Error: ' + xhr.status + ' - ' + xhr.statusText,
+                            message: 'HTTP Error: ' + xhr.status + "Aqui",
                             remove: true
                         });
                         return;
@@ -186,7 +216,7 @@ if($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['cadastrar'])){
 
                     if (xhr.status < 200 || xhr.status >= 300) {
                         console.log(xhr);
-                        reject('HTTP Error: ' + xhr.status + ' - ' + xhr.statusText);
+                        reject('HTTP Error: ' + xhr.statusText);
                         return;
                     }
 
@@ -211,8 +241,6 @@ if($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['cadastrar'])){
             }),
         });
     </script>
-    
-
 </body>
 
 </html>

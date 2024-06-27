@@ -5,14 +5,23 @@
     use App\Session\User as SessionUser;
 
     $user_info = SessionUser::getInfo();
-    $servico = isset($_GET['servico']) ? $_GET['servico'] : '';
+    $id = isset($_GET['id']) ? $_GET['id'] : '';
 
     if ($user_info['nivel'] != "ADM") {
         header("Location: index.php");
         exit();
     } 
 
-    if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['cadastrar'])) {
+    $query = "SELECT * FROM servicos_universitarios WHERE id = '$id'";
+    $result = mysqli_query($con, $query);
+
+    if(mysqli_num_rows($result) > 0){
+        while($row = mysqli_fetch_assoc($result)){
+            $tableData = $row;
+        }
+    }
+
+    if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['atualizar'])) {
         $servico = $_POST['inlineRadioOptions'];
         $titulo = mysqli_real_escape_string($con, $_POST['titulo']);
         $responsavel = mysqli_real_escape_string($con, $_POST['responsavel']);
@@ -22,21 +31,32 @@
         $email = $_POST['email'];
         $arquivo = $_FILES['arquivo'];
 
+        if($arquivo['tmp_name'] == ''){
+            $endereco_arquivo = $tableData['arquivo'];
+        }
+
         if ($arquivo['error'] === 0) {
             $endereco_arquivo = '../imgs/posts/' . $arquivo['name'];
             move_uploaded_file($arquivo['tmp_name'], $endereco_arquivo);
+        }
 
-            $query = "INSERT INTO servicos_universitarios (servico, titulo, responsavel, descricao_inicial, descricao_completa, telefone, email, arquivo)
-                    VALUES ('$servico', '$titulo', '$responsavel', '$descricao_inicial', '$descricao_completa', '$telefone', '$email', '$endereco_arquivo')";
-            $result = mysqli_query($con, $query);
+        $query = "UPDATE servicos_universitarios 
+                        SET servico = '$servico', 
+                            titulo = '$titulo', 
+                            responsavel = '$responsavel', 
+                            descricao_inicial = '$descricao_inicial', 
+                            descricao_completa = '$descricao_completa', 
+                            telefone = '$telefone', 
+                            email = '$email', 
+                            arquivo = '$endereco_arquivo' 
+                        WHERE id = '$id'";
 
-            if ($result) {
-                echo '<script>alert("Cadastrado com sucesso!");window.location("novo_servico.php")</script>';
-            } else {
-                echo '<script>alert("Falha no cadastro!")</script>';
-            }
+        $result = mysqli_query($con, $query);
+
+        if ($result) {
+            echo '<script>alert("Atualizado com sucesso!");</script>';
         } else {
-            echo '<script>alert("Erro ao fazer upload do arquivo. Por favor, tente novamente!");window.location("novo_servico.php")</script>';
+            echo '<script>alert("Falha no cadastro!")</script>';
         }
     }
 ?>
@@ -57,73 +77,59 @@
 
 <body>
     <?php include "../src/components/main_header.php"; ?>
-    <?php include "../src/components/menu_formatted.php"; ?>
+    <?php include "../src/components/menu.php"; ?>
 
     <section class="home">
         <div class="text">
             <?php
-                if($servico == "Comodidade"){
-                    echo '<h1>Nova Comodidade</h1>';
-                }elseif($servico == "Atlética"){
-                    echo '<h1>Nova Atlética</h1>';
-                }else{
-                    echo '<h1>Novo Serviço</h1>';
+                if($tableData['servico'] == "Comodidade"){
+                    echo '<h1>Atualizar Comodidade</h1>';
+                }elseif($tableData['servico'] == "Atlética"){
+                    echo '<h1>Atualizar Atlética</h1>';
                 }
-
             ?>
         </div>
         <div class="form-container">
             <form action="#" method="post" enctype="multipart/form-data">       
                 <div class="radio-container">
                     <?php
-                        if($servico == "Atlética"){
+                        if($tableData['servico'] == "Atlética"){
                             echo   '<div class="form-check form-check-inline">
                                         <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio1" value="Atlética"  checked >
                                         <label class="form-check-label" for="inlineRadio1">Atlética</label>
                                     </div>';
-                        }elseif($servico == "Comodidade"){
+                        }elseif($tableData['servico'] == "Comodidade"){
                             echo   '<div class="form-check form-check-inline">
-                                       <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio2" value="Comodidade"  >
+                                       <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio2" value="Comodidade" checked >
                                        <label class="form-check-label" for="inlineRadio2">Comodidade</label>
                                     </div>';
-                        }else{
-                            echo   '<div class="form-check form-check-inline">
-                                        <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio1" value="Atlética"   >
-                                        <label class="form-check-label" for="inlineRadio1">Atlética</label>
-                                    </div>
-                                    <div class="form-check form-check-inline">
-                                       <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio2" value="Comodidade"  >
-                                       <label class="form-check-label" for="inlineRadio2">Comodidade</label>
-                                    </div>';
-                        }
-                            
+                        } 
                     ?>
                 </div>
-
                 <div class="column">
                     <div class="input-box">
-                        <input type="text" id="titulo" name="titulo" required>
+                        <input type="text" id="titulo" name="titulo" maxlength="30" value="<?php echo $tableData['titulo']?>" required>
                         <label for="titulo" class="placeholder1" required>Título</label>
                     </div>
                     <div class="input-box">
-                        <input type="text" id="responsavel" name="responsavel" required>
+                        <input type="text" id="responsavel" name="responsavel" maxlength="60" value="<?php echo $tableData['responsavel']?>" required>
                         <label for="responsavel" class="placeholder1" required>Responsável</label>
                     </div>
                 </div>
 
                 <div class="column">
                     <div class="input-box">
-                        <input type="text" id="email" name="email" required>
+                        <input type="text" id="email" name="email" maxlength="50" value="<?php echo $tableData['email']?>" required>
                         <label for="email" class="placeholder1" required>E-mail</label>
                     </div>
                     <div class="input-box">
-                        <input type="text" maxlength="15" id="telefone" name="telefone" required>
+                        <input type="text" maxlength="15" id="telefone" name="telefone" value="<?php echo $tableData['telefone']?>" required>
                         <label for="telefone" class="placeholder1" required>Telefone</label>
                     </div>
                 </div>
 
                 <div class="input-box">
-                    <input type="text" id="descricao_inicial" name="descricao_inicial" maxlength="60" required>
+                    <input type="text" id="descricao_inicial" name="descricao_inicial" maxlength="70" value="<?php echo $tableData['descricao_inicial']?>" maxlength="60" required>
                     <label for="descricao_inicial" class="placeholder1" required>Descrição Inicial</label>
                 </div>
 
@@ -136,12 +142,12 @@
 
                 <div class="input-box">
                     <label for="descricao_completa">Descrição Completa</label>
-                    <textarea id="descricao_completa" name="descricao_completa"></textarea>
+                    <textarea id="descricao_completa" name="descricao_completa" ><?php echo $tableData['descricao_completa']?></textarea>
                 </div>
 
                 <div class="row">
                     <div class="input-box">
-                        <input type="submit" value="Cadastrar <?php if($servico == "Atlética"){echo "Atlética";}elseif($servico == "Comodidade"){echo "Comodidade";}else{echo "Serviço";} ?>" name="cadastrar" class="submit-btn">
+                        <input type="submit" value="Atualizar <?php if($tableData['servico'] == "Atlética"){echo "Atlética";}elseif($tableData['servico'] == "Comodidade"){echo "Comodidade";}?>" name="atualizar" class="submit-btn">
                     </div>
                 </div>
             </form>
@@ -156,7 +162,6 @@
             plugins: 'anchor autolink charmap codesample emoticons image link lists media searchreplace table visualblocks wordcount checklist mediaembed casechange export formatpainter pageembed linkchecker a11ychecker tinymcespellchecker permanentpen powerpaste advtable advcode editimage advtemplate ai mentions tinycomments tableofcontents footnotes mergetags autocorrect typography inlinecss markdown',
             toolbar: 'undo redo | blocks fontfamily fontsize | bold italic underline strikethrough | link image media table mergetags | addcomment showcomments | spellcheckdialog a11ycheck typography | align lineheight | checklist numlist bullist indent outdent | emoticons charmap | removeformat',
             tinycomments_mode: 'embedded',
-            tinycomments_author: '1urspdm91tdq0tsrsyoyoqy2axv2xbtaajwhi7k8usek8jcd',
             mergetags_list: [
                 { value: 'First.Name', title: 'First Name' },
                 { value: 'Email', title: 'Email' },
