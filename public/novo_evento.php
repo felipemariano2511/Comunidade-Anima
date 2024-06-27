@@ -113,7 +113,7 @@ if($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['cadastrar'])){
                     <label for="imagem" class="custom-file-upload">
                         Escolher imagem
                     </label>
-                    <input type="file" id="imagem" name="arquivo" class="file-btn" required>
+                    <input type="file" id="imagem" name="arquivo" class="file-btn" onchange="previewImage(event)" >
                 </div>
                 <img id="preview" src="#" alt="Preview da imagem" style="max-width: 100%; display: none;">
 
@@ -209,6 +209,23 @@ if($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['cadastrar'])){
             }),
         });
     </script>
+    <script>
+        function previewImage(event) {
+        var input = event.target;
+
+        if (input.files && input.files[0]) {
+            var reader = new FileReader();
+
+            reader.onload = function(e) {
+            document.getElementById('preview').src = e.target.result;
+            document.getElementById('preview').style.display = 'block';
+            };
+
+            reader.readAsDataURL(input.files[0]);
+        }
+        }
+    </script>
+
 </body>
 
 </html>
