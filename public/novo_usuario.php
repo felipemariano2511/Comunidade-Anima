@@ -11,7 +11,7 @@ if (SessionUser::isLogged()) {
     exit();
 }
 
-if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['cadastrar'])) {
+if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['cadastrar'])) {
     $nome = mysqli_real_escape_string($con, $_POST['nome']);
     $email = $_POST['email'];
     $senha = md5($_POST['senha']);
@@ -24,8 +24,6 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['cadastrar'])) {
 
     if ($result) {
         echo '<script>alert("Usuário cadastrado com sucesso!")</script>';
-        header('Location: '.$_SERVER['REQUEST_URI']);
-        exit();
     } else {
         echo '<script>alert("Falha no cadastro!")</script>';
     }
@@ -47,7 +45,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['cadastrar'])) {
 
 <body>
     <?php include "../src/components/main_header.php"; ?>
-    <?php include "../src/components/menu_formatted.php"; ?>
+    <?php include "../src/components/menu.php"; ?>
 
     <section class="home">
         <div class="text">
