@@ -2,20 +2,21 @@
   /***************************************************
    * Only these origins are allowed to upload images *
    ***************************************************/
-  $accepted_origins = array($_SERVER['HTTP_HOST']);
+  $accepted_origins = array( 'http://localhost/Comunidade-Anima/', 'http://127.0.0.1/Comunidade-Anima/public/upload_imgs.php', 'http://127.0.0.1/Comunidade-Anima/');
 
   /*********************************************
    * Change this line to set the upload folder *
    *********************************************/
   $imageFolder = "../imgs/posts/";
   $name = uniqid();
+  $server = $_SERVER['HTTP_ORIGIN'] ;
 
   if (isset($_SERVER['HTTP_ORIGIN'])) {
     // same-origin requests won't set an origin. If the origin is set, it must be valid.
     if (in_array($_SERVER['HTTP_ORIGIN'], $accepted_origins)) {
       header('Access-Control-Allow-Origin: ' . $_SERVER['HTTP_ORIGIN']);
     } else {
-      header("HTTP/1.1 403 Origin Denied");
+      header("HTTP/1.1 403 Origem negada!", $server);
       return;
     }
   }
@@ -38,13 +39,13 @@
 
     // Sanitize input
     if (preg_match("/([^\w\s\d\-_~,;:\[\]\(\).])|([\.]{2,})/", $temp['name'])) {
-        header("HTTP/1.1 400 Invalid file name.");
+        header("HTTP/1.1 400 Nome de arquivo inválido! Remova quaisquer caracter especial..");
         return;
     }
 
     // Verify extension
     if (!in_array(strtolower(pathinfo($temp['name'], PATHINFO_EXTENSION)), array("gif", "jpg", "jpeg", "png"))) {
-        header("HTTP/1.1 400 Invalid extension.");
+        header("HTTP/1.1 400 Extensão Inválida! Somente suportados '.gif', '.jpg', '.jpeg' e '.png'.");
         return;
     }
 

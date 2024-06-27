@@ -34,7 +34,7 @@ if ($conn->query($sql) === TRUE) {
             data_final DATE,
             horario_final TIME,
             endereco VARCHAR(100),
-            descricao_inicial VARCHAR(70),
+            descricao_inicial VARCHAR(50),
             descricao_completa TEXT,
             arquivo VARCHAR(400),
             situacao VARCHAR(10),

@@ -1,44 +1,3 @@
-<?php
-    include '../app/includes/config.php';
-    use App\Session\User as SessionUser;
-
-    if(SessionUser::isLogged()){
-        $user_info = SessionUser::getInfo();
-    }
-    if($user_info['nivel'] != "ADM"){
-        header("Location: index.php");
-    }
-
-    $query = "SELECT * FROM eventos WHERE situacao = 'pendente'";
-    $result = mysqli_query($con, $query);
-
-    if (mysqli_num_rows($result) > 0) {
-        $tableData = array();
-        while ($row = mysqli_fetch_assoc($result)) {
-            $tableData[] = $row;
-        }
-    } else {
-        $tableData = "";
-    }
-
-    if($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['aprovar'])){
-        $id = $_POST['aprovar'];
-
-        $query = "UPDATE eventos SET situacao = 'ativo' WHERE id = '$id'";
-        $result = mysqli_query($con, $query);
-
-        echo '<script>window.location.href="portal_adm.php?page=AprovarEventos"</script>';
-
-    }elseif($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['recusar'])){
-        $id = $_POST['recusar'];
-
-        $query = "UPDATE eventos SET situacao = 'recusado', justificativa = 'Seu evento foi recusado por não estra coerente' WHERE id = '$id'";
-        $result = mysqli_query($con, $query);
-
-        echo '<script>window.location.href="portal_adm.php?page=AprovarEventos"</script>';
-
-    }
-?>
 <!DOCTYPE html>
 <html lang="pt-br">
 
@@ -61,37 +20,88 @@
         </div>
         <div class="cards-container">
             <div class="row row-cols-1 row-cols-md-3 g-5">
-                <?php
-                    if (is_array($tableData) && !empty($tableData)) {
-                        foreach ($tableData as $dados) {
-                            echo '
-                                <div class="col">
-                                    <div class="card h-100">
-                                        <img src="'.$dados['arquivo'].'" class="card-img-top" alt="...">
-                                        <div class="card-body">
-                                            <h5 class="card-title">'.$dados['titulo'].'</h5>
-                                            <p class="card-text">'.$dados['descricao_inicial'].'</p>
-                                        </div>
-                                        <div class="acessar-evento">
-                                            <a href="evento.php?id='.$dados['id'].'">Acesse Aqui!<i class="bx bx-link-external"></i></a>
-                                        </div>
-                                        <form action="" method="post">
-                                            <div class="card-buttons">
-                                                <div class="buttons-container">
-                                                    <button class="aprovar" name="aprovar" value="'.$dados['id'].'">Aprovar</button>
-                                                    <button class="recusar" name="recusar" value="'.$dados['id'].'">Recusar</button>
-                                                </div>
-                                            </div>
-                                        </form>
-                                    </div>
-                                </div>';
+                <div class="col">
+                    <div class="card h-100">
+                        <img src="../imgs/card/marciaoshowdebola.jpg" class="card-img-top" alt="...">
+                        <div class="card-body">
+                            <h5 class="card-title">Marcio e Marcelo - Graxa Véia</h5>
+                            <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This card has even longer content than the first to show that equal height action.</p>
+                        </div>
+                        <div class="card-footer">
+                            <div class="status">
+                                <small class="text-body-secondary">Situação:</small>
+                                <a class="recusado">Recusado</a>
+                            </div>
+                            <div class="adm-text">
+                                <small class="text-body-secondary">Esclarecimento:</small>
+                                <span>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Voluptatem delectus, consectetur harum ex culpa vero! Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quae, quasi.</span>
+                            </div>
+                        </div>
+                        <form action="" method="post">
+                            <div class="card-buttons">
+                                <div class="buttons-container">
+                                    <button class="aprovar">Aprovar</button>
+                                    <button class="recusar">Recusar</button>
+                                </div>
+                            </div>
+                        </form>
 
-                        }
-                    
-                    }else{
-                        echo '<h2>Nenhum evento aguardando aprovação!</h2>';
-                    }
-                ?>
+                    </div>
+                </div>
+                <div class="col">
+                    <div class="card h-100">
+                        <img src="../imgs/card/teste.webp" class="card-img-top" alt="...">
+                        <div class="card-body">
+                            <h5 class="card-title">Acampamento</h5>
+                            <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This card has even longer content than the first to show that equal height action.</p>
+                        </div>
+                        <div class="card-footer">
+                            <div class="status">
+                                <small class="text-body-secondary">Situação:</small>
+                                <a class="pendente">Pendente</a>
+                            </div>
+                            <div class="adm-text">
+                                <small class="text-body-secondary">Esclarecimento:</small>
+                                <span>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Voluptatem delectus, consectetur harum ex culpa vero! Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quae, quasi.</span>
+                            </div>
+                        </div>
+                        <form action="" method="post">
+                            <div class="card-buttons">
+                                <div class="buttons-container">
+                                    <button class="aprovar">Aprovar</button>
+                                    <button class="recusar">Recusar</button>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+                <div class="col">
+                    <div class="card h-100">
+                        <img src="../imgs/card/avalanche.jpg" class="card-img-top" alt="...">
+                        <div class="card-body">
+                            <h5 class="card-title">Avalanche - Cerveijada UFPR</h5>
+                            <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This card has even longer content than the first to show that equal height action.</p>
+                        </div>
+                        <div class="card-footer">
+                            <div class="status">
+                                <small class="text-body-secondary">Situação:</small>
+                                <a class="aprovado">Aprovado</a>
+                            </div>
+                            <div class="adm-text">
+                                <small class="text-body-secondary">Esclarecimento:</small>
+                                <span>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Voluptatem delectus, consectetur harum ex culpa vero! Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quae, quasi.</span>
+                            </div>
+                        </div>
+                        <form action="" method="post">
+                            <div class="card-buttons">
+                                <div class="buttons-container">
+                                    <button class="aprovar">Aprovar</button>
+                                    <button class="recusar">Recusar</button>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
             </div>
         </div>
     </section>

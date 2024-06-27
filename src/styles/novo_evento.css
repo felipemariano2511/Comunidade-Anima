@@ -42,9 +42,7 @@ label {
 }
 
 input[type="text"]:focus-visible + .placeholder1,
-input[type="text"]:valid + .placeholder1,
-input[type="password"]:focus-visible + .placeholder1,
-input[type="password"]:valid + .placeholder1 {
+input[type="text"]:valid + .placeholder1 {
     top: -10px;
     color: var(--primary-color);
     background-color: white;
@@ -54,7 +52,6 @@ input[type="password"]:valid + .placeholder1 {
 input[type="text"],
 input[type="date"],
 input[type="time"],
-input[type="number"],
 textarea {
     width: 100%;
     padding: 10px;
@@ -78,7 +75,6 @@ input[type="file"] {
     cursor: pointer;
     border-radius: 5px;
     font-weight: bold;
-    transition: all 0.15s ease-in-out;
 }
 
 input[type="submit"]{
@@ -88,21 +84,19 @@ input[type="submit"]{
     padding: 10px 20px;
     cursor: pointer;
     border-radius: 5px;
-    transition: 0.3s all ease-in-out;
 }
 
 input[type="submit"]:hover, .map-btn:hover {
     background-color: #7d00c5;
 }
 
-input:focus,
-input[type="password"]:focus {
+input:focus {
     outline: none;
     border: 2px solid var(--primary-color);
 }
 
 .file-btn {
-    display: none; 
+    display: none; /* Ocultar o input file real */
 }
 
 .custom-file-upload {
@@ -114,7 +108,6 @@ input[type="password"]:focus {
     border-radius: 4px;
     font-size: 14px;
     margin-top: 5px;
-    transition: all 0.15s ease-in-out;
 }
 
 .custom-file-upload:hover {
@@ -191,7 +184,6 @@ input:checked + .slider:before {
     font-weight: bold;
     width: 100%;
     margin-top: 1rem;
-    transition: all 0.15s ease-in-out;
 }
 
 .label-text {
@@ -239,15 +231,4 @@ input:checked + .slider:before {
         color: var(--primary-color);
         background-color: white;
     }
-<<<<<<< Updated upstream
 }
-=======
-}
-#preview {
-    display: none;
-    max-width: 200px;
-    height: auto;
-    border-top-right-radius: 4px;
-    border-bottom-right-radius: 4px;
-}
->>>>>>> Stashed changes

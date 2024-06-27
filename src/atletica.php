@@ -1,26 +1,16 @@
 <!DOCTYPE html>
-<html lang="pt-br">
+<html lang="en">
 
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     <link href='https://unpkg.com/boxicons@2.1.1/css/boxicons.min.css' rel='stylesheet'>
     <link rel="stylesheet" href="styles/style-pattern.css">
-    <link rel="stylesheet" href="styles/style.css">
-    <link rel="stylesheet" href="styles/perfil.css">
-    <title>Eventos</title>
+    <link rel="stylesheet" href="styles/atletica.css">
 </head>
 
 <body>
-    <header class="header-main">
-        <div class="container-header">
-            <a href="index.php?page=Home">
-                <img src="../imgs/dev/logo-anima-1024-white.png" alt="" width="100px">
-            </a>
-        </div>
-    </header>
     <nav class="sidebar close">
         <header>
             <div class="image-text">
@@ -29,15 +19,12 @@
                         <img src="../imgs/usuario/user-1.webp" alt="">
                     </span>
                 </a>
-
-
                 <div class="text logo-text">
                     <span class="name">Felipe</span>
                     <span class="profession">Ciência da computação</span>
                 </div>
             </div>
         </header>
-
         <div class="menu-bar">
             <div class="menu">
 
@@ -49,7 +36,6 @@
                             <span class="text nav-text">Menu</span>
                         </a>
                     </li>
-
 
                     <li class="nav-link">
                         <a href="#">
@@ -107,30 +93,37 @@
             </div>
         </div>
     </nav>
-    <form action="" method="post">
-        <section class="home">
-            <div class="home-title">
-                <h1>Minhas Informações</h1>
-                <p>Confira os dados do seu perfil</p>
+    <section class="home">
+        <div class="event-img">
+            <img src="../imgs/card/avalanche.jpg" alt="">
+        </div>
+        <div class="event-img-small">
+            <img src="../imgs/card/avalanche.jpg" alt="">
+        </div>
+        <div class="event-text">
+            <div class="event-name">
+                <h1>Avalanche</h1>
             </div>
-            <div class="login">
-                <div class="login-container">
-                    <div class="profile-img">
-                        <img src="../imgs/card/marciaoshowdebola.jpg" alt="">
-                        <input type="file" name="foto_perfil" id="fileInput">
-                        <label for="fileInput" class="custom-file-upload">Alterar Foto</label>
-                    </div>
-                    <div class="profile-info">
-                        <h1>Meus Dados</h1>
-                        <input type="email" name="email" id="" placeholder="Email">
-                        <input type="text" name="" id="" placeholder="Nome">
-                        <input type="password" name="" id="" placeholder="Senha">
-                        <input type="submit" value="Salvar" name="salvar" class="botao">
-                    </div>
-                </div>
+        </div>
+        <div class="atletica-container">
+            <div class="atletica-description">
+                <h1>Informações</h1>
+                <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Nihil saepe tempore quia. Perspiciatis esse nobis quia eum asperiores eaque modi est dolore dicta ab quidem cupiditate minima aliquam aspernatur iure architecto deserunt, cum dignissimos aut dolores id in veniam maxime? Illo explicabo voluptatum autem ducimus magnam nisi molestiae eaque blanditiis!</p>
             </div>
-        </section>
-    </form>
+        </div>
+    </section>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            document.querySelectorAll('.heart-icon').forEach(function(icon) {
+                icon.addEventListener('click', function() {
+                    this.classList.toggle('bx-heart');
+                    this.classList.toggle('bxs-heart');
+                    this.classList.toggle('liked');
+                });
+            });
+        });
+    </script>
 
     <script>
         const body = document.querySelector('body'),
@@ -161,3 +154,5 @@
         });
     </script>
 </body>
+
+</html>

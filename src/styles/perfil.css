@@ -1,4 +1,19 @@
-@import url(style.css);
+:root {
+    --body-color: #E4E9F7;
+    --sidebar-color: #FFF;
+    --primary-color: #9800ee;
+    --btn-hover: #7d00c5;
+    --primary-color-light: #F6F5FF;
+    --toggle-color: #DDD;
+    --text-color: #707070;
+
+    --tran-02: all 0.2s ease;
+    --tran-03: all 0.2s ease;
+    --tran-03: all 0.3s ease;
+    --tran-04: all 0.3s ease;
+    --tran-05: all 0.3s ease;
+    --tran-06: all 0.5s ease;
+}
 
 .home-title h1 {
     font-size: 2.5rem;
@@ -24,7 +39,7 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    width: 60%;
+    width: 80%;
     height: auto;
     background-color: white;
     border-radius: 10px;
@@ -41,15 +56,11 @@
     justify-content: center;
     flex-direction: column;
     align-items: center;
-    border-radius: 8px;
+    padding: 20px;
 }
 
 .profile-img img {
     border-radius: 10px;
-    object-fit: cover;
-    object-position: center;
-    width: 400px;
-    height: 400px;
 }
 
 input[type="file"] {
@@ -57,9 +68,8 @@ input[type="file"] {
 }
 
 .custom-file-upload {
-    position: relative;
     text-align: center;
-    background-color: var(--primary-color);
+    background-color: #9800ee;
     color: var(--primary-color-light);
     font-weight: 600;
     font-size: 14px;
@@ -68,11 +78,10 @@ input[type="file"] {
     padding: 4px 10px;
     display: inline-block;
     cursor: pointer;
-    transition: 0.3s all ease-in-out;
 }
 
 .custom-file-upload:hover {
-    background-color: var(--hover);
+    background-color: #7d00c5;
 }
 
 .profile-info {
@@ -121,11 +130,10 @@ input[type="submit"] {
     border: none;
     outline: none;
     padding: 8px 10px 8px 10px;
-    transition: 0.3s all ease-in-out;
 }
 
 input[type="submit"]:hover {
-    background-color: var(--hover);
+    background-color: var(--btn-hover);
 }
 
 @media screen and (max-width: 1200px) {
@@ -144,7 +152,7 @@ input[type="submit"]:hover {
 
     .profile-img,
     .profile-info {
-        margin: 20px;
+        margin: 0px;
         width: 90%;
     }
     .profile-info h1 {

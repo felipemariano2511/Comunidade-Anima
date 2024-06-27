@@ -1,10 +1,5 @@
 <?php
-    include_once '../app/Session/User.php'; 
     use App\Session\User as SessionUser;
-
-    if(SessionUser::isLogged()){
-        $user_info = SessionUser::getInfo();
-    }
 ?>
 <!DOCTYPE html>
 <html lang="pt-br">
@@ -15,28 +10,30 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
     <link href='https://unpkg.com/boxicons@2.1.1/css/boxicons.min.css' rel='stylesheet'>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
-    <link rel="stylesheet" href="../src/styles/menu_formatted.css">
+    <link rel="stylesheet" href="../src/styles/style.css">
     
 </head>
 <nav class="sidebar close">
         <header>
         <div class="image-text">
             <a href="<?php if(!SessionUser::isLogged()){echo 'login.php';}else{echo  'perfil.php?id='.$user_info['id'].'';}?>">
-                <span class="image">
+                    <span class="image">
                     <img src="<?php if(SessionUser::isLogged()){echo  $user_info['imagem'];}else{echo "../imgs/usuario/user-1.webp";} ?>" alt="Foto de perfil">
-                </span>
-            </a>
-        <div class="text logo-text">
-            <span class="name">
-                <?php
-                    if(SessionUser::isLogged()){
-                        echo "<a href='perfil.php?id=".$user_info['id']."' style='text-decoration: none; color: #707070;'> ".$user_info['firstName']." </a>";
-                    }else{
-                        echo "<a href='login.php' class='text nav-text' style='text-decoration: none; color: #8C52FF; text-weight: 500; margin-left: 5px;'>Fazer Login<i class='bx bx-log-in'></i></a>";
-                    }
-                ?>
-            </span>
-        </div>
+                    </span>
+                </a>
+                <div class="text logo-text">
+                    <span class="name">
+                        <?php
+                            if(SessionUser::isLogged()){
+                                $user_info = SessionUser::getInfo();
+
+                                echo "<a href='perfil.php'>".$user_info['firstName']."</a>";
+                            }else{
+                                echo '<a href="login.php" class="text nav-text" style="text-decoration: none;">Login</a>';
+                            }
+                        ?>
+                    </span>
+                </div>
         </header>
         <div class="menu-bar">
             <div class="menu">
@@ -81,7 +78,7 @@
                                         </a>
                                     </li>
                                     <li class="nav-link">
-                                        <a href="index.php?page=MeusEventos">
+                                        <a href="?page=MeusEventos">
                                             <i class="bx bi-layout-text-window-reverse icon"></i>
                                             <span class="text nav-text">Meus eventos</span>
                                         </a>
@@ -150,8 +147,5 @@
             }
         });
     </script>
-    <style>
-    
-    </style>
 </body>
 </html>

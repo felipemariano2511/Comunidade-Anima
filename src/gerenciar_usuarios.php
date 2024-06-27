@@ -11,6 +11,8 @@
             while($row = mysqli_fetch_assoc($result)){
                 $tableData[] = $row;
             }
+        }else{
+            $tableData = null;
         }
     }else{
         header('Location: index.php');
@@ -23,8 +25,9 @@
         $result = mysqli_query($con, $query);
 
         if($result){
-            echo '<script>alert("Usuário deletado com sucesso!");window.location.href="portal_adm.php?page=GerenciarUsuários";</script>';
-
+            echo '<script>alert("O usuário foi deletado com sucesso!")</script>';
+            header('Location: '.$_SERVER['REQUEST_URI']);
+            exit();
         }
         
     }
@@ -43,7 +46,7 @@
     <link href='https://unpkg.com/boxicons@2.1.1/css/boxicons.min.css' rel='stylesheet'>
     <link rel="stylesheet" href="../src/styles/style-pattern.css">
     <link rel="stylesheet" href="../src/styles/style.css">
-    <link rel="stylesheet" href="../src/styles/gerenciar.css">
+    <link rel="stylesheet" href="../src/styles/gerenciar_usuarios.css">
     <title>Comunidade Ânima - Gerenciar usuários</title>
 </head>
     <section class="home">
@@ -74,7 +77,7 @@
                                         <td>************************</td>
                                         <td class="actions">
                                             <form method="POST">
-                                                <a href="perfil.php?id='.$data['id'].'" class="icon-button editBtn" name="edit"><i class="bx bx-edit"></i></a>
+                                                <button class="icon-button editBtn" name="edit"><i class="bx bx-edit"></i></button>
                                                 <button class="icon-button deleteBtn" value="'.$data['id'].'" name="delete"><i class="bx bx-trash"></i></button>
                                             </form>
                                         </td>

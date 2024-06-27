@@ -1,5 +1,3 @@
-@import url(style.css);
-
 ol,
 ul {
   padding-left: 0rem;
@@ -52,11 +50,11 @@ ul {
 }
 
 .card-buttons a:hover {
-  background-color: var(--hover);
+  background-color: #7d00c5;
 }
 
 .card-buttons a:focus {
-  background-color: var(--hover);
+  background-color: #7d00c5;
 }
 
 .card-buttons i:hover {

@@ -1,16 +1,3 @@
-.home-title h1 {
-    font-size: 2.5rem;
-    font-weight: 800;
-    color: #393939;
-    margin: 0;
-}
-
-.home-title p {
-    font-size: 1.2rem;
-    font-weight: 500;
-    color: var(--text-color);
-}
-
 .col img {
     aspect-ratio: 14/9;
 }
@@ -65,56 +52,4 @@
 
 .adm-text span {
     color: #707070;
-}
-
-.card-buttons {
-    margin-top: 10px;
-}
-
-.buttons-container {
-    display: flex;
-    justify-content: space-between;
-}
-
-.buttons-container button {
-    width: 50%;
-    border-radius: 2px;
-    color: white;
-    padding: 4px;
-}
-
-.aprovar {
-    background-color: #3b9f3b;
-}
-
-.recusar {
-    background-color: #e14343;
-}
-.acessar-evento {
-    display: flex;
-    justify-content: center;
-    text-decoration-color: white;
-    margin-bottom: 10px;
-}
-
-.acessar-evento a {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    background-color: #393939;
-    color: white;
-    font-weight: 600;
-    padding: 5px 10px;
-    border-radius: 8px;
-    transition: .2s ease;
-    margin: 10px;
-}
-
-.acessar-evento a:hover {
-    background-color: #222222;
-    
-}
-
-.acessar-evento i {
-    margin-left: 5px;
 }

@@ -2,9 +2,7 @@
     include_once '../app/Session/User.php'; 
     use App\Session\User as SessionUser;
 
-    if(SessionUser::isLogged()){
-        $user_info = SessionUser::getInfo();
-    }
+    $user_info = SessionUser::getInfo();
 
     $pagina = isset($_GET['page']) ? $_GET['page'] : '';
 
@@ -57,22 +55,26 @@
     <nav class="sidebar close">
         <header>
         <div class="image-text">
-            <a href="<?php if(!SessionUser::isLogged()){echo 'login.php';}else{echo  'perfil.php?id='.$user_info['id'].'';}?>">
-                <span class="image">
-                    <img src="<?php if(SessionUser::isLogged()){echo  $user_info['imagem'];}else{echo "../imgs/usuario/user-1.webp";} ?>" alt="Foto de perfil">
-                </span>
-            </a>
-        <div class="text logo-text">
-            <span class="name">
-                <?php
-                    if(SessionUser::isLogged()){
-                        echo "<a href='perfil.php?id=".$user_info['id']."' style='text-decoration: none; color: #707070;'> ".$user_info['firstName']." </a>";
-                    }else{
-                        echo "<a href='login.php' class='text nav-text' style='text-decoration: none; color: #8C52FF; text-weight: 500; margin-left: 5px;'>Fazer Login<i class='bx bx-log-in'></i></a>";
-                    }
-                ?>
-            </span>
-        </div>
+                <a href="<?php if(!SessionUser::isLogged()){echo 'login.php';}else{echo  'perfil.php?id='.$user_info['id'].'';}?>">
+                    <span class="image">
+                        <img src="<?php if(SessionUser::isLogged()){echo  $user_info['imagem'];}else{echo "../imgs/usuario/user-1.webp";} ?>" alt="Foto de perfil">
+
+                    </span>
+                </a>
+
+
+                <div class="text logo-text">
+                    <span class="name"><?php
+                                            if(SessionUser::isLogged()){
+                                                $user_info = SessionUser::getInfo();
+
+                                                echo "<a href='perfil.php?id=".$user_info['id']."'>".$user_info['firstName']."</a>";
+                                            }else{
+                                                echo "<a href='login.php' class='text nav-text' style='text-decoration: none; color: #9800ee; text-weight: 500; margin-left: 5px;'>Fazer Login<i class='bx bx-log-in'></i></a>";
+                                            }
+                                        ?>
+                    </span>
+                </div>
 
         </header>
 
@@ -142,31 +144,30 @@
                         </a>
                     </li>
                     <?php
-                    if(SessionUser::isLogged()){
-                        if($user_info['nivel'] == "ADM"){
-                            echo '<li class="nav-link">
-                                    <a href="portal_adm.php">
-                                        <i class="bx bx-check-shield icon"></i>
-                                        <span class="text nav-text">Portal ADM</span>
-                                    </a>
-                                </li>';
-                        }
-                    }    
+                        if(SessionUser::isLogged()){
+                            if($user_info['nivel'] == "ADM"){
+                                echo '<li class="nav-link">
+                                        <a href="portal_adm.php">
+                                            <i class="bx bx-check-shield icon"></i>
+                                            <span class="text nav-text">Portal ADM</span>
+                                        </a>
+                                    </li>';
+                            }
+                        }    
                     ?>
                 </ul>
             </div>
             <?php 
-
-            if(SessionUser::isLogged()){
-                echo '<div class="bottom-content">
-                        <li class="">
-                            <a href="../app/includes/logout.php">
-                                <i class="bx bx-log-out icon"></i>
-                                <span class="text nav-text">Logout</span>
-                            </a>
-                        </li>
-                     </div>';
-            }
+                if(SessionUser::isLogged()){
+                    echo '<div class="bottom-content">
+                            <li class="">
+                                <a href="../app/includes/logout.php">
+                                    <i class="bx bx-log-out icon"></i>
+                                    <span class="text nav-text">Logout</span>
+                                </a>
+                            </li>
+                        </div>';
+                }
             ?>
         </div>
 

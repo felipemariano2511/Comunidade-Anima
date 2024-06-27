@@ -1,4 +1,35 @@
-@import url(style.css);
+:root {
+    --body-color: #E4E9F7;
+    --sidebar-color: #FFF;
+    --primary-color: #9800ee;
+    --primary-color-light: #F6F5FF;
+    --toggle-color: #DDD;
+    --text-color: #707070;
+
+    --tran-02: all 0.2s ease;
+    --tran-03: all 0.2s ease;
+    --tran-03: all 0.3s ease;
+    --tran-04: all 0.3s ease;
+    --tran-05: all 0.3s ease;
+    --tran-06: all 0.5s ease;
+}
+
+.btn-primary {
+    --bs-btn-color: #fff;
+    --bs-btn-bg: var(--primary-color);
+    --bs-btn-border-color: var(--primary-color);
+    --bs-btn-hover-color: #fff;
+    --bs-btn-hover-bg: #7d00c5;
+    --bs-btn-hover-border-color: #0a58ca;
+    --bs-btn-focus-shadow-rgb: 49, 132, 253;
+    --bs-btn-active-color: #fff;
+    --bs-btn-active-bg: var(--primary-color);
+    --bs-btn-active-border-color: var(--primary-color);
+    --bs-btn-active-shadow: inset 0 3px 5px rgba(0, 0, 0, 0.125);
+    --bs-btn-disabled-color: #fff;
+    --bs-btn-disabled-bg: var(--primary-color);
+    --bs-btn-disabled-border-color: var(--primary-color);
+}
 
 .home-title h1 {
     font-size: 2.5rem;
@@ -51,7 +82,7 @@
 }
 
 #addUserBtn:hover {
-    background-color: var(--hover);
+    background-color: #7d00c5;
 }
 
 table {
@@ -79,14 +110,13 @@ td {
     color: #666;
 }
 
-form {
+.actions {
     display: flex;
     justify-content: flex-start;
     gap: 20px;
 }
 
-button.icon-button,
-a.icon-button {
+button.icon-button {
     border: none;
     padding: 8px;
     border-radius: 5px;
@@ -103,7 +133,7 @@ a.icon-button {
 }
 
 .editBtn:hover {
-    background-color: var(--hover);
+    background-color: #7d00c5;
 }
 
 .deleteBtn {

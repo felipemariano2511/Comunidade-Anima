@@ -30,9 +30,7 @@
             header('Location: index.php?page=Eventos'); 
         }
     }
-
-    //Garante que somente ADM ou o autor do evento vizualize antes de o evento ser publicado
-    if($tableData['situacao'] == 'pendente' || $tableData['situacao'] == 'recusado'){
+    if($tableData['situacao'] == 'arquivado'){
         if($tableData['autor'] == $user_info['id'] || $user_info['nivel'] == 'ADM'){
         }else{
             header('Location: index.php?page=Eventos');
@@ -82,7 +80,7 @@
     <link rel="stylesheet" href="../src/styles/style-pattern.css">
     <link rel="stylesheet" href="../src/styles/evento.css">
     <link rel="icon" href="../imgs/dev/favicon.ico" type="image/x-icon">
-    <title>Comunidade Ânima - Eventos</title>
+    <title>Comunidade Ânimna - Eventos</title>
 </head>
 <script>
         function openInGoogleMaps() {
@@ -97,7 +95,87 @@
     </script>
 
 <body>
-<?php include '../src/components/menu_formatted.php'?>
+<nav class="sidebar close">
+        <header>
+        <div class="image-text">
+                <a href="<?php if(!SessionUser::isLogged()){echo 'login.php';}?>">
+                    <span class="image">
+                        <img src="../imgs/usuario/user-1.webp" alt="">
+                    </span>
+                </a>
+                <div class="text logo-text">
+                    <span class="name"><?php
+                                            if(SessionUser::isLogged()){
+                                                echo $user_info['firstName'];
+                                            }else{
+                                                echo '<a href="login.php" class="text nav-text" style="text-decoration: none;">Login</a>';
+                                            }
+                                        ?>
+                    </span>
+                    <span class="profession">Ciência da computação</span>
+                </div>
+        </header>
+        <div class="menu-bar">
+            <div class="menu">
+                <ul class="menu-links">
+                    <li class="nav-link">
+                        <a class="toggle" style="cursor:pointer;">
+                            <i class='bx bx-menu icon' id="menu-icon"></i>
+                            <span class="text nav-text">Menu</span>
+                        </a>
+                    </li>
+                    <li class="nav-link">
+                        <a href="index.php?page=Home">
+                            <i class='bx bx-home-alt icon'></i>
+                            <span class="text nav-text">Home</span>
+                        </a>
+                    </li>
+                    <li class="nav-link">
+                        <a href="index.php?page=Eventos">
+                            <i class='bx bx-calendar-event icon'></i>
+                            <span class="text nav-text">Eventos</span>
+                        </a>
+                    </li>
+                    <li class="nav-link">
+                        <a href="index.php?page=Atléticas">
+                            <i class='bx bx-trophy icon'></i>
+                            <span class="text nav-text">Atléticas</span>
+                        </a>
+                    </li>
+                    <li class="nav-link">
+                        <a href="index.php?page=Comodidades">
+                            <i class='bx bx-shape-triangle icon'></i>
+                            <span class="text nav-text">Comodidades</span>
+                        </a>
+                    </li>
+                    <li class="nav-link">
+                        <a href="index.php?page=Likes">
+                            <i class='bx bx-heart icon'></i>
+                            <span class="text nav-text">Likes</span>
+                        </a>
+                    </li>
+                    <li class="nav-link">
+                        <a href="index.php?page=Suporte">
+                            <i class='bx bx-support icon'></i>
+                            <span class="text nav-text">Suporte</span>
+                        </a>
+                    </li>
+                </ul>
+            </div>
+            <?php 
+            if(SessionUser::isLogged()){
+                echo '<div class="bottom-content">
+                        <li class="">
+                            <a href="../app/includes/logout.php">
+                                <i class="bx bx-log-out icon"></i>
+                                <span class="text nav-text">Logout</span>
+                            </a>
+                        </li>
+                     </div>';
+            }
+            ?>
+        </div>
+    </nav>
     <section class="home">
         <div class="event-img">
             <img src="<?php echo $tableData['arquivo']?>" class="img-fluid" alt="...">
@@ -119,14 +197,13 @@
                         <div class="event-data-content">
                             <?php
                                 if($data_inicial_formatada == $data_final_formatada){
-                                    echo '<h3>'.$data_inicial_formatada.' | '.$horario_inicial.' às '.$horario_final.'</h3>';
-                                    
-                                }elseif($meses_formatados != NULL){
-                                    echo $meses_formatados." | ".$horario_inicial.' às '.$horario_final;
+                                    echo '<h3>   '.$data_inicial_formatada.' | '.$horario_inicial.'</h3>
+                                    <h3>-Até-</h3>
+                                    <h3> '.$data_final_formatada.' | '.$horario_final.'</h3>';
                                 }else{
-                                    $dia_inicial = substr($data_inicial_formatada, 0, 2);
-                                    echo $dia_inicial.' a  '.$data_final_formatada.' | '.$horario_inicial . ' às ' . $horario_final;
+                                    echo '   '.$data_final_formatada.' | '.$horario_inicial . ' às ' . $horario_final;
                                 }
+                        
                             ?>
                         </div>
                     </div>
@@ -197,8 +274,8 @@
 
             shareIcons.forEach(icon => {
                 icon.addEventListener('click', function(event) {
-                    event.preventDefault(); // Impedir a ação padrão da tag <a>
                     const currentHost = window.location.host;
+                    event.preventDefault(); // Impedir a ação padrão da tag <a>
                     const id = this.getAttribute('data-id');
                     const urlField = document.getElementById('urlField');
                     const url = `http://${currentHost}/Comunidade-Anima/public/evento.php?id=${id}`;
@@ -221,5 +298,45 @@
         });
     </script>
     </section>
+    
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            document.querySelectorAll('.heart-icon').forEach(function(icon) {
+                icon.addEventListener('click', function() {
+                    this.classList.toggle('bx-heart');
+                    this.classList.toggle('bxs-heart');
+                    this.classList.toggle('liked');
+                });
+            });
+        });
+    </script>
+    <script>
+        const body = document.querySelector('body'),
+            sidebar = body.querySelector('nav'),
+            toggle = body.querySelector(".toggle"),
+            searchBtn = body.querySelector(".search-box"),
+            modeSwitch = body.querySelector(".toggle-switch"),
+            modeText = body.querySelector(".mode-text");
+
+        toggle.addEventListener("click", () => {
+            sidebar.classList.toggle("close");
+        })
+
+        searchBtn.addEventListener("click", () => {
+            sidebar.classList.remove("close");
+        })
+
+        modeSwitch.addEventListener("click", () => {
+            body.classList.toggle("dark");
+
+            if (body.classList.contains("dark")) {
+                modeText.innerText = "Light mode";
+            } else {
+                modeText.innerText = "Dark mode";
+
+            }
+        });
+    </script>
 </body>
 </html>

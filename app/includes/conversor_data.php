@@ -60,18 +60,11 @@
         if($i == 0){
             $data_inicial_formatada = $dia.'/'.$mes_formatado.'/'.$ano;
 
-            $dia_inicial = $dia;
-            $mes_inicial = $mes_formatado;
             $ano = $data_final[0];
             $mes = $data_final[1];
             $dia = $data_final[2];
         }else{
             $data_final_formatada = $dia.'/'.$mes_formatado.'/'.$ano;
-            if($mes_inicial != $mes_formatado){
-                $meses_formatados = $dia_inicial.'/'.$mes_inicial.' até '.$dia.'/'.$mes_formatado.' de '.$ano;
-            }else{
-                $meses_formatados = NULL;
-            }
         }
     }
 
