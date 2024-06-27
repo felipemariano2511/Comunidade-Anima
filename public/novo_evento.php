@@ -115,6 +115,7 @@ if($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['cadastrar'])){
                     </label>
                     <input type="file" id="imagem" name="arquivo" class="file-btn" required>
                 </div>
+                <img id="preview" src="#" alt="Preview da imagem" style="max-width: 100%; display: none;">
 
                 <div class="column">
                     <div class="input-box">
