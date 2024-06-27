@@ -11,16 +11,16 @@ if(SessionUser::isLogged()){
 }
 
 if($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['cadastrar'])){
-    $titulo = $_POST['titulo'];
+    $titulo = mysqli_real_escape_string($con, $_POST['titulo']);
     $data_inicial = $_POST['data_inicial'];
     $data_final = $_POST['data_final'];
     $horario_inicial = $_POST['horario_inicial'];
     $horario_final = $_POST['horario_final'];
-    $endereco = $_POST['endereco'];
-    $descricao_inicial = $_POST['descricao_inicial'];
-    $descricao_completa = $_POST['descricao_completa'];
+    $endereco = mysqli_real_escape_string($con, $_POST['endereco']);
+    $descricao_inicial = mysqli_real_escape_string($con, $_POST['descricao_inicial']);
+    $descricao_completa = mysqli_real_escape_string($con, $_POST['descricao_completa']);
     $arquivo = $_FILES['arquivo'];
-    $restrito = isset($_POST['switch_status']) && $_POST['switch_status'] == '1' ? FALSE : TRUE;
+    $restrito = $_POST['inlineRadioOptions'] == '1' ? TRUE : FALSE;
     $autor = $user_info['id'];
 
     if($arquivo['error'] === 0) {

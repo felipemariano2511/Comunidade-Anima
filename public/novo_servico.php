@@ -14,10 +14,10 @@
 
     if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['cadastrar'])) {
         $servico = $_POST['inlineRadioOptions'];
-        $titulo = $_POST['titulo'];
-        $responsavel = $_POST['responsavel'];
-        $descricao_inicial = $_POST['descricao_inicial'];
-        $descricao_completa = $_POST['descricao_completa'];
+        $titulo = mysqli_real_escape_string($con, $_POST['titulo']);
+        $responsavel = mysqli_real_escape_string($con, $_POST['responsavel']);
+        $descricao_inicial = mysqli_real_escape_string($con, $_POST['descricao_inicial']);
+        $descricao_completa = mysqli_real_escape_string($con, $_POST['descricao_completa']);
         $telefone = $_POST['telefone'];
         $email = $_POST['email'];
         $arquivo = $_FILES['arquivo'];

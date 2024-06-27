@@ -3,7 +3,7 @@
 include '../app/includes/config.php';
 
 if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['search'])) {
-    $pesquisa = ucwords($_POST['search']);
+    $pesquisa = mysqli_real_escape_string($con, ucwords($_POST['search']));
 }
 
 if (!$pesquisa == "") {
