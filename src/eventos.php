@@ -1,4 +1,5 @@
 <?php
+include '../app/includes/config.php';
 include '../app/includes/crontab.php';
 
 $query = "SELECT * FROM eventos WHERE situacao = 'ativo' ORDER BY data_inicial ASC";
@@ -10,7 +11,7 @@ if ($result) {
         $tableData[] = $row;
     }
 } else {
-    echo "Sem resultados para essa consulta! ";
+    $tableData = NULL;
 }
 ?>
 <!DOCTYPE html>
@@ -51,6 +52,8 @@ if ($result) {
                     </div>
                 </div>';
             }
+        }else{
+            echo "Sem resultados para essa consulta!";
         }
         ?>
     </div>
@@ -88,46 +91,6 @@ if ($result) {
         });
     </script>
 </section>
-<script>
-    document.addEventListener('DOMContentLoaded', function() {
-        document.querySelectorAll('.heart-icon').forEach(function(icon) {
-            icon.addEventListener('click', function() {
-                this.classList.toggle('bx-heart');
-                this.classList.toggle('bxs-heart');
-                this.classList.toggle('liked');
-            });
-        });
-    });
-</script>
-
-<script>
-    const body = document.querySelector('body'),
-        sidebar = body.querySelector('nav'),
-        toggle = body.querySelector(".toggle"),
-        searchBtn = body.querySelector(".search-box"),
-        modeSwitch = body.querySelector(".toggle-switch"),
-        modeText = body.querySelector(".mode-text");
-
-
-    toggle.addEventListener("click", () => {
-        sidebar.classList.toggle("close");
-    })
-
-    searchBtn.addEventListener("click", () => {
-        sidebar.classList.remove("close");
-    })
-
-    modeSwitch.addEventListener("click", () => {
-        body.classList.toggle("dark");
-
-        if (body.classList.contains("dark")) {
-            modeText.innerText = "Light mode";
-        } else {
-            modeText.innerText = "Dark mode";
-
-        }
-    });
-</script>
 </body>
 
 </html>

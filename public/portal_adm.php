@@ -23,11 +23,11 @@
 
     switch ($pagina){
         case '':
-            $page = 'portal_adm.php';
+            $page = '../src/portal_adm.php';
             break;
 
         case 'PortalADM':
-            $page = 'portal_adm.php';
+            $page = '../src/portal_adm.php';
             break;
         
         case 'AprovarEventos':
@@ -56,40 +56,14 @@
     <link href='https://unpkg.com/boxicons@2.1.1/css/boxicons.min.css' rel='stylesheet'>
     <link rel="stylesheet" href="../src/styles/style-pattern.css">
     <link rel="stylesheet" href="../src/styles/style.css">
-    <link rel="stylesheet" href="../src/styles/home.css">
+    <link rel="stylesheet" href="../src/styles/portal_adm.css">
     <link rel="icon" href="../imgs/dev/favicon.ico" type="image/x-icon">
     <title>Comunidade Ânima - Portal Adm</title>
     
 </head>
 <body>
-    <?php include_once "../src/components/main_header.php"; ?>
-    <?php include_once "../src/components/menu.php"; ?>
-    
-
-    <section class="homepage">
-        <div class="home-title">
-            <h1>Portal do Administrador</h1>
-            <p>Aqui você acompanha todas as suas tarefas!</p>
-        </div>
-        <div class="links-container">
-            <div class="links-item">
-                <a href="portal_adm.php?page=AprovarEventos"><img src="../imgs/dev/aprovar_eventos.svg" alt=""></a>
-                <a href="portal_adm.php?page=AprovarEventos" class="button">Aprovar Eventos</a>
-            </div link>
-            <div class="links-item">
-                <a href="portal_adm.php?page=GerenciarAtléticas"><img src="../imgs/dev/gerenciamento_atleticas.svg" alt=""></a>
-                <a href="portal_adm.php?page=GerenciarAtléticas" class="button">Gerenciamento de Atléticas</a>
-            </div>
-            <div class="links-item">
-                <a href="portal_adm.php?page=GerenciarComodidades"><img src="../imgs/dev/gerenciamento_comodidades.svg" alt=""></a>
-                <a href="portal_adm.php?page=GerenciarComodidades" class="button">Gerenciamento de Comodidades</a>
-            </div>
-            <div class="links-item">
-                <a href="portal_adm.php?page=GerenciarUsuários"><img src="../imgs/dev/gerenciamento_users.svg" alt=""></a>
-                <a href="portal_adm.php?page=GerenciarUsuários" class="button">Gerenciamento de Usuários</a>
-            </div>
-        </div>
-    </section>
+    <?php include "../src/components/main_header.php"; ?>
+    <?php include "../src/components/menu.php"; ?>
     <?php include $page;?>
     
 </body>

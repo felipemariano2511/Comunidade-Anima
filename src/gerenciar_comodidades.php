@@ -25,9 +25,8 @@
         $result = mysqli_query($con, $query);
 
         if($result){
-            echo '<script>alert("Comodidade deletada com sucesso!")</script>';
-            header('Location: '.$_SERVER['REQUEST_URI']);
-            exit;
+            echo '<script>alert("Comodidade deletada com sucesso!");window.location.href="portal_adm.php?page=GerenciarComodidades";</script>';
+
         }
         
     }
@@ -47,7 +46,7 @@
     <link href='https://unpkg.com/boxicons@2.1.1/css/boxicons.min.css' rel='stylesheet'>
     <link rel="stylesheet" href="../src/styles/style-pattern.css">
     <link rel="stylesheet" href="../src/styles/style.css">
-    <link rel="stylesheet" href="../src/styles/gerenciar_usuarios.css">
+    <link rel="stylesheet" href="../src/styles/gerenciar.css">
 </head>
 
 <body>
@@ -84,7 +83,7 @@
                                             <td>'.$data['email'].'</td>
                                             <td class="actions">
                                                 <form method="POST">
-                                                    <button class="icon-button editBtn" name="edit"><i class="bx bx-edit"></i></button>
+                                                    <a href="editar_servico.php?id='.$data['id'].'" class="icon-button editBtn" name="edit"><i class="bx bx-edit"></i></a>
                                                     <button class="icon-button deleteBtn" value="'.$data['id'].'" name="delete"><i class="bx bx-trash"></i></button>
                                                 </form>     
                                             </td>

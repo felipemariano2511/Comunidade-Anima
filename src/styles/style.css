@@ -10,10 +10,11 @@
 :root {
   --body-color: #E4E9F7;
   --sidebar-color: #FFF;
-  --primary-color: #9800ee;
+  --primary-color: #8C52FF;
   --primary-color-light: #F6F5FF;
   --toggle-color: #DDD;
   --text-color: #707070;
+  --hover: #4f2f8e;
 
   --tran-02: all 0.2s ease;
   --tran-03: all 0.2s ease;
@@ -40,7 +41,8 @@
   --bs-btn-disabled-border-color: var(--primary-color);
 }
 
-ol, ul {
+ol,
+ul {
   padding-left: 0rem;
 }
 
@@ -146,6 +148,7 @@ body.dark {
 
 .sidebar.close .text {
   opacity: 0;
+  display: none;
 }
 
 /* =========================== */
@@ -170,7 +173,7 @@ header .image-text .name {
   font-weight: 600;
 }
 
-.name a{
+.name a {
   display: flex;
   align-items: center;
 }
@@ -189,11 +192,16 @@ header .image-text .profession {
   display: flex;
   align-items: center;
   justify-content: center;
+
 }
 
 .sidebar header .image img {
   width: 40px;
   border-radius: 10px;
+  object-fit: cover;
+  object-position: center;
+  height: 45px;
+  width: 45px;
 }
 
 body.dark .sidebar header .toggle {

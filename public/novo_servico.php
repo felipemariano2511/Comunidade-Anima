@@ -14,10 +14,10 @@
 
     if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['cadastrar'])) {
         $servico = $_POST['inlineRadioOptions'];
-        $titulo = mysqli_real_escape_string($con, $_POST['titulo']);
-        $responsavel = mysqli_real_escape_string($con, $_POST['responsavel']);
-        $descricao_inicial = mysqli_real_escape_string($con, $_POST['descricao_inicial']);
-        $descricao_completa = mysqli_real_escape_string($con, $_POST['descricao_completa']);
+        $titulo = $_POST['titulo'];
+        $responsavel = $_POST['responsavel'];
+        $descricao_inicial = $_POST['descricao_inicial'];
+        $descricao_completa = $_POST['descricao_completa'];
         $telefone = $_POST['telefone'];
         $email = $_POST['email'];
         $arquivo = $_FILES['arquivo'];
@@ -31,7 +31,7 @@
             $result = mysqli_query($con, $query);
 
             if ($result) {
-                echo '<script>alert("Cadastrado com sucesso!");window.location("novo_servico.php")</script>';
+                echo '<script>alert("Cadastrado com sucesso!");window.location.reload();</script>';
             } else {
                 echo '<script>alert("Falha no cadastro!")</script>';
             }
@@ -57,7 +57,7 @@
 
 <body>
     <?php include "../src/components/main_header.php"; ?>
-    <?php include "../src/components/menu_formatted.php"; ?>
+    <?php include "../src/components/menu.php"; ?>
 
     <section class="home">
         <div class="text">
@@ -83,12 +83,12 @@
                                     </div>';
                         }elseif($servico == "Comodidade"){
                             echo   '<div class="form-check form-check-inline">
-                                       <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio2" value="Comodidade"  >
+                                       <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio2" value="Comodidade" checked >
                                        <label class="form-check-label" for="inlineRadio2">Comodidade</label>
                                     </div>';
                         }else{
                             echo   '<div class="form-check form-check-inline">
-                                        <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio1" value="Atlética"   >
+                                        <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio1" value="Atlética"  checked >
                                         <label class="form-check-label" for="inlineRadio1">Atlética</label>
                                     </div>
                                     <div class="form-check form-check-inline">

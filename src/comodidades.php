@@ -26,6 +26,7 @@
     <link rel="stylesheet" href="../src/styles/style-pattern.css">
     <link rel="stylesheet" href="../src/styles/style.css">
     <link rel="stylesheet" href="../src/styles/comodidades.css">
+    <link rel="stylesheet" href="../src/styles/eventos.css">
     <title>Comunidade Ânima - Comodidades</title>
 </head>
 
@@ -43,6 +44,7 @@
                                 <a href="servicos_universitarios.php?id='. $dados['id'].'"><img src="'.$dados['arquivo'].'" alt=""></a>
                                 <a href="servicos_universitarios.php?id='. $dados['id'].'" class="button">'.$dados['titulo'].'</a>
                           </div link>';
+                    
                 }
             }
         ?>

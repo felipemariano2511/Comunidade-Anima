@@ -4,12 +4,16 @@
 
     use App\Session\User as SessionUser;
 
-    $user_info = SessionUser::getInfo();
-    $id = isset($_GET['id']) ? $_GET['id'] : '';
+    if(SessionUser::isLogged()){
+        $user_info = SessionUser::getInfo();
+    }else{
+        header("Location: index.php");
+    }
+    $id_url = isset($_GET['id']) ? $_GET['id'] : '';
 
-    if($id != ''){
-        if($user_info['id'] == $id || $user_info['nivel'] == "ADM"){
-            $query = "SELECT * FROM usuario WHERE id = '$id'";
+    if($id_url != ''){
+        if($user_info['id'] == $id_url || $user_info['nivel'] == "ADM"){
+            $query = "SELECT * FROM usuario WHERE id = '$id_url'";
             $result = mysqli_query($con, $query);
             
             $tableData = mysqli_fetch_assoc($result);
@@ -28,26 +32,29 @@
 
         if($imagem['tmp_name'] == ''){
             $endereco_imagem = $tableData['imagem'];
-        }
-
-        if($imagem['error'] === 0) {
+            
+        }elseif($imagem['error'] === 0) {
             $endereco_imagem = '../imgs/usuario/' . $imagem['name'];
             move_uploaded_file($imagem['tmp_name'], $endereco_imagem);
         }
 
         if($senha == "d41d8cd98f00b204e9800998ecf8427e"){
-            $query = "UPDATE usuario SET email = '$email', nome = '$nome', imagem = '$endereco_imagem' WHERE id = $id";
+            $query = "UPDATE usuario SET email = '$email', nome = '$nome', imagem = '$endereco_imagem' WHERE id = $id_url";
         }else{
-            $query = "UPDATE usuario SET email = '$email', nome = '$nome', senha = '$senha', imagem = '$endereco_imagem' WHERE id = $id";
+            $query = "UPDATE usuario SET email = '$email', nome = '$nome', senha = '$senha', imagem = '$endereco_imagem' WHERE id = $id_url";
         }
         $result = mysqli_query($con, $query);
-        include '../app/includes/get_dados_usuario.php'; 
+        if($id_url == $user_info['id']){
+            include '../app/includes/get_dados_usuario.php'; 
+        }
+        
         header("Location:".$_SERVER['REQUEST_URI']);
 
     }
     
 
-?><!DOCTYPE html>
+?>
+<!DOCTYPE html>
 <html lang="pt-br">
 
 <head>
@@ -64,19 +71,20 @@
 </head>
 
 <body>
-    <header class="header-main">
-        <div class="container-header">
-            <a href="index.php?page=Home">
-                <img src="../imgs/dev/logo-anima-1024-white.png" alt="" width="100px">
-            </a>
-        </div>
-    </header>
+    <?php include '../src/components/main_header.php';?>
     <?php include '../src/components/menu.php';?>
     <form action="" method="post" enctype="multipart/form-data">
         <section class="home">
             <div class="home-title">
-                <h1>Minhas Informações</h1>
-                <p>Confira os dados do seu perfil</p>
+                <?php
+                    if($user_info['id'] != $id_url){
+                        echo "  <h1>Perfil de ".$tableData['nome']."</h1>
+                                <p>Confira os dados de ".$tableData['nome']."</p>";
+                    }else{
+                        echo "  <h1>Meu Perfil</h1>
+                                <p>Confira os dados do seu perfil</p>";
+                    }                
+                ?>
             </div>
             <div class="login">
                 <div class="login-container">
@@ -87,7 +95,8 @@
                         <label for="fileInput" class="custom-file-upload">Alterar Foto</label>
                     </div>
                     <div class="profile-info">
-                        <h1>Meus Dados</h1>
+                        <?php if($user_info['id'] != $id_url){echo '<h1>Dados de '.$tableData['nome'].'</h1>';}else{echo '<h1>Meus Dados</h1>';}?>
+                        
                         <input type="email" name="email" id="" value="<?php echo $tableData['email']; ?>">
 
                         <input type="text" name="nome" id="" value="<?php  echo $tableData['nome']; ?>">
@@ -99,33 +108,4 @@
             </div>
         </section>
     </form>
-
-    <script>
-        const body = document.querySelector('body'),
-            sidebar = body.querySelector('nav'),
-            toggle = body.querySelector(".toggle"),
-            searchBtn = body.querySelector(".search-box"),
-            modeSwitch = body.querySelector(".toggle-switch"),
-            modeText = body.querySelector(".mode-text");
-
-
-        toggle.addEventListener("click", () => {
-            sidebar.classList.toggle("close");
-        })
-
-        searchBtn.addEventListener("click", () => {
-            sidebar.classList.remove("close");
-        })
-
-        modeSwitch.addEventListener("click", () => {
-            body.classList.toggle("dark");
-
-            if (body.classList.contains("dark")) {
-                modeText.innerText = "Light mode";
-            } else {
-                modeText.innerText = "Dark mode";
-
-            }
-        });
-    </script>
 </body>
