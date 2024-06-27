@@ -1,4 +1,3 @@
-@ -1,119 +1,118 @@
 <?php
 include '../app/includes/config.php';
 
@@ -39,7 +38,7 @@ if (mysqli_num_rows($result) > 0) {
     <link rel="stylesheet" href="../src/styles/style.css">
     <link rel="stylesheet" href="../src/styles/atleticas.css">
     <link rel="stylesheet" href="../src/styles/eventos.css">
-    <title>Atléticas</title>
+    <title>Comunidade Ânima - Atléticas</title>
 </head>
 
 <section class="home">

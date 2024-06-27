@@ -146,8 +146,9 @@
                     <label for="imagem" class="custom-file-upload">
                         Escolher imagem
                     </label>
-                    <input type="file" id="imagem" name="arquivo" class="file-btn">
+                    <input type="file" id="imagem" name="arquivo" class="file-btn" onchange="previewImage(event)" >
                 </div>
+                <img id="preview" src="#" alt="Preview da imagem" style="max-width: 100%; display: none;">
 
                 <div class="column">
                     <div class="input-box">
@@ -240,6 +241,22 @@
                 xhr.send(formData);
             }),
         });
+    </script>
+    <script>
+        function previewImage(event) {
+        var input = event.target;
+
+        if (input.files && input.files[0]) {
+            var reader = new FileReader();
+
+            reader.onload = function(e) {
+            document.getElementById('preview').src = e.target.result;
+            document.getElementById('preview').style.display = 'block';
+            };
+
+            reader.readAsDataURL(input.files[0]);
+        }
+        }
     </script>
 </body>
 

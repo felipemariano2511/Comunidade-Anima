@@ -137,8 +137,9 @@
                     <label for="imagem" class="custom-file-upload">
                         Escolher arquivo
                     </label>
-                    <input type="file" id="imagem" name="arquivo" class="file-btn">
+                    <input type="file" id="imagem" name="arquivo" class="file-btn" onchange="previewImage(event)" >
                 </div>
+                <img id="preview" src="#" alt="Preview da imagem" style="max-width: 100%; display: none;">
 
                 <div class="input-box">
                     <label for="descricao_completa">Descrição Completa</label>
@@ -214,28 +215,44 @@
     </script>
     <script>
         document.addEventListener('DOMContentLoaded', function () {
-    const telefoneInput = document.getElementById('telefone');
+             const telefoneInput = document.getElementById('telefone');
 
-    telefoneInput.addEventListener('input', function (event) {
-        let value = event.target.value.replace(/\D/g, ''); // Remove todos os caracteres não numéricos
-        if (value.length > 11) value = value.slice(0, 11); // Limita o valor a 11 dígitos
+            telefoneInput.addEventListener('input', function (event) {
+                let value = event.target.value.replace(/\D/g, ''); // Remove todos os caracteres não numéricos
+                if (value.length > 11) value = value.slice(0, 11); // Limita o valor a 11 dígitos
 
-        let formattedValue = '';
+                let formattedValue = '';
 
-        if (value.length > 0) {
-            formattedValue += `(${value.substring(0, 2)}`; // Código de área
+                if (value.length > 0) {
+                    formattedValue += `(${value.substring(0, 2)}`; // Código de área
+                }
+                if (value.length > 2) {
+                    formattedValue += `) ${value.substring(2, 7)}`; // Primeiros 5 dígitos
+                }
+                if (value.length > 7) {
+                    formattedValue += `-${value.substring(7, 11)}`; // Últimos 4 dígitos
+                }
+
+                event.target.value = formattedValue;
+            });
+        });
+
+    </script>
+    <script>
+        function previewImage(event) {
+        var input = event.target;
+
+        if (input.files && input.files[0]) {
+            var reader = new FileReader();
+
+            reader.onload = function(e) {
+            document.getElementById('preview').src = e.target.result;
+            document.getElementById('preview').style.display = 'block';
+            };
+
+            reader.readAsDataURL(input.files[0]);
         }
-        if (value.length > 2) {
-            formattedValue += `) ${value.substring(2, 7)}`; // Primeiros 5 dígitos
         }
-        if (value.length > 7) {
-            formattedValue += `-${value.substring(7, 11)}`; // Últimos 4 dígitos
-        }
-
-        event.target.value = formattedValue;
-    });
-});
-
     </script>
 </body>
 
