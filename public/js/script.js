@@ -85,4 +85,12 @@ function previewImage(event) {
 
         reader.readAsDataURL(input.files[0]);
     }
+}
+
+function confirmLogout() {
+    if (confirm("Deseja desconectar?")) {
+        window.location.href = "../app/includes/logout.php";
+    } else {
+        // Opcional: aqui você pode adicionar alguma ação se o usuário cancelar o logout
     }
+}

@@ -50,6 +50,7 @@
     <link href='https://unpkg.com/boxicons@2.1.1/css/boxicons.min.css' rel='stylesheet'>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
     <link rel="stylesheet" href="../src/styles/style.css">
+    <script src="../public/js/script.js"></script>
     
 </head>
 
@@ -158,14 +159,14 @@
             <?php 
 
             if(SessionUser::isLogged()){
-                echo '<div class="bottom-content">
-                        <li class="">
-                            <a href="../app/includes/logout.php">
-                                <i class="bx bx-log-out icon"></i>
-                                <span class="text nav-text">Logout</span>
-                            </a>
-                        </li>
-                     </div>';
+                echo   '<div class="bottom-content">
+                            <li class="">
+                                <a href="#" onclick="confirmLogout()">
+                                    <i class="bx bx-log-out icon"></i>
+                                    <span class="text nav-text">Logout</span>
+                                </a>
+                            </li>
+                        </div>';
             }
             ?>
         </div>
