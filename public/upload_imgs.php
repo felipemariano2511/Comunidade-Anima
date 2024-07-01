@@ -2,7 +2,7 @@
   /***************************************************
    * Only these origins are allowed to upload images *
    ***************************************************/
-  $accepted_origins = array($_SERVER['HTTP_HOST']);
+  $accepted_origins = array($_SERVER['HTTP_ORIGIN']);
 
   /*********************************************
    * Change this line to set the upload folder *
@@ -15,7 +15,7 @@
     if (in_array($_SERVER['HTTP_ORIGIN'], $accepted_origins)) {
       header('Access-Control-Allow-Origin: ' . $_SERVER['HTTP_ORIGIN']);
     } else {
-      header("HTTP/1.1 403 Origin Denied");
+      header("HTTP/1.1 403 Origem negada!");
       return;
     }
   }
@@ -38,13 +38,13 @@
 
     // Sanitize input
     if (preg_match("/([^\w\s\d\-_~,;:\[\]\(\).])|([\.]{2,})/", $temp['name'])) {
-        header("HTTP/1.1 400 Invalid file name.");
+        header("HTTP/1.1 400 Nome de arquivo inválido. Por favor, remova caracteres especiais!");
         return;
     }
 
     // Verify extension
     if (!in_array(strtolower(pathinfo($temp['name'], PATHINFO_EXTENSION)), array("gif", "jpg", "jpeg", "png"))) {
-        header("HTTP/1.1 400 Invalid extension.");
+        header("HTTP/1.1 400 Extensão de arquivo não suportado. Insira somente arquivos: GIF, JPG, JPEG ou PNG");
         return;
     }
 

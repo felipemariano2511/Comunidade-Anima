@@ -93,8 +93,7 @@
                             echo '<br>'.'Nenhuma comodidade cadastrada. Para começar, cadastre uma logo acima!';
                         }
                                 
-                        ?>
-                    
+                        ?>             
                 </tbody>
             </table>
         </div>

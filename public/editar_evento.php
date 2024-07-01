@@ -26,8 +26,6 @@
         exit();
     }
 
-
-
     if($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['atualizar'])){
         $titulo = mysqli_real_escape_string($con, $_POST['titulo']);
         $data_inicial = $_POST['data_inicial'];
@@ -86,17 +84,12 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/croppie/2.6.5/croppie.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/croppie/2.6.5/croppie.js" integrity="sha512-vUJTqeDCu0MKkOhuI83/MEX5HSNPW+Lw46BA775bAWIp1Zwgz3qggia/t2EnSGB9GoS2Ln6npDmbJTdNhHy1Yw==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
-    <script src="https://cdn.tiny.cloud/1/1urspdm91tdq0tsrsyoyoqy2axv2xbtaajwhi7k8usek8jcd/tinymce/7/tinymce.min.js" referrerpolicy="origin"></script>
+    <script src="../tinymce/tinymce.min.js" referrerpolicy="origin"></script>
+    <script src="js/script.js" referrerpolicy="origin"></script>
+    <script src="js/script.js" referrerpolicy="origin"></script>
+
     <script>
-        function openInGoogleMaps() {
-            const address = document.getElementById('endereco').value;
-            if (address) {
-                const url = `https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(address)}`;
-                window.open(url, '_blank');
-            } else {
-                alert("Por favor, insira um endereço válido.");
-            }
-        }
+        initializeTinyMCE();
     </script>
 </head>
 
@@ -111,7 +104,7 @@
         <div class="form-container">
             <form action="#" method="post" enctype="multipart/form-data">
                 <div class="input-box">
-                    <input type="text" id="titulo" name="titulo" value="<?php echo $tableData['titulo']; ?>" required>
+                    <input type="text" id="titulo" name="titulo" value="<?php echo $tableData['titulo']; ?>" maxlength="50" required>
 
                     <label for="titulo" class="placeholder1" required>Título</label>
                 </div>
@@ -131,7 +124,6 @@
                 
                 <div class="radio-container">
                     <div class="form-check form-check-inline">
-                        <h2>Evento:</h2>
                         <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio1" value="1" <?php if($tableData['restrito'] == TRUE) echo "checked"; ?>>
 
                         <label class="form-check-label" for="inlineRadio1">Restrito</label>
@@ -148,7 +140,7 @@
                     </label>
                     <input type="file" id="imagem" name="arquivo" class="file-btn" onchange="previewImage(event)" >
                 </div>
-                <img id="preview" src="#" alt="Preview da imagem" style="max-width: 100%; display: none;">
+                <img id="preview" src="<?php echo isset($_FILES['arquivo']['tmp_name']) ? $_FILES['arquivo']['tmp_name'] : $tableData['arquivo']; ?>" alt="Preview da imagem" style="max-width: 100%; display: none;">
 
                 <div class="column">
                     <div class="input-box">
@@ -178,86 +170,5 @@
             </form>
         </div>
     </section>
-
-    <script>
-        tinymce.init({
-            selector: 'textarea',
-            language: 'pt_BR',
-            plugins: 'code anchor autolink charmap codesample emoticons image link lists media searchreplace table visualblocks wordcount checklist mediaembed casechange export formatpainter pageembed linkchecker a11ychecker tinymcespellchecker permanentpen powerpaste advtable advcode editimage advtemplate ai mentions tinycomments tableofcontents footnotes mergetags autocorrect typography inlinecss markdown',
-            toolbar: 'undo redo | blocks fontfamily fontsize | bold italic underline strikethrough | link image media table mergetags | addcomment showcomments | spellcheckdialog a11ycheck typography | align lineheight | checklist numlist bullist indent outdent | emoticons charmap | removeformat',
-            tinycomments_mode: 'embedded',
-            tinycomments_author: 'Author name',
-            mergetags_list: [{
-                    value: 'First.Name',
-                    title: 'First Name'
-                },
-                {
-                    value: 'Email',
-                    title: 'Email'
-                },
-            ],
-            ai_request: (request, respondWith) => respondWith.string(() => Promise.reject("See docs to implement AI Assistant")),
-            images_upload_handler: (blobInfo, progress) => new Promise((resolve, reject) => {
-                const xhr = new XMLHttpRequest();
-                xhr.withCredentials = false;
-                xhr.open('POST', 'upload_imgs.php');
-
-                xhr.upload.onprogress = (e) => {
-                    progress(e.loaded / e.total * 100);
-                };
-
-                xhr.onload = () => {
-                    if (xhr.status === 403) {
-                        reject({
-                            message: 'HTTP Error: ' + xhr.status + "Aqui",
-                            remove: true
-                        });
-                        return;
-                    }
-
-                    if (xhr.status < 200 || xhr.status >= 300) {
-                        console.log(xhr);
-                        reject('HTTP Error: ' + xhr.statusText);
-                        return;
-                    }
-
-                    const json = JSON.parse(xhr.responseText);
-
-                    if (!json || typeof json.location != 'string') {
-                        reject('Invalid JSON: ' + xhr.responseText);
-                        return;
-                    }
-
-                    resolve(json.location);
-                };
-
-                xhr.onerror = () => {
-                    reject('Image upload failed due to a XHR Transport error. Code: ' + xhr.status);
-                };
-
-                const formData = new FormData();
-                formData.append('file', blobInfo.blob(), blobInfo.filename());
-
-                xhr.send(formData);
-            }),
-        });
-    </script>
-    <script>
-        function previewImage(event) {
-        var input = event.target;
-
-        if (input.files && input.files[0]) {
-            var reader = new FileReader();
-
-            reader.onload = function(e) {
-            document.getElementById('preview').src = e.target.result;
-            document.getElementById('preview').style.display = 'block';
-            };
-
-            reader.readAsDataURL(input.files[0]);
-        }
-        }
-    </script>
 </body>
-
 </html>

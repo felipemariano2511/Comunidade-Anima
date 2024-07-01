@@ -197,7 +197,6 @@
 
             shareIcons.forEach(icon => {
                 icon.addEventListener('click', function(event) {
-                    const currentHost = window.location.host;
                     event.preventDefault(); // Impedir a ação padrão da tag <a>
                     const currentHost = window.location.host;
                     const id = this.getAttribute('data-id');

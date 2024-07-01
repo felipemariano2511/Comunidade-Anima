@@ -46,13 +46,18 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Comunidade Ânima - Novo Serviço</title>
     <link rel="stylesheet" href="../src/styles/style.css">
     <link rel="stylesheet" href="../src/styles/novo_servico.css">
     <link href='https://unpkg.com/boxicons@2.1.1/css/boxicons.min.css' rel='stylesheet'>
-    <script src="https://cdn.tiny.cloud/1/1urspdm91tdq0tsrsyoyoqy2axv2xbtaajwhi7k8usek8jcd/tinymce/7/tinymce.min.js" referrerpolicy="origin"></script>
     <link rel="shortcut icon" href="../imgs/dev/favicon.ico" type="image/x-icon">
     <link rel="icon" href="../imgs/dev/favicon.ico" type="image/x-icon">
-    <title>Comunidade Ânima - Novo Serviço</title>
+    <script src="../tinymce/tinymce.min.js" referrerpolicy="origin"></script>
+    <script src="js/script.js" referrerpolicy="origin"></script>
+
+    <script>
+        initializeTinyMCE();
+    </script>
 </head>
 
 <body>
@@ -148,107 +153,6 @@
             </form>
         </div>
     </section>
-
-    <script>
-        tinymce.init({
-            selector: 'textarea',
-            api_key: '1urspdm91tdq0tsrsyoyoqy2axv2xbtaajwhi7k8usek8jcd',
-            language: 'pt_BR',
-            plugins: 'anchor autolink charmap codesample emoticons image link lists media searchreplace table visualblocks wordcount checklist mediaembed casechange export formatpainter pageembed linkchecker a11ychecker tinymcespellchecker permanentpen powerpaste advtable advcode editimage advtemplate ai mentions tinycomments tableofcontents footnotes mergetags autocorrect typography inlinecss markdown',
-            toolbar: 'undo redo | blocks fontfamily fontsize | bold italic underline strikethrough | link image media table mergetags | addcomment showcomments | spellcheckdialog a11ycheck typography | align lineheight | checklist numlist bullist indent outdent | emoticons charmap | removeformat',
-            tinycomments_mode: 'embedded',
-            tinycomments_author: '1urspdm91tdq0tsrsyoyoqy2axv2xbtaajwhi7k8usek8jcd',
-            mergetags_list: [
-                { value: 'First.Name', title: 'First Name' },
-                { value: 'Email', title: 'Email' },
-                ],
-            ai_request: (request, respondWith) => respondWith.string(() => Promise.reject("See docs to implement AI Assistant")),
-            images_upload_handler: (blobInfo, progress) => new Promise((resolve, reject) => {
-                const xhr = new XMLHttpRequest();
-                xhr.withCredentials = false;
-                xhr.open('POST', 'upload_imgs.php');
-
-                xhr.upload.onprogress = (e) => {
-                    progress(e.loaded / e.total * 100);
-                };
-
-                xhr.onload = () => {
-                    if (xhr.status === 403) {
-                        reject({
-                            message: 'HTTP Error: ' + xhr.status + "Aqui",
-                            remove: true
-                        });
-                        return;
-                    }
-
-                    if (xhr.status < 200 || xhr.status >= 300) {
-                        console.log(xhr);
-                        reject('HTTP Error: ' + xhr.statusText);
-                        return;
-                    }
-
-                    const json = JSON.parse(xhr.responseText);
-
-                    if (!json || typeof json.location != 'string') {
-                        reject('Invalid JSON: ' + xhr.responseText);
-                        return;
-                    }
-
-                    resolve(json.location);
-                };
-
-                xhr.onerror = () => {
-                    reject('Image upload failed due to a XHR Transport error. Code: ' + xhr.status);
-                };
-
-                const formData = new FormData();
-                formData.append('file', blobInfo.blob(), blobInfo.filename());
-
-                xhr.send(formData);
-            }),
-        });
-    </script>
-    <script>
-        document.addEventListener('DOMContentLoaded', function () {
-            const telefoneInput = document.getElementById('telefone');
-
-            telefoneInput.addEventListener('input', function (event) {
-                let value = event.target.value.replace(/\D/g, ''); // Remove todos os caracteres não numéricos
-                if (value.length > 11) value = value.slice(0, 11); // Limita o valor a 11 dígitos
-
-                let formattedValue = '';
-
-                if (value.length > 0) {
-                    formattedValue += `(${value.substring(0, 2)}`; // Código de área
-                }
-                if (value.length > 2) {
-                    formattedValue += `) ${value.substring(2, 7)}`; // Primeiros 5 dígitos
-                }
-                if (value.length > 7) {
-                    formattedValue += `-${value.substring(7, 11)}`; // Últimos 4 dígitos
-                }
-
-                event.target.value = formattedValue;
-            });
-        });
-
-    </script>
-    <script>
-        function previewImage(event) {
-        var input = event.target;
-
-        if (input.files && input.files[0]) {
-            var reader = new FileReader();
-
-            reader.onload = function(e) {
-            document.getElementById('preview').src = e.target.result;
-            document.getElementById('preview').style.display = 'block';
-            };
-
-            reader.readAsDataURL(input.files[0]);
-        }
-        }
-    </script>
 </body>
 
 </html>
