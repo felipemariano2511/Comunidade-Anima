@@ -13,7 +13,7 @@
     <link rel="stylesheet" href="../src/styles/style-pattern.css">
     <link rel="stylesheet" href="../src/styles/style.css">
     <link rel="stylesheet" href="../src/styles/home.css">
-    <title>Home</title>
+    <title>Comunidade Ânima - Home</title>
 
 
 </head>

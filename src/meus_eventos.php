@@ -32,7 +32,7 @@
     <link rel="stylesheet" href="../src/styles/style-pattern.css">
     <link rel="stylesheet" href="../src/styles/style.css">
     <link rel="stylesheet" href="../src/styles/aprovar_eventos.css">
-    <title>Comunidade - Ânima - Meus Eventos</title>
+    <title>Comunidade Ânima - Meus Eventos</title>
 </head>
 
 <body>

@@ -49,7 +49,7 @@
     <section class="home">
         <div class="home-title">
             <h1>Gerenciar Usuários</h1>
-            <p>CRUD para usuarios</p>
+            <p>Administre os perfis de usuários aqui!</p>
         </div>
         <div class="container">
             <h1>Administração de Usuários</h1>

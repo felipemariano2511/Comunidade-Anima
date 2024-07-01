@@ -26,7 +26,7 @@ if ($result) {
     <link rel="stylesheet" href="../src/styles/style-pattern.css">
     <link rel="stylesheet" href="../src/styles/style.css">
     <link rel="stylesheet" href="../src/styles/eventos.css">
-    <title>Eventos</title>
+    <title>Comunidade Ânima - Eventos</title>
 </head>
 <section class="home">
     <div class="text">

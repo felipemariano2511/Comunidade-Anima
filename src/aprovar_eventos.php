@@ -24,7 +24,7 @@
     if($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['aprovar'])){
         $id = $_POST['aprovar'];
 
-        $query = "UPDATE eventos SET situacao = 'ativo' WHERE id = '$id'";
+        $query = "UPDATE eventos SET situacao = 'ativo',  justificativa = 'Seu evento foi publicado!' WHERE id = '$id'";
         $result = mysqli_query($con, $query);
 
         echo '<script>window.location.href="portal_adm.php?page=AprovarEventos"</script>';
