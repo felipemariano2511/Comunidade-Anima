@@ -4,7 +4,7 @@
     width: 40%;
     margin: 20px auto;
     background-color: #fff;
-    padding: 20px;
+    padding: 3rem 2rem 0 2rem;
     border-radius: 5px;
     box-shadow: 0 0 10px rgba(0,0,0,0.1);
 }
@@ -21,9 +21,20 @@ input[type="password"] {
     box-sizing: border-box;
 }
 
+input[type="text"], input[type="password"] {
+    cursor: default;
+}
+
 .custom-file-upload {
     text-align: center;
     width: 100%;
     font-size: 16px;
     margin-bottom: 10px;
+}
+
+
+@media only screen and (max-width: 950px) {
+    .form-container {
+        width: 100%;
+    }
 }

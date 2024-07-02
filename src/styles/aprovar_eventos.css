@@ -95,6 +95,7 @@
     justify-content: center;
     text-decoration-color: white;
     margin-bottom: 10px;
+    flex-flow: row wrap;
 }
 
 .acessar-evento a {
@@ -117,4 +118,11 @@
 
 .acessar-evento i {
     margin-left: 5px;
+}
+
+@media only screen and (max-width: 985px) {
+    .acessar-evento a {
+        width: 100%;
+        margin: 10px 0;
+    }
 }
