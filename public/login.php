@@ -24,7 +24,7 @@
     }
 ?>
 <!DOCTYPE html>
-<html lang="en">
+<html lang="pt-BR">
 
 <head>
     <meta charset="UTF-8">
@@ -39,32 +39,32 @@
 
 <body>
 
-    <section class="bg-gray-50 min-h-screen flex items-center justify-center">
+    <section class="font-sans bg-gray-50 min-h-screen flex items-center justify-center">
         <!-- login container -->
-        <div class="font-poppins bg-gray-100 flex rounded-2xl shadow-lg max-w-3xl p-5 mx-10 sm:flex-row w-full min-w-screen items-center">
+        <div class="bg-gray-100 flex rounded-2xl shadow-lg max-w-3xl p-5 mx-10 sm:flex-row w-full min-w-screen items-center">
             <!-- form -->   
             <div class="md:w-1/2 px-10">
                 <div class="w-1/3 mx-auto">
                     <img src="../imgs/dev/logo-anima-1024.png" alt="" class="md:hidden rounded-2xl mx-auto">
                 </div>
-                <h2 class="font-bold text-2xl text-[#3C1F6E] md:block hidden">Login</h2>
-                <p class="text-sm mt-4">Se você já é um membro, conecte-se</p>
+                <h2 class="text-center font-bold text-2xl text-[#8C52FF] md:block hidden">Login</h2>
+                <p class="text-sm mt-4 text-center">Se você já é um membro, conecte-se</p>
 
                 <form method="post" class="flex flex-col gap-4">
-                    <input class="p-2 mt-8 rounded-xl border-2 border-gray-300 focus:outline-none focus:border-[#3C1F6E] transition duration-500 ease-in-out transform" type="text" name="email" maxlength="50" placeholder="Email">
+                    <input class="p-2 mt-8 rounded-xl border-2 border-gray-300 focus:outline-none focus:border-[#8C52FF] transition duration-500 ease-in-out transform" type="text" name="email" maxlength="50" placeholder="Email">
                     <div class="relative">
-                        <input id="senhaInput" class="p-2 rounded-xl border-2 border-gray-300 focus:outline-none focus:border-[#3C1F6E] transition duration-500 ease-in-out transform w-full relative"type="password" name="senha" placeholder="Senha">
+                        <input id="senhaInput" class="p-2 rounded-xl border-2 border-gray-300 focus:outline-none focus:border-[#8C52FF] transition duration-500 ease-in-out transform w-full relative"type="password" name="senha" placeholder="Senha">
                         <i id="hidePassword" class='bx bx-hide absolute right-3 top-1/2 transform -translate-y-1/2 text-gray-400'></i>
                         <i id="showPassword" class='bx bx-show hidden absolute right-3 top-1/2 transform -translate-y-1/2 text-gray-400'></i>
                     </div>
-                    <button class="bg-[#3C1F6E] rounded-3xl text-white py-2 hover:scale-105 duration-300" name="login">Login</button>
+                    <button class="bg-[#8C52FF] rounded-3xl text-white py-2 hover:scale-105 duration-300" name="login">Login</button>
                 </form>
                 <div class="mt-10 grid grid-cols-3 items-center text-gray-400">
                     <hr class="border-gray-400">
                     <p class="text-center text-xs">OU</p>
                     <hr class="border-gray-400">
                 </div>
-                <div class="mt-4 text-xs flex justify-between items-center">
+                <div class="mt-4 text-xs flex justify-between items-center text-center">
                         <p>Se você não possui uma conta, entre em contato com o setor de TI do seu Campus!</p>                   
                 </div>
             </div>
