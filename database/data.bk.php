@@ -234,7 +234,7 @@
             '../imgs/posts/hackathon-o-que-e-vantagens-desafios-como-promover-1280x720.jpg',
             'pendente',
             'Seu evento ainda não foi publicado, espere a aprovação do administrador!',
-            TRUE,
+            1,
             1,
             67
           )",
@@ -281,7 +281,7 @@
             'https://i.ytimg.com/vi/27ck3rqfc-A/maxresdefault.jpg',
             'ativo',
             'Seu evento foi publicado!',
-            TRUE,
+            1,
             1,
             105
           )",
@@ -328,7 +328,7 @@
             'https://sonhealtoviagens.com/wp-content/uploads/2020/09/INTERCA%CC%82MBIO-CANADA%CC%81-768x432.png',
             'ativo',
             'Seu evento foi publicado!',
-            FALSE,
+            1,
             1,
             156
           )",
@@ -373,7 +373,7 @@
             'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT6B4MMxzxaHHOHoqrF4WMOXei4ctbpRDqd9QDqtYMNVFYCnOcjLobsb4bMe0tXuKRSsvU&usqp=CAU',
             'recusado',
             'O evento foi recusado, pois a data final do evento expirou!',
-            FALSE,
+            0,
             1,
             56
           )",
@@ -419,7 +419,7 @@
             'https://i.ytimg.com/vi/SvRXIWfKf8k/maxresdefault.jpg',
             'recusado',
             'O evento foi arquivado, pois a data final do evento expirou!',
-            FALSE,
+            0,
             1,
             23
           )",
@@ -466,7 +466,7 @@
             'https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEg22CfAs7EPx7ScZZSJA7V3d4JUunUCBN1MMqo6-PYJhN1ZvyMmulh2kCpNNs5sm1LMe6iY6dk8jpTueitU_7ALIO_9pqIldC8-8KO8uXgVnSVEazXmy9nVgGPnCI7PAopANzO0d4o0sEQ/s1280/Mestrado+no+exterior.jpg',
             'ativo',
             'Seu evento foi publicado!',
-            FALSE,
+            0,
             1,
             12
           )",
@@ -515,7 +515,7 @@
             'https://dasartes.com.br/dasartes.com.br/wp-content/uploads/2022/01/unnamed-24.jpg',
             'ativo',
             'Seu evento foi publicado!',
-            FALSE,
+            0,
             1,
             5
           )",
