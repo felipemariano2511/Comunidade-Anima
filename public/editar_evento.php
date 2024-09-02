@@ -36,7 +36,7 @@
         $descricao_inicial = mysqli_real_escape_string($con, $_POST['descricao_inicial']);
         $descricao_completa = mysqli_real_escape_string($con, $_POST['descricao_completa']);
         $arquivo = $_FILES['arquivo'];
-        $restrito = $_POST['inlineRadioOptions'] == '1' ? TRUE : FALSE;
+        $restrito = $_POST['inlineRadioOptions'] == '1' ? 1 : 0;
 
         if($arquivo['tmp_name'] == ''){
             $endereco_arquivo = $tableData['arquivo'];

@@ -10,7 +10,7 @@
   $imageFolder = "../imgs/posts/";
   $name = uniqid();
 
-  if (isset($_SERVER['HTTP_ORIGIN'])) {
+  if (isset($_SERVER['HTTP_ORIGIN'], "https://vps54590.publiccloud.com.br/mariano/Comunidade_Anima/")) {
     // same-origin requests won't set an origin. If the origin is set, it must be valid.
     if (in_array($_SERVER['HTTP_ORIGIN'], $accepted_origins)) {
       header('Access-Control-Allow-Origin: ' . $_SERVER['HTTP_ORIGIN']);

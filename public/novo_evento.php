@@ -20,7 +20,7 @@ if($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['cadastrar'])){
     $descricao_inicial = mysqli_real_escape_string($con, $_POST['descricao_inicial']);
     $descricao_completa = mysqli_real_escape_string($con, $_POST['descricao_completa']);
     $arquivo = $_FILES['arquivo'];
-    $restrito = $_POST['inlineRadioOptions'] == '1' ? TRUE : FALSE;
+    $restrito = $_POST['inlineRadioOptions'] == '1' ? 1 : 0;
     $autor = $user_info['id'];
 
     if($arquivo['error'] === 0) {
