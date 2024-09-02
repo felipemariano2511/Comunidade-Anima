@@ -1,5 +1,5 @@
 <?php
-$servername = "localhost:3500";
+$servername = "localhost:3306";
 $username = "root";
 $password = "";
 $dbname = "comunidade_anima";
