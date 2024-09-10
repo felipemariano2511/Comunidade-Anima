@@ -13,7 +13,7 @@
           )
           VALUES (
             'Atletica',
-            'Atletica Tubarao da UFCG',
+            'Atlética Tubarao da UFCG',
             'Josias Matos',
             'Junte-se a Atletica Tubarao e viva a melhor experiencia universitaria!',
             '<p>A Atletica Tubareo da UFCG e uma entidade sem fins lucrativos que promove a integração social, a pratica esportiva e o desenvolvimento cultural dos estudantes da Universidade Federal de Campina Grande. Oferecemos diversas atividades para voce aproveitar ao maximo sua vida universitaria, como:</p><ul><li>Campeonatos esportivos em diversas modalidades;</li><li>Festas tematicas e eventos culturais;</li><li>Acoes sociais e voluntariado;</li><li>Viagens e excursoes;</li><li>Intercambios com outras atleticas;</li><li>Descontos em produtos e serviços.</li></ul><p>Venha fazer parte da nossa família e viver momentos inesqueciveis! SomosTubarao AtleticaTubarão UFCG</p><p><img src=”https://www.shutterstock.com/image-vector/cartoon-shark-logo-mascot-isolated-260nw-1324061330.jpg” alt=”Logo da Atletica Tubarao”></p><p>Acesse nossas redes sociais para saber mais:</p><ul><li><a href=”https://www.facebook.com/AtleticaTubaraoUFCG/”>Facebook</a></li><li><a href=”https://www.instagram.com/atleticatubarao/”>Instagram</a></li><li><a href=”https://twitter.com/AtleticaTubarao”>Twitter</a></li></ul>',
